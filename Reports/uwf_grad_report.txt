@@ -1,0 +1,118 @@
+
+------------ Simulation Report ------------
+Computer Science - BS, BS -- Generic
+
+-------- Simulation Statistics --------
+Number of terms: 12
+Max Credits per Term: 18
+Max Course Attempts: 3
+Number of Students: 1000
+Preset Course Pass Rates: 90.0%
+
+-------- Graduation Statistics --------
+Number of Students Graduated: 593
+Graduation Rate: 59.3%
+Term Graduation Rates: 
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.175, 0.505, 0.585, 0.593, 0.0]
+Average time to degree: 8.866779089376054 terms
+
+-------- Stop out Statistics --------
+Number of Students Stopped Out (Stopout Model Prediction + Reached Max Attempts): 407
+Number of Students Reaching Max Attempts: 113
+Stop-out Rate: 40.7%
+Cumulative Term Stop-out Rates (including reached max course attempts students): 
+[0.082, 0.216, 0.272, 0.325, 0.354, 0.37, 0.394, 0.401, 0.405, 0.407, 0.407, 0.0]
+
+Cumulative Term Stop-out Rates (excluding reaching max course attempts students): 
+[0.082, 0.216, 0.234, 0.265, 0.285, 0.291, 0.294, 0.294, 0.294, 0.294, 0.294, 0.0]
+
+Cumulative Term Reached Max Course Attempts Rates: 
+[0.0, 0.0, 0.038, 0.06, 0.069, 0.079, 0.1, 0.107, 0.111, 0.113, 0.113, 0.0]
+
+
+-------- Pass Rate of Each Course (computed from Student Grades CSV file) --------
+ Row │ Courses                            Pass_Rates  Num_Students_Passes  Num_Students_Taken 
+─────┼────────────────────────────────────────────────────────────────────────────────────────
+   1 │ ENC 1101 English Composition I     87.5%       9568                 10929
+   2 │ SPC 2608 General Education: Comm…  90.2%       9385                 10401
+   3 │ MAC 2311 Analytic Geometry and C…  68.0%       3331                 4900
+   4 │ COP 2210 Introductory Programmin…  84.5%       2560                 3028
+   5 │ ENC 1102 English Composition II    86.2%       11383                13212
+   6 │ EEL 2880 Algorithm and Program D…  81.1%       848                  1046
+   7 │ COT 3100 Discrete Structures       89.7%       3027                 3376
+   8 │ PHI 2600 Ethics in Contemporary …  90.0%       N/A                  N/A
+   9 │ MAC 2312 Analytic Geometry and C…  69.0%       2133                 3090
+  10 │ SOC UCC1 General Education: Soci…  86.4%       14726                17046
+  11 │ COP 3337 Intermediate Computer P…  88.3%       2893                 3275
+  12 │ COP 3530 Data Structures and Alg…  91.1%       2600                 2853
+  13 │ CDA 4101 Introduction to Compute…  90.0%       N/A                  N/A
+  14 │ MAS 3105 Mathematics Elective      90.0%       N/A                  N/A
+  15 │ PHY 2048 Calculus-Based Physics I  73.4%       2567                 3495
+  16 │ COP 4534 Data Structures and Alg…  90.0%       522                  580
+  17 │ CEN 4010 Software Engineering I    93.3%       1929                 2067
+  18 │ HUM UCC1 General Education: Huma…  89.9%       17131                19061
+  19 │ PHY 2049 Calculus-Based Physics …  83.2%       2208                 2653
+  20 │ ECO 2013 Principles of Economics…  90.0%       N/A                  N/A
+  21 │ COP 4338 Advanced Computer Progr…  90.5%       2563                 2833
+  22 │ COP 4555 Programming Languages     94.3%       1583                 1678
+  23 │ COP 4610 Systems and Networks I    90.6%       2123                 2344
+  24 │ STA 4321 Introduction to Mathema…  82.6%       123                  149
+  25 │ CNT 4403 Systems and Networks II   96.4%       669                  694
+  26 │ MAD 3512 Theory of Computation     67.7%       128                  189
+  27 │ COP 4710 Database Systems          90.3%       1602                 1775
+  28 │ Computer Science Elective          90.0%       N/A                  N/A
+  29 │ General Elective                   90.0%       N/A                  N/A
+  30 │ General Elective                   90.0%       N/A                  N/A
+  31 │ NAT UCC1 General Education: Natu…  82.5%       16973                20578
+  32 │ Computer Science Elective          90.0%       N/A                  N/A
+  33 │ COP 4999 Computer Science Core: …  94.7%       3328                 3516
+  34 │ NAT UCC1 General Education: Natu…  82.5%       16973                20578
+  35 │ General Elective                   90.0%       N/A                  N/A
+  36 │ CIS 4951 Capstone Project          97.3%       1012                 1040
+  37 │ COP 4999 Computer Science Core: …  94.7%       3328                 3516
+  38 │ General Elective                   90.0%       N/A                  N/A
+  39 │ General Elective                   90.0%       N/A                  N/A
+
+-------- Course Pass Rates by Term --------
+ Row │ COUSE                              TERM1  TERM2  TERM3  TERM4  TERM5  TERM6  TERM7  TERM8  TERM9  TERM10  TERM11  TERM12 
+─────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ English Composition I              87.6%  97.6%  98.5%  98.5%  98.5%  98.5%  98.5%  98.5%  98.5%  98.5%   98.5%   98.5%
+   2 │ General Education: Communication   89.6%  98.5%  98.8%  98.8%  98.8%  98.8%  98.8%  98.8%  98.8%  98.8%   98.8%   98.8%
+   3 │ Analytic Geometry and Calculus I   67.9%  85.6%  92.5%  92.5%  92.5%  92.5%  92.5%  92.5%  92.5%  92.5%   92.5%   92.5%
+   4 │ Introductory Programming           86.2%  98.1%  99.1%  99.1%  99.1%  99.1%  99.1%  99.1%  99.1%  99.1%   99.1%   99.1%
+   5 │ English Composition II             0.0%   68.8%  84.7%  87.0%  87.4%  87.4%  87.4%  87.4%  87.4%  87.4%   87.4%   87.4%
+   6 │ Algorithm and Program Design       0.0%   64.0%  82.3%  86.1%  86.4%  86.4%  86.4%  86.4%  86.4%  86.4%   86.4%   86.4%
+   7 │ Discrete Structures                0.0%   47.7%  70.6%  79.7%  81.0%  81.1%  81.1%  81.1%  81.1%  81.1%   81.1%   81.1%
+   8 │ Ethics in Contemporary Society     90.8%  98.2%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%   98.9%   98.9%
+   9 │ Analytic Geometry and Calculus II  0.0%   44.2%  65.3%  76.6%  78.4%  79.0%  79.0%  79.0%  79.0%  79.0%   79.0%   79.0%
+  10 │ General Education: Social Scienc…  0.0%   71.7%  86.7%  88.5%  88.6%  88.6%  88.6%  88.6%  88.6%  88.6%   88.6%   88.6%
+  11 │ Intermediate Computer Programming  0.0%   56.2%  81.5%  85.5%  85.9%  85.9%  85.9%  85.9%  85.9%  85.9%   85.9%   85.9%
+  12 │ Data Structures and Algorithms I   0.0%   0.0%   49.0%  70.3%  74.6%  75.4%  75.4%  75.4%  75.4%  75.4%   75.4%   75.4%
+  13 │ Introduction to Computer Organiz…  0.0%   0.0%   36.6%  60.3%  69.9%  72.7%  72.9%  72.9%  72.9%  72.9%   72.9%   72.9%
+  14 │ Mathematics Elective               0.0%   0.0%   33.4%  55.1%  67.7%  70.9%  71.5%  71.5%  71.5%  71.5%   71.5%   71.5%
+  15 │ Calculus-Based Physics I           0.0%   0.0%   24.8%  47.2%  62.9%  67.4%  68.7%  69.2%  69.2%  69.2%   69.2%   69.2%
+  16 │ Data Structures and Algorithms II  0.0%   0.0%   0.0%   40.2%  62.0%  68.2%  69.6%  69.7%  69.7%  69.7%   69.7%   69.7%
+  17 │ Software Engineering I             0.0%   0.0%   38.7%  68.2%  74.2%  75.1%  75.1%  75.1%  75.1%  75.1%   75.1%   75.1%
+  18 │ General Education: Humanities Gr…  0.0%   27.5%  43.8%  76.0%  80.4%  80.9%  80.9%  80.9%  80.9%  80.9%   80.9%   80.9%
+  19 │ Calculus-Based Physics II          0.0%   0.0%   0.0%   19.4%  40.3%  57.2%  63.2%  64.9%  65.8%  66.0%   66.0%   66.0%
+  20 │ Principles of Economics Macro      0.0%   9.4%   29.0%  65.1%  76.2%  76.8%  76.9%  76.9%  76.9%  76.9%   76.9%   76.9%
+  21 │ Advanced Computer Programming      0.0%   0.0%   9.8%   36.9%  67.1%  71.3%  71.5%  71.5%  71.5%  71.5%   71.5%   71.5%
+  22 │ Programming Languages              0.0%   0.0%   0.0%   5.5%   29.3%  59.8%  65.3%  66.0%  66.1%  66.1%   66.1%   66.1%
+  23 │ Systems and Networks I             0.0%   0.0%   0.0%   0.7%   45.6%  62.7%  66.5%  66.9%  66.9%  66.9%   66.9%   66.9%
+  24 │ Introduction to Mathematical Sta…  0.0%   0.0%   1.4%   6.5%   48.7%  63.8%  66.4%  66.8%  66.8%  66.8%   66.8%   66.8%
+  25 │ Systems and Networks II            0.0%   0.0%   0.0%   0.0%   0.0%   31.1%  56.1%  62.1%  63.4%  63.5%   63.5%   63.5%
+  26 │ Theory of Computation              0.0%   0.0%   0.0%   2.0%   33.0%  54.1%  61.0%  63.2%  63.2%  63.2%   63.2%   63.2%
+  27 │ Database Systems                   0.0%   0.0%   3.6%   7.5%   20.2%  58.1%  65.8%  66.5%  66.5%  66.5%   66.5%   66.5%
+  28 │ Computer Science Elective          0.0%   0.0%   7.1%   9.0%   22.2%  56.0%  65.9%  66.7%  66.8%  66.8%   66.8%   66.8%
+  29 │ General Elective                   0.0%   0.0%   0.8%   1.8%   3.0%   36.4%  61.3%  63.6%  63.8%  63.8%   63.8%   63.8%
+  30 │ General Elective                   0.0%   0.0%   0.1%   0.1%   0.1%   18.8%  56.3%  62.6%  63.2%  63.2%   63.2%   63.2%
+  31 │ General Education: Natural Scien…  0.0%   0.0%   0.2%   0.3%   0.5%   7.3%   48.7%  60.9%  62.3%  62.5%   62.5%   62.5%
+  32 │ Computer Science Elective          0.0%   0.0%   0.0%   0.0%   0.1%   0.7%   43.4%  59.8%  61.5%  61.8%   61.8%   61.8%
+  33 │ Computer Science Core: Grouping 1  0.0%   0.0%   0.0%   0.0%   0.0%   0.3%   33.4%  59.2%  61.2%  61.2%   61.2%   61.2%
+  34 │ General Education: Natural Scien…  0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   19.5%  51.7%  59.5%  60.2%   60.2%   60.2%
+  35 │ General Elective                   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   12.9%  52.4%  59.5%  60.4%   60.5%   60.5%
+  36 │ Capstone Project                   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   8.2%   52.3%  59.7%  60.3%   60.3%   60.3%
+  37 │ Computer Science Core: Grouping 2  0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   2.2%   45.4%  59.6%  60.2%   60.2%   60.2%
+  38 │ General Elective                   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   32.8%  56.9%  59.6%   60.0%   60.0%
+  39 │ General Elective                   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   24.8%  55.5%  59.7%   60.0%   60.0%
+  40 │ GRAD RATE                          0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   17.5%  50.5%  58.5%   59.3%   0.0%

@@ -1,0 +1,172 @@
+Confusion Matrix and Statistics
+
+    
+pred  0  1
+   0 70  4
+   1 20 24
+                                          
+               Accuracy : 0.7966          
+                 95% CI : (0.7127, 0.8651)
+    No Information Rate : 0.7627          
+    P-Value [Acc > NIR] : 0.2269          
+                                          
+                  Kappa : 0.5305          
+                                          
+ Mcnemar's Test P-Value : 0.0022          
+                                          
+            Sensitivity : 0.8571          
+            Specificity : 0.7778          
+         Pos Pred Value : 0.5455          
+         Neg Pred Value : 0.9459          
+              Precision : 0.5455          
+                 Recall : 0.8571          
+                     F1 : 0.6667          
+             Prevalence : 0.2373          
+         Detection Rate : 0.2034          
+   Detection Prevalence : 0.3729          
+      Balanced Accuracy : 0.8175          
+                                          
+       'Positive' Class : 1               
+                                          
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Area under the curve: 0.8746
+                        MeanDecreaseGini
+COHORT1198                     1.0832683
+COHORT1208                     0.4204650
+COHORT1218                     1.0769729
+COHORT1228                     1.0810767
+TOTAL_ATTEMPTED_COURSES        5.4381279
+CORE_CLASSES_SUCCESS           6.9167695
+TOTAL_FAILED                   2.8523285
+PASS_RATE                      6.5415689
+AVG_BLOCK                      7.7360239
+MAX_BLOCK                      2.9945326
+TOTAL_DELAY                    7.1706820
+HIGH_DELAY_ATTEMPT             5.1491031
+FAIL_HIGH_DELAY                0.9887686
+FAIL_HIGH_BLOCKING             1.1003629
+PROGRESS_IN_CURRIC             8.9657321
+
+-------------------------------------------------------------------------------------------------
+"1 year of data for switch majors" 
+-------------------------------------------------------------------------------------------------
+
+Confusion Matrix and Statistics
+
+    
+pred  0  1
+   0 58 10
+   1 32 18
+                                        
+               Accuracy : 0.6441        
+                 95% CI : (0.5507, 0.73)
+    No Information Rate : 0.7627        
+    P-Value [Acc > NIR] : 0.998679      
+                                        
+                  Kappa : 0.2261        
+                                        
+ Mcnemar's Test P-Value : 0.001194      
+                                        
+            Sensitivity : 0.6429        
+            Specificity : 0.6444        
+         Pos Pred Value : 0.3600        
+         Neg Pred Value : 0.8529        
+              Precision : 0.3600        
+                 Recall : 0.6429        
+                     F1 : 0.4615        
+             Prevalence : 0.2373        
+         Detection Rate : 0.1525        
+   Detection Prevalence : 0.4237        
+      Balanced Accuracy : 0.6437        
+                                        
+       'Positive' Class : 1             
+                                        
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Area under the curve: 0.7665
+                        MeanDecreaseGini
+COHORT1198                     1.0528675
+COHORT1208                     0.5469883
+COHORT1218                     2.0293371
+COHORT1228                     1.0245747
+TOTAL_ATTEMPTED_COURSES        6.1441917
+CORE_CLASSES_SUCCESS           5.9682343
+TOTAL_FAILED                   2.8345015
+PASS_RATE                      5.5804306
+AVG_BLOCK                      5.3231049
+MAX_BLOCK                      3.4372919
+TOTAL_DELAY                    8.3015486
+HIGH_DELAY_ATTEMPT             4.3903630
+FAIL_HIGH_DELAY                1.5111408
+FAIL_HIGH_BLOCKING             1.3338939
+PROGRESS_IN_CURRIC             9.7052708
+
+-------------------------------------------------------------------------------------------------
+"1 year of data for switch majors with less features" 
+-------------------------------------------------------------------------------------------------
+Random Forest 
+
+280 samples
+  8 predictor
+  2 classes: '0', '1' 
+
+No pre-processing
+Resampling: Cross-Validated (5 fold, repeated 3 times) 
+Summary of sample sizes: 224, 223, 225, 224, 224, 223, ... 
+Addtional sampling using down-sampling
+
+Resampling results across tuning parameters:
+
+  mtry  Accuracy   Kappa   
+   2    0.7002130  0.297806
+   6    0.6658487  0.253495
+  11    0.6848158  0.289918
+
+Accuracy was used to select the optimal model using the largest value.
+The final value used for the model was mtry = 2.
+Confusion Matrix and Statistics
+
+    
+pred  0  1
+   0 64  7
+   1 26 21
+                                         
+               Accuracy : 0.7203         
+                 95% CI : (0.6302, 0.799)
+    No Information Rate : 0.7627         
+    P-Value [Acc > NIR] : 0.881715       
+                                         
+                  Kappa : 0.3738         
+                                         
+ Mcnemar's Test P-Value : 0.001728       
+                                         
+            Sensitivity : 0.7500         
+            Specificity : 0.7111         
+         Pos Pred Value : 0.4468         
+         Neg Pred Value : 0.9014         
+              Precision : 0.4468         
+                 Recall : 0.7500         
+                     F1 : 0.5600         
+             Prevalence : 0.2373         
+         Detection Rate : 0.1780         
+   Detection Prevalence : 0.3983         
+      Balanced Accuracy : 0.7306         
+                                         
+       'Positive' Class : 1              
+                                         
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Area under the curve: 0.7853
+                        MeanDecreaseGini
+COHORT1198                      1.314714
+COHORT1208                      0.726370
+COHORT1218                      1.876848
+COHORT1228                      1.169927
+TOTAL_ATTEMPTED_COURSES         7.929710
+CORE_CLASSES_SUCCESS            7.375204
+TOTAL_FAILED                    2.932522
+PASS_RATE                       6.697596
+AVG_BLOCK                       7.337897
+TOTAL_DELAY                    10.361826
+PROGRESS_IN_CURRIC             11.826066

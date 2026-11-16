@@ -1,0 +1,142 @@
+Random Forest 
+
+280 samples
+ 12 predictor
+  2 classes: '0', '1' 
+
+No pre-processing
+Resampling: Cross-Validated (5 fold, repeated 3 times) 
+Summary of sample sizes: 224, 225, 223, 224, 224, 225, ... 
+Addtional sampling using down-sampling
+
+Resampling results across tuning parameters:
+
+  mtry  Accuracy   Kappa    
+   2    0.7392888  0.3691379
+   8    0.7129445  0.3300619
+  15    0.7365421  0.3671506
+
+Accuracy was used to select the optimal model using the largest value.
+The final value used for the model was mtry = 2.
+Confusion Matrix and Statistics
+
+    
+pred  0  1
+   0 19 22
+   1  9 68
+                                         
+               Accuracy : 0.7373         
+                 95% CI : (0.6483, 0.814)
+    No Information Rate : 0.7627         
+    P-Value [Acc > NIR] : 0.77799        
+                                         
+                  Kappa : 0.3743         
+                                         
+ Mcnemar's Test P-Value : 0.03114        
+                                         
+            Sensitivity : 0.7556         
+            Specificity : 0.6786         
+         Pos Pred Value : 0.8831         
+         Neg Pred Value : 0.4634         
+              Precision : 0.8831         
+                 Recall : 0.7556         
+                     F1 : 0.8144         
+             Prevalence : 0.7627         
+         Detection Rate : 0.5763         
+   Detection Prevalence : 0.6525         
+      Balanced Accuracy : 0.7171         
+                                         
+       'Positive' Class : 1              
+                                         
+Area under the curve: 0.7978
+                        MeanDecreaseGini
+COHORT1198                     0.7200162
+COHORT1208                     0.7827460
+COHORT1218                     0.7720400
+COHORT1228                     1.1555436
+TOTAL_ATTEMPTED_COURSES        4.9148273
+CORE_CLASSES_SUCCESS           7.2355233
+TOTAL_FAILED                   5.6747956
+PASS_RATE                      8.9092246
+AVG_BLOCK                      6.8503318
+MAX_BLOCK                      3.5050244
+TOTAL_DELAY                    5.4947569
+HIGH_DELAY_ATTEMPT             3.8025580
+FAIL_HIGH_DELAY                2.8784826
+FAIL_HIGH_BLOCKING             2.1572719
+PROGRESS_IN_CURRIC             6.7947049
+-------------------------------------------------------------------------------------------------------------------------
+Random Forest 
+
+280 samples
+ 12 predictor
+  2 classes: '0', '1' 
+
+No pre-processing
+Resampling: Cross-Validated (5 fold, repeated 3 times) 
+Summary of sample sizes: 224, 224, 224, 224, 224, 224, ... 
+Addtional sampling using down-sampling
+
+Resampling results across tuning parameters:
+
+  mtry  Accuracy   Kappa    
+   2    0.6845606  0.2690555
+   8    0.6619834  0.2485559
+  15    0.6677880  0.2668824
+
+Accuracy was used to select the optimal model using the largest value.
+The final value used for the model was mtry = 2.
+
+Confusion Matrix and Statistics
+
+[1] "CA BINARY MODEL - 1yrs COHORT data"
+    
+Confusion Matrix and Statistics
+
+    
+pred  0  1
+   0 22 21
+   1  6 69
+                                          
+               Accuracy : 0.7712          
+                 95% CI : (0.6848, 0.8435)
+    No Information Rate : 0.7627          
+    P-Value [Acc > NIR] : 0.464441        
+                                          
+                  Kappa : 0.4663          
+                                          
+ Mcnemar's Test P-Value : 0.007054        
+                                          
+            Sensitivity : 0.7667          
+            Specificity : 0.7857          
+         Pos Pred Value : 0.9200          
+         Neg Pred Value : 0.5116          
+              Precision : 0.9200          
+                 Recall : 0.7667          
+                     F1 : 0.8364          
+             Prevalence : 0.7627          
+         Detection Rate : 0.5847          
+   Detection Prevalence : 0.6356          
+      Balanced Accuracy : 0.7762          
+                                          
+       'Positive' Class : 1               
+                                          
+> prob <- predict(rf_model1CA1yr_TEST, newdata = test_df_CAYR, type = "prob")[,2]
+> roc_obj <- roc(test_df_CAYR$GRAD, prob)
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+> auc(roc_obj)
+Area under the curve: 0.831
+> importance(rf_model1CA1yr_TEST$finalModel)
+                        MeanDecreaseGini
+COHORT1198                     1.3389946
+COHORT1208                     1.0644151
+COHORT1218                     0.9293939
+COHORT1228                     1.8257013
+TOTAL_ATTEMPTED_COURSES        4.4515070
+CORE_CLASSES_SUCCESS           8.2428686
+TOTAL_FAILED                   6.4335252
+PASS_RATE                     10.3711843
+AVG_BLOCK                      8.1873263
+TOTAL_DELAY                    7.5982394
+PROGRESS_IN_CURRIC            10.5245020

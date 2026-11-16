@@ -1,0 +1,47 @@
+﻿Curriculum,Computer Science - BS,,,,,,,,,
+Degree Plan,Generic,,,,,,,,,
+Institution,University of Central Florida,,,,,,,,,
+Degree Type,BS,,,,,,,,,
+System Type,semester,,,,,,,,,
+CIP,11.0101,,,,,,,,,
+Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+1,Composition I,ENC,1101,,,,3,UCF,ENC1101,1
+2,GEP Communications,SPC,UCC1,,,,3,UCF,,1
+3,Introduction to Programming with C,EEL,2880,,,,3,UCF,COP3223C,1
+4,Calculus with Analytic Geometry I,MAC,2311,,,,4,UCF,MAC2311C,1
+5,Composition II,ENC,1102,1,,,3,UCF,ENC1102,2
+6,Introduction to Discrete Structures,COT,3100,,4,,3,UCF,COT3100C,2
+7,Computer Science I,COP,3337,3;4,,,3,UCF,COP3502C,2
+8,Computer Logic and Organization ,CDA,3102,3,,,3,UCF,CDA3103,2
+9,Calculus with Analytic Geometry II,MAC,2312,,,,4,UCF,MAC2312,3
+10,Object Oriented Programming,COP,2210,,,,3,UCF,COP3330,3
+11,Foundation Exam,COT,3960,7,,,0,UCF,COT3960,3
+12,General Physics Using Calculus I,PHY,2048,4,,,4,UCF,PHY2048,4
+13,System Software,COP,3402,7;8,,,3,UCF,COP3402,4
+14,Computer Science II,COP,3530,6;7;10,,,3,UCF,COP3503C,4
+15,GEP Social Science,SOC,UCC1,,,,3,UCF,,4
+16,General Physics Using Calculus II,PHY,2049,9;12,,,4,UCF,PHY2049,5
+17,Processes for Object-Oriented Software Development,CEN,4010,11;14,,,3,UCF,COP4331C,5
+18,Writing for the Technical Professional,ENC,3249,5,,,3,UCF,ENC3241,5
+19,Security in Computing,CNT,4403,3,,,3,UCF,CIS3360,5
+20,Statistical Methods I,STA,2023,,,,3,UCF,STA2023,6
+21,GEP Social Science,SOC,UCC2,,,,3,UCF,,6
+22,Math Elective,,,9,,,3,UCF,,7
+23,Biology I,BSC,2010,,,,4,UCF,BSC2010C,7
+24,CS Basic Core: Data Science ,CAP,4999,11,,,3,UCF,,7
+25,Technical Elective,,,,,,3,UCF,,7
+26,Chemistry Fundamentals I,CHM,1045,,,,4,UCF,CHM2045C,8
+27,Math Elective,,,9,,,3,UCF,,8
+28,Technical Elective,,,11,,,3,UCF,,8
+29,Technical Elective,,,11,,,3,UCF,,8
+30,Free Elective,,,,,,3,UCF,,9
+31,GEP Humanities,HUM,UCC1,,,,3,UCF,,9
+32,Senior Design I,CIS,3950,13;14,17,,3,UCF,COP4934,10
+33,GEP Humanities,HUM,UCC2,,,,3,UCF,,10
+34,Discrete Structures II,MAD,3512,9;11;14,,,3,UCF,COT4210,10
+35,Technical Elective,,,11,,,3,UCF,,10
+36,Senior Design II,CIS,4951,32,,,3,UCF,COP4935,11
+37,Free Elective,,,,,,3,UCF,,11
+38,Technical Elective,,,11,,,3,UCF,,11
+39,Technical Elective,,,11,,,3,UCF,,11

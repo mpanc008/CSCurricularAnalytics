@@ -1,0 +1,128 @@
+Random Forest 
+
+280 samples
+  5 predictor
+  2 classes: '0', '1' 
+
+No pre-processing
+Resampling: Cross-Validated (5 fold, repeated 3 times) 
+Summary of sample sizes: 224, 224, 224, 223, 225, 224, ... 
+Addtional sampling using down-sampling
+
+Resampling results across tuning parameters:
+
+  mtry  Accuracy   Kappa    
+  2     0.7785479  0.4857908
+  5     0.7653653  0.4571238
+  8     0.7609004  0.4361883
+
+Accuracy was used to select the optimal model using the largest value.
+The final value used for the model was mtry = 2.
+Random Forest 
+
+Confusion Matrix and Statistics
+
+    
+pred  0  1
+   0 74  8
+   1 16 20
+                                          
+               Accuracy : 0.7966          
+                 95% CI : (0.7127, 0.8651)
+    No Information Rate : 0.7627          
+    P-Value [Acc > NIR] : 0.2269          
+                                          
+                  Kappa : 0.4884          
+                                          
+ Mcnemar's Test P-Value : 0.1530          
+                                          
+            Sensitivity : 0.7143          
+            Specificity : 0.8222          
+         Pos Pred Value : 0.5556          
+         Neg Pred Value : 0.9024          
+              Precision : 0.5556          
+                 Recall : 0.7143          
+                     F1 : 0.6250          
+             Prevalence : 0.2373          
+         Detection Rate : 0.1695          
+   Detection Prevalence : 0.3051          
+      Balanced Accuracy : 0.7683          
+                                          
+       'Positive' Class : 1               
+                                          
+Area under the curve: 0.8611
+                        MeanDecreaseGini
+COHORT1198                      1.205668
+COHORT1208                      1.019417
+COHORT1218                      1.969896
+COHORT1228                      1.821002
+TOTAL_ATTEMPTED_COURSES        17.122903
+CORE_CLASSES_SUCCESS           12.326118
+TOTAL_FAILED                    5.674087
+PASS_RATE                      11.042761
+
+-------------------------------------------------------------------------------------------------
+"1 year of data for switch majors" 
+-------------------------------------------------------------------------------------------------
+
+280 samples
+  5 predictor
+  2 classes: '0', '1' 
+
+No pre-processing
+Resampling: Cross-Validated (5 fold, repeated 3 times) 
+Summary of sample sizes: 224, 224, 224, 224, 224, 223, ... 
+Addtional sampling using down-sampling
+
+Resampling results across tuning parameters:
+
+  mtry  Accuracy   Kappa    
+  2     0.7299324  0.3573189
+  5     0.6774432  0.2786181
+  8     0.6941741  0.2940016
+
+Accuracy was used to select the optimal model using the largest value.
+The final value used for the model was mtry = 2.
+
+
+
+Confusion Matrix and Statistics
+
+    
+pred  0  1
+   0 59  7
+   1 31 21
+                                         
+               Accuracy : 0.678          
+                 95% CI : (0.5857, 0.761)
+    No Information Rate : 0.7627         
+    P-Value [Acc > NIR] : 0.9863411      
+                                         
+                  Kappa : 0.3131         
+                                         
+ Mcnemar's Test P-Value : 0.0001907      
+                                         
+            Sensitivity : 0.7500         
+            Specificity : 0.6556         
+         Pos Pred Value : 0.4038         
+         Neg Pred Value : 0.8939         
+              Precision : 0.4038         
+                 Recall : 0.7500         
+                     F1 : 0.5250         
+             Prevalence : 0.2373         
+         Detection Rate : 0.1780         
+   Detection Prevalence : 0.4407         
+      Balanced Accuracy : 0.7028         
+                                         
+       'Positive' Class : 1              
+                                         
+Area under the curve: 0.7877
+                        MeanDecreaseGini
+COHORT1198                      2.139047
+COHORT1208                      1.480647
+COHORT1218                      3.055827
+COHORT1228                      1.690166
+TOTAL_ATTEMPTED_COURSES        13.305042
+CORE_CLASSES_SUCCESS           10.305319
+TOTAL_FAILED                    4.440739
+PASS_RATE                      10.687491

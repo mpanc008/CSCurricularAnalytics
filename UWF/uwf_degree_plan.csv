@@ -1,0 +1,47 @@
+Curriculum,Computer Science - BS,,,,,,,,,
+Degree Plan,Generic,,,,,,,,,
+Institution,University of West Florida,,,,,,,,,
+Degree Type,BS,,,,,,,,,
+System Type,semester,,,,,,,,,
+CIP,11.0701,,,,,,,,,
+Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+1,English Composition I,ENC,1101,,,,3,UWF,ENC1101,1
+2,General Education: Communication,SPC,2608,,,,4,UWF,,1
+3,Analytic Geometry and Calculus I,MAC,2311,,,,3,UWF,,1
+4,Introductory Programming ,COP,2210,,,,3,UWF,IDC2000,1
+5,English Composition II,ENC,1102,1,,,3,UWF,ENC1143,2
+6,Algorithm and Program Design,EEL,2880,4,,,3,UWF,COP2220,2
+7,Discrete Structures,COT,3100,3;4,,,3,UWF,,2
+8,Ethics in Contemporary Society,PHI,2600,,,,4,UWF,MAC2312,2
+9,Analytic Geometry and Calculus II,MAC,2312,3,,,3,UWF,,3
+10,General Education: Social Science Group 1,SOC,UCC1,,,,3,UWF,PHY1028,3
+11,Intermediate Computer Programming,COP,3337,4,,,3,UWF,,4
+12,Data Structures and Algorithms I,COP,3530,6,,,3,UWF,,4
+13,Introduction to Computer Organization,CDA,4101,7,,,4,UWF,PHY2048C,4
+14,Mathematics Elective,MAS,3105,9,,,3,UWF,COT3100,4
+15,Calculus-Based Physics I,PHY,2048,9,,,3,UWF,COP3503,5
+16,Data Structures and Algorithms II,COP,4534,12,7,,5,UWF,PHY2049,5
+17,Software Engineering I,CEN,4010,11,,,3,UWF,COP3530,5
+18,General Education: Humanities Group 1,HUM,UCC1,,,,3,UWF,SPC4064,5
+19,Calculus-Based Physics II,PHY,2049,9;15,,,3,UWF,,6
+20,Principles of Economics Macro,ECO,2013,,,,3,UWF,CIS3253,6
+21,Advanced Computer Programming,COP,4338,11,,,3,UWF,STA3032,7
+22,Programming Languages,COP,4555,12;21,,,3,UWF,,7
+23,Systems and Networks I,COP,4610,7;12;13,,,3,UWF,COP3703,7
+24,Introduction to Mathematical Statistics I,STA,4321,9,,,3,UWF,COT3210,7
+25,Systems and Networks II,CNT,4403,23;24,16,,3,UWF,CNT4504,8
+26,Theory of Computation,MAD,3512,7,,,3,UWF,CAP4630,8
+27,Database Systems,COP,4710,4,,,4,UWF,CDA3100,8
+28,Computer Science Elective,,,,,,3,UWF,,8
+29,General Elective,,,,,,3,UWF,,9
+30,General Elective,,,,,,4,UWF,MAS3105,9
+31,General Education: Natural Science Group 1,NAT,UCC1,,,,3,UWF,COP3404,9
+32,Computer Science Elective,,,,,,3,UWF,COT4400,10
+33,Computer Science Core: Grouping 1,COP,4999,,,,3,UWF,,10
+34,General Education: Natural Science Group 1,NAT,UCC1,,,,3,UWF,COP4610,10
+35,General Elective,,,,,,3,UWF,CEN4010,10
+36,Capstone Project,CIS,4951,16;17;23,,,3,UWF,COP4620,11
+37,Computer Science Core: Grouping 2,COP,4999,,,,3,UWF,,11
+38,General Elective,,,,,,3,UWF,,11
+39,General Elective,,,,,,3,UWF,,11

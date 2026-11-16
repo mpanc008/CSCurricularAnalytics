@@ -1,0 +1,50 @@
+﻿Curriculum,Computer Science - BS,,,,,,,,,
+Degree Plan,Generic,,,,,,,,,
+Institution,Florida Polytechnic University,,,,,,,,,
+Degree Type,BS,,,,,,,,,
+System Type,semester,,,,,,,,,
+CIP,11.0701,,,,,,,,,
+Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+1,Beauty and Joy of Computing,COP,1000,,,,2,FPU,COP1009,1
+2,Analytic Geometry and Calculus 1,MAC,2311,,,,4,FPU,MAC2311,1
+3,Expository and Argumentative Writing,ENC,1101,,,,3,FPU,ENC1101,1
+4,General Education: Humanities,HUM,UCC1,,,,3,FPU,HUMUCC1,1
+5,Introduction to Computation and Programming,EEL,2880,,,,3,FPU,COP2271,2
+6,Analytic Geometry and Calculus 2,MAC,2312,2,,,4,FPU,MAC2312,2
+7,Technical Writing,ENC,3249,3,,,3,FPU,ENC2210,2
+8,Statistics I,STA,2023,,,,3,FPU,STA2023,2
+9,General Education: Natural Science,NAT,UCC1,,,,3,FPU,NAT UCC1,3
+10,General Education: Natural Science Lab,NAT,UCC1L,,,9,1,FPU,NAT UCC1L,3
+11,General Education: Natural Science,NAT,UCC1,,,,3,FPU,NAT UCC1,3
+12,General Education: Natural Science Lab,NAT,UCC1L,,,11,1,FPU,NAT UCC1L,3
+13,"Legal, Ethical, and Management Issues in Technology",CGS,3095,,,,3,FPU,IDS2144,3
+14,Object Oriented Programming,COP,3337,5,,,3,FPU,COP3337,4
+15,Fundamentals of Computer Systems,CDA,2108,5,,,3,FPU,CDA2108,4
+16,Computational Linear Algebra,MAS,3105,6,,,3,FPU,MAS3114,4
+17,Discrete Mathematics,MAD,2104,6,,,3,FPU,MAD2104,4
+18,Data Structures,COP,3530,14,,,3,FPU,COP3415,5
+19,Computation Problem Solving in Python,COP,2080,5,,,3,FPU,COP2080,5
+20,Database 1,COP,4710,5,,,3,FPU,COP3710,5
+21,Computer Architecture,CDA,3102,15,,,3,FPU,CDA3100,5
+22,Algorithm Design and Analysis,COP,4534,,18,,3,FPU,COP4531,6
+23,System Administration using UNIX,CTS,4348,19,,,3,FPU,COP3604,6
+24,Computer Networks,CNT,4513,14,,,3,FPU,CNT3004,6
+25,Computer Security,CNT,4403,14,,,3,FPU,CIS4367,6
+26,Computer Science Concentration,COP,4999,,,,3,FPU,CSCONC,6
+27,Secure Software Engineering ,CEN,4010,18,,,3,FPU,CEN4033,7
+28,Formal Languages and Automata,MAD,3512,17,,,3,FPU,COT4210,7
+29,Computer Science Elective ,CIS,4999,,,,3,FPU,CSELEC,7
+30,Artificial Intelligence,CAP,4630,18,,,3,FPU,CAP4630,7
+31,Computer Science Concentration,COP,4999,,,,3,FPU,CSCONC,7
+32,Professional Experience Internship,COP,4949,,,,0,FPU,IDS4941,7
+33,Senior Design 1,CIS,3950,27,,,3,FPU,COP4934,8
+34,Operating Systems Concepts,COP,4610,23,,,3,FPU,COP4610,8
+35,Computer Science Elective ,CIS,4999,,,,3,FPU,CSELEC,8
+36,Computer Science Concentration,COP,4999,,,,3,FPU,CSCONC,8
+37,General Education: Social Science ,SOC,UCC1,,,,3,FPU,SOCUCC1,8
+38,Senior Design 2,CIS,4951,33,,,3,FPU,COP4935,9
+39,Programming Languages,COP,4555,14,,,3,FPU,COP4020,9
+40,Computer Science Elective ,CIS,4999,,,,3,FPU,CSELEC,9
+41,Computer Science Concentration,COP,4999,,,,3,FPU,CSCONC,9
+42,General Education: Humanities,HUM,UCC1,,,,3,FPU,HUMUCC1,9

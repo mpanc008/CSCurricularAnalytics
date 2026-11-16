@@ -1,0 +1,22 @@
+similar courses: 
+
+mac2311 (calc1) 
+mac2312 (calc2)
+phy2048 (physics1+calc)
+phy2049 (physics2+calc)
+copX530 (data structures)
+cot3100 (discrete structures)
+cop46XX (operating systems)
+
+192	68	124
+217	81	136
+201	73	128
+188	70	118
+217	86	131
+190	66	124
+148	52	96
+232	109	123
+174	64	110
+
+
+

@@ -1,0 +1,46 @@
+﻿Curriculum,Computer Science - BS,,,,,,,,,
+Degree Plan,Generic,,,,,,,,,
+Institution,Florida Atlantic University,,,,,,,,,
+Degree Type,BS,,,,,,,,,
+System Type,semester,,,,,,,,,
+CIP,11.0101,,,,,,,,,
+Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+1,College Writing I,ENC,1101,,,,3,FAU,ENC1101,1
+2,Foundations of Computing,COT,2000C,,,,3,FAU,COT2000C,1
+3,Intro to Programming,COP,3035C,,,,3,FAU,COP3035C,1
+4,Calculus 1,MAC,2311,,,,4,FAU,MAC2311,1
+5,College Writing II,ENC,1102,1,,,3,FAU,ENC1102,2
+6,Intro to Software Design,CEN,3062C,3,,,3,FAU,CEN3062C,2
+7,Systems Programming ,COP,3275C,3,6,,3,FAU,COP3275C,2
+8,Matrix Theory,MAS,2103,4,,,3,FAU,MAS2103,2
+9,Calculus 2,MAC,2312,4,,,4,FAU,MAC2312,3
+10,Social Sci. Grp A ,,,,,,3,FAU,,3
+29,Science Group B,,,,,,3,FAU,,3
+11,Data Struct. & Algo Analysis ,COP,3530C,2;7,,,3,FAU,COP3530C,4
+12,Stochastic Models for CS,STA,4821,9,,,3,FAU,STA4821,4
+13,Computer Logic Design,CDA,3203,,,,3,FAU,CDA3203,4
+14,Gen Ed Elective,,,,,,3,FAU,,4
+15,Prin. of Software Engin,CEN,4010,11,,,3,FAU,CEN4010,5
+16,Intro to DB Struct,COP,3540,11,,,3,FAU,COP3540,5
+17,Theory of Computation,COT,4420,11,,,3,FAU,COT4420,5
+18,Design & Analysis of Algo,COT,4400,11,,,3,FAU,COT4400,5
+19,Humanities Group A,,,,,,3,FAU,,6
+20,Science Group A,,,,,,4,FAU,,6
+30,Humanities Group B,,,,,,3,FAU,,6
+21,Computer Architecture,CDA,4102,7;13,,,3,FAU,CDA4102,7
+22,Intro to Data Science,CAP,4773,3;12,,,3,FAU,CAP4773,7
+23,Communication Networks,CNT,4007,11,,,3,FAU,CNT4007,7
+24,CS Elective,,,,,,3,FAU,,7
+25,Comp. Operating Systems,COP,4610,11;21,,,3,FAU,COP4610,8
+26,CS Semi-Core Group 2,,,11,,,3,FAU,,8
+27,CS Elective,,,,,,3,FAU,,8
+28,CS Elective,,,,,,3,FAU,,8
+31,CS Semi-Core Group 1,,,11,,,3,FAU,,9
+32,Engineering Design 1,EGN,4950C,12;15,,,3,FAU,EGN4950C,9
+33,CS Elective,,,,,,3,FAU,,9
+34,Social Science Group B,,,,,,3,FAU,,9
+35,Engineering Design 2,EGN,4952,32,,,3,FAU,EGN4952,10
+36,CS Elective,,,,,,3,FAU,,10
+37,CS Semi-Core Group 1,,,11,,,3,FAU,,10
+38,CS Semi-Core Group 2,,,,,,3,FAU,,10

@@ -1,0 +1,115 @@
+------------ Simulation Report ------------
+Computer Science - BS, BS -- Generic
+
+-------- Simulation Statistics --------
+Number of terms: 12
+Max Credits per Term: 18
+Max Course Attempts: 3
+Number of Students: 1000
+Preset Course Pass Rates: 90.0%
+
+-------- Graduation Statistics --------
+Number of Students Graduated: 585
+Graduation Rate: 58.5%
+Term Graduation Rates: 
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.012, 0.336, 0.554, 0.584, 0.585, 0.0]
+Average time to degree: 8.45982905982906 terms
+
+-------- Stop out Statistics --------
+Number of Students Stopped Out (Stopout Model Prediction + Reached Max Attempts): 415
+Number of Students Reaching Max Attempts: 116
+Stop-out Rate: 41.5%
+Cumulative Term Stop-out Rates (including reached max course attempts students): 
+[0.084, 0.189, 0.262, 0.33, 0.356, 0.38, 0.408, 0.411, 0.415, 0.415, 0.415, 0.0]
+
+Cumulative Term Stop-out Rates (excluding reaching max course attempts students): 
+[0.084, 0.189, 0.22, 0.265, 0.283, 0.29, 0.299, 0.299, 0.299, 0.299, 0.299, 0.0]
+
+Cumulative Term Reached Max Course Attempts Rates: 
+[0.0, 0.0, 0.042, 0.065, 0.073, 0.09, 0.109, 0.112, 0.116, 0.116, 0.116, 0.0]
+
+
+-------- Pass Rate of Each Course (computed from Student Grades CSV file) --------
+ Row │ Courses                            Pass_Rates  Num_Students_Passes  Num_Students_Taken 
+─────┼────────────────────────────────────────────────────────────────────────────────────────
+   1 │ ENC 1101 College Writing I         87.5%       9568                 10929
+   2 │ COP 1000 Foundations of Computing  80.4%       189                  235
+   3 │ COP 2047 Introduction to Program…  85.7%       120                  140
+   4 │ MAC 2311 Calculus with Analytic …  68.0%       3331                 4900
+   5 │ ENC 1102 College Writing II        86.2%       11383                13212
+   6 │ COP 3337 Introduction to Softwar…  88.3%       2893                 3275
+   7 │ COP 4338 Systems Programming wit…  90.5%       2563                 2833
+   8 │ MAS 2103 Matrix Theory             90.0%       N/A                  N/A
+   9 │ MAC 2312 Calculus with Analytic …  69.0%       2133                 3090
+  10 │ SOC UCC1 Social Science Group A …  86.4%       14726                17046
+  11 │ COP 3530 Data Structures and Alg…  91.1%       2600                 2853
+  12 │ STA 4821 Stochastic Models for C…  90.0%       N/A                  N/A
+  13 │ CDA 4101 Computer Logic Design     90.0%       N/A                  N/A
+  14 │ General Education Elective         90.0%       N/A                  N/A
+  15 │ CEN 4010 Principles of Software …  93.3%       1929                 2067
+  16 │ COP 4710 Introduction to Databas…  90.3%       1602                 1775
+  17 │ MAD 3512 Theory of Computation     67.7%       128                  189
+  18 │ COP 4534 Design and Analysis of …  90.0%       522                  580
+  19 │ HUM UCC1 Humanities Group A        89.9%       17131                19061
+  20 │ NAT UCC1 Science Group A           78.9%       14597                18494
+  21 │ CDA 3102 Computer Architecture     88.2%       2276                 2581
+  22 │ CAP 3764 Introduction to Data Sc…  100.0%      10                   10
+  23 │ CNT 4513 Communication Networks    95.5%       214                  224
+  24 │ Computer Science Elective 1        90.0%       N/A                  N/A
+  25 │ COP 4610 Computer Operating Syst…  90.6%       2123                 2344
+  26 │ COP 4999 Computer Science Semi-C…  92.1%       1814                 1969
+  27 │ Computer Science Elective 2        90.0%       N/A                  N/A
+  28 │ Computer Science Elective 3        90.0%       N/A                  N/A
+  29 │ NAT UCC1 Science Group B           78.9%       14597                18494
+  30 │ HUM UCC2 Humanities Group B        86.6%       2154                 2486
+  31 │ CAP 4999 Computer Science Semi-C…  94.8%       1815                 1915
+  32 │ CIS 3950 Engineering Design 1      96.4%       1269                 1316
+  33 │ Computer Science Elective 4        90.0%       N/A                  N/A
+  34 │ SOC UCC2 Social Science Group B    85.7%       9672                 11285
+  35 │ CIS 4951 Engineering Design 2      97.3%       1012                 1040
+  36 │ Computer Science Elective 5        90.0%       N/A                  N/A
+  37 │ CAP 4999 Computer Science Semi-C…  94.8%       1815                 1915
+  38 │ COP 4999 Computer Science Semi-C…  92.1%       1814                 1969
+
+-------- Course Pass Rates by Term --------
+ Row │ COUSE                              TERM1  TERM2  TERM3  TERM4  TERM5  TERM6  TERM7  TERM8  TERM9  TERM10  TERM11  TERM12 
+─────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ College Writing I                  87.9%  97.8%  98.8%  98.8%  98.8%  98.8%  98.8%  98.8%  98.8%  98.8%   98.8%   98.8%
+   2 │ Foundations of Computing           80.1%  94.4%  97.4%  97.4%  97.4%  97.4%  97.4%  97.4%  97.4%  97.4%   97.4%   97.4%
+   3 │ Introduction to Programming in P…  86.4%  97.0%  98.2%  98.2%  98.2%  98.2%  98.2%  98.2%  98.2%  98.2%   98.2%   98.2%
+   4 │ Calculus with Analytic Geometry 1  70.3%  89.1%  94.3%  94.3%  94.3%  94.3%  94.3%  94.3%  94.3%  94.3%   94.3%   94.3%
+   5 │ College Writing II                 0.0%   68.1%  85.0%  87.8%  87.9%  87.9%  87.9%  87.9%  87.9%  87.9%   87.9%   87.9%
+   6 │ Introduction to Software Design    0.0%   71.9%  86.3%  88.8%  88.9%  88.9%  88.9%  88.9%  88.9%  88.9%   88.9%   88.9%
+   7 │ Systems Programming with C++       0.0%   70.8%  86.9%  89.0%  89.0%  89.0%  89.0%  89.0%  89.0%  89.0%   89.0%   89.0%
+   8 │ Matrix Theory                      0.0%   57.7%  78.1%  83.7%  84.2%  84.4%  84.4%  84.4%  84.4%  84.4%   84.4%   84.4%
+   9 │ Calculus with Analytic Geometry 2  0.0%   36.1%  64.3%  76.7%  79.1%  79.5%  79.5%  79.5%  79.5%  79.5%   79.5%   79.5%
+  10 │ Social Science Group A (Civic Li…  88.1%  92.1%  97.2%  98.0%  98.0%  98.0%  98.0%  98.0%  98.0%  98.0%   98.0%   98.0%
+  11 │ Data Structures and Algorithm An…  0.0%   0.0%   54.4%  73.9%  77.5%  77.7%  77.7%  77.7%  77.7%  77.7%   77.7%   77.7%
+  12 │ Stochastic Models for Computer S…  0.0%   0.0%   29.3%  54.9%  68.0%  71.9%  72.5%  72.5%  72.5%  72.5%   72.5%   72.5%
+  13 │ Computer Logic Design              0.0%   2.6%   67.0%  77.9%  79.4%  79.6%  79.6%  79.6%  79.6%  79.6%   79.6%   79.6%
+  14 │ General Education Elective         0.0%   0.0%   53.0%  76.3%  78.0%  78.4%  78.4%  78.4%  78.4%  78.4%   78.4%   78.4%
+  15 │ Principles of Software Engineeri…  0.0%   0.0%   0.0%   46.1%  65.7%  69.9%  70.3%  70.4%  70.4%  70.4%   70.4%   70.4%
+  16 │ Introduction to Database Structu…  0.0%   0.0%   0.0%   44.4%  64.3%  70.1%  70.6%  70.6%  70.6%  70.6%   70.6%   70.6%
+  17 │ Theory of Computation              0.0%   0.0%   0.0%   30.0%  54.5%  63.0%  65.9%  66.3%  66.3%  66.3%   66.3%   66.3%
+  18 │ Design and Analysis of Algorithms  0.0%   0.0%   0.0%   32.8%  61.6%  68.1%  69.2%  69.3%  69.3%  69.3%   69.3%   69.3%
+  19 │ Humanities Group A                 0.0%   0.0%   22.1%  50.6%  71.3%  73.2%  73.4%  73.4%  73.4%  73.4%   73.4%   73.4%
+  20 │ Science Group A                    0.0%   0.0%   0.1%   19.6%  51.8%  64.5%  66.9%  66.9%  66.9%  66.9%   66.9%   66.9%
+  21 │ Computer Architecture              0.0%   0.0%   0.0%   5.1%   41.6%  62.5%  65.6%  65.9%  65.9%  65.9%   65.9%   65.9%
+  22 │ Introduction to Data Science and…  0.0%   0.0%   0.0%   2.4%   34.1%  60.9%  65.1%  65.7%  65.7%  65.7%   65.7%   65.7%
+  23 │ Communication Networks             0.0%   0.0%   0.0%   0.0%   19.8%  59.8%  64.4%  64.7%  64.7%  64.7%   64.7%   64.7%
+  24 │ Computer Science Elective 1        0.0%   0.0%   0.0%   0.4%   10.6%  54.6%  63.5%  64.4%  64.4%  64.4%   64.4%   64.4%
+  25 │ Computer Operating Systems         0.0%   0.0%   0.0%   0.0%   0.0%   34.0%  56.7%  62.3%  63.2%  63.2%   63.2%   63.2%
+  26 │ Computer Science Semi-Core Group…  0.0%   0.0%   0.0%   0.0%   1.1%   43.8%  61.6%  63.5%  63.8%  63.8%   63.8%   63.8%
+  27 │ Computer Science Elective 2        0.0%   0.0%   0.0%   0.0%   1.7%   33.3%  59.7%  62.8%  62.8%  62.8%   62.8%   62.8%
+  28 │ Computer Science Elective 3        0.0%   0.0%   0.0%   0.0%   1.2%   20.8%  56.5%  61.3%  61.7%  61.7%   61.7%   61.7%
+  29 │ Science Group B                    0.0%   30.0%  71.9%  80.8%  82.3%  82.3%  82.3%  82.3%  82.3%  82.3%   82.3%   82.3%
+  30 │ Humanities Group B                 0.0%   0.0%   0.4%   22.7%  56.8%  66.9%  68.0%  68.3%  68.3%  68.3%   68.3%   68.3%
+  31 │ Computer Science Semi-Core Group…  0.0%   0.0%   0.0%   0.0%   0.0%   11.3%  54.9%  60.9%  61.5%  61.5%   61.5%   61.5%
+  32 │ Engineering Design 1               0.0%   0.0%   0.0%   0.0%   0.0%   5.1%   49.2%  59.9%  60.7%  60.7%   60.7%   60.7%
+  33 │ Computer Science Elective 4        0.0%   0.0%   0.0%   0.0%   0.7%   1.6%   40.5%  58.1%  60.0%  60.1%   60.1%   60.1%
+  34 │ Social Science Group B             0.0%   0.0%   0.0%   0.0%   0.4%   0.6%   32.4%  55.2%  59.4%  59.8%   59.8%   59.8%
+  35 │ Engineering Design 2               0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   5.0%   46.0%  57.8%  59.1%   59.2%   59.2%
+  36 │ Computer Science Elective 5        0.0%   0.0%   0.0%   0.0%   0.0%   0.1%   22.6%  54.8%  59.4%  59.6%   59.6%   59.6%
+  37 │ Computer Science Semi-Core Group…  0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   13.8%  52.4%  58.8%  59.3%   59.3%   59.3%
+  38 │ Computer Science Semi-Core Group…  0.0%   0.0%   0.0%   0.0%   0.0%   0.1%   5.6%   46.1%  58.3%  59.3%   59.3%   59.3%
+  39 │ GRAD RATE                          0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   1.2%   33.6%  55.4%  58.4%   58.5%   0.0%

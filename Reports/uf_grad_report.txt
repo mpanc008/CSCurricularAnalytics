@@ -1,0 +1,121 @@
+------------ Simulation Report ------------
+Computer Science - BS, BS -- Generic
+
+-------- Simulation Statistics --------
+Number of terms: 12
+Max Credits per Term: 18
+Max Course Attempts: 3
+Number of Students: 1000
+Preset Course Pass Rates: 90.0%
+
+-------- Graduation Statistics --------
+Number of Students Graduated: 588
+Graduation Rate: 58.8%
+Term Graduation Rates: 
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.198, 0.505, 0.585, 0.588, 0.0]
+Average time to degree: 8.80952380952381 terms
+
+-------- Stop out Statistics --------
+Number of Students Stopped Out (Stopout Model Prediction + Reached Max Attempts): 412
+Number of Students Reaching Max Attempts: 107
+Stop-out Rate: 41.2%
+Cumulative Term Stop-out Rates (including reached max course attempts students): 
+[0.078, 0.194, 0.262, 0.324, 0.368, 0.392, 0.403, 0.408, 0.41, 0.412, 0.412, 0.0]
+
+Cumulative Term Stop-out Rates (excluding reaching max course attempts students): 
+[0.078, 0.194, 0.228, 0.271, 0.291, 0.299, 0.305, 0.305, 0.305, 0.305, 0.305, 0.0]
+
+Cumulative Term Reached Max Course Attempts Rates: 
+[0.0, 0.0, 0.034, 0.053, 0.077, 0.093, 0.098, 0.103, 0.105, 0.107, 0.107, 0.0]
+
+
+-------- Pass Rate of Each Course (computed from Student Grades CSV file) --------
+ Row │ Courses                            Pass_Rates  Num_Students_Passes  Num_Students_Taken 
+─────┼────────────────────────────────────────────────────────────────────────────────────────
+   1 │ HUM UCC1 General Education: Huma…  89.9%       17131                19061
+   2 │ PHY 1020 Introduction to Princip…  90.0%       N/A                  N/A
+   3 │ COP 2210 Programming Fundamental…  84.5%       2560                 3028
+   4 │ MAC 2311 Analytic Geometry and C…  68.0%       3331                 4900
+   5 │ COP 3337 Programming Fundamental…  88.3%       2893                 3275
+   6 │ COT 3100 Applications of Discret…  89.7%       3027                 3376
+   7 │ MAC 2312 Analytic Geometry and C…  69.0%       2133                 3090
+   8 │ PHY 2048 Physics with Calculus 1   73.4%       2567                 3495
+   9 │ ENC 1101 Expository and Argument…  87.5%       9568                 10929
+  10 │ HUM UCC2 General Education: Huma…  86.5%       4135                 4783
+  11 │ NAT UCC2 General Education: Biol…  77.1%       14391                18657
+  12 │ CDA 4101 Introduction to Compute…  90.0%       N/A                  N/A
+  13 │ COP 3530 Data Structures and Alg…  91.1%       2600                 2853
+  14 │ MAC 2313 Analytic Geometry and C…  76.7%       1265                 1649
+  15 │ PHY 2049 Physics with Calculus 2   83.2%       2208                 2653
+  16 │ CEN 4010 Introduction to Softwar…  93.3%       1929                 2067
+  17 │ COP 4710 Information and Databas…  90.3%       1602                 1775
+  18 │ ENC 3249 Writing in the Discipli…  92.0%       1492                 1622
+  19 │ MAS 3105 Computational Linear Al…  84.7%       366                  432
+  20 │ SOC UCC1 General Education: Soci…  86.4%       14726                17046
+  21 │ SOC UCC2 General Education: Soci…  87.3%       18135                20775
+  22 │ COP 4610 Operating Systems         90.6%       2123                 2344
+  23 │ STA 3033 Engineering Statistics    86.5%       1159                 1340
+  24 │ Technical Elective                 90.0%       N/A                  N/A
+  25 │ COP 4555 Programming Language Co…  94.3%       1583                 1678
+  26 │ COP 4534 Algorithm Abstraction a…  90.0%       522                  580
+  27 │ Interdisciplinary Elective         90.0%       N/A                  N/A
+  28 │ Interdisciplinary Elective         90.0%       N/A                  N/A
+  29 │ Technical Elective                 90.0%       N/A                  N/A
+  30 │ CNT 4513 Computer Network Fundam…  95.5%       214                  224
+  31 │ CGS 3095 Engineering Ehtics and …  88.5%       2824                 3190
+  32 │ Technical Elective                 90.0%       N/A                  N/A
+  33 │ Technical Elective                 90.0%       N/A                  N/A
+  34 │ Interdisciplinary Elective         90.0%       N/A                  N/A
+  35 │ CIS 4951 Senior Project            97.3%       1012                 1040
+  36 │ Technical Elective                 90.0%       N/A                  N/A
+  37 │ Technical Elective                 90.0%       N/A                  N/A
+  38 │ Interdisciplinary Elective         90.0%       N/A                  N/A
+  39 │ Interdisciplinary Elective         90.0%       N/A                  N/A
+  40 │ PHY 2048L Physics with Calculus …  91.8%       4675                 5091
+  41 │ PHY 2049L Physics with Calculus …  95.9%       3939                 4107
+
+-------- Course Pass Rates by Term --------
+ Row │ COUSE                              TERM1  TERM2  TERM3  TERM4  TERM5  TERM6  TERM7  TERM8  TERM9  TERM10  TERM11  TERM12 
+─────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ General Education: Humanities      89.8%  98.1%  99.3%  99.3%  99.3%  99.3%  99.3%  99.3%  99.3%  99.3%   99.3%   99.3%
+   2 │ Introduction to Principles of Ph…  91.5%  98.1%  98.5%  98.5%  98.5%  98.5%  98.5%  98.5%  98.5%  98.5%   98.5%   98.5%
+   3 │ Programming Fundamentals 1         86.7%  97.2%  98.2%  98.2%  98.2%  98.2%  98.2%  98.2%  98.2%  98.2%   98.2%   98.2%
+   4 │ Analytic Geometry and Calculus 1   66.9%  87.1%  92.5%  92.5%  92.5%  92.5%  92.5%  92.5%  92.5%  92.5%   92.5%   92.5%
+   5 │ Programming Fundamentals 2         0.0%   46.0%  72.7%  80.8%  81.4%  81.5%  81.5%  81.5%  81.5%  81.5%   81.5%   81.5%
+   6 │ Applications of Discrete Structu…  0.0%   48.5%  73.2%  81.7%  82.3%  82.3%  82.3%  82.3%  82.3%  82.3%   82.3%   82.3%
+   7 │ Analytic Geometry and Calculus 2   0.0%   42.5%  67.6%  78.9%  80.1%  80.3%  80.3%  80.3%  80.3%  80.3%   80.3%   80.3%
+   8 │ Physics with Calculus 1            0.0%   42.3%  68.8%  78.6%  80.0%  80.8%  80.8%  80.8%  80.8%  80.8%   80.8%   80.8%
+   9 │ Expository and Argumentative Wri…  0.0%   74.6%  88.0%  89.5%  89.5%  89.5%  89.5%  89.5%  89.5%  89.5%   89.5%   89.5%
+  10 │ General Education: Humanities      0.0%   33.6%  78.0%  83.6%  84.5%  84.5%  84.5%  84.5%  84.5%  84.5%   84.5%   84.5%
+  11 │ General Education: Biological an…  0.0%   23.1%  65.6%  78.4%  81.2%  81.2%  81.2%  81.2%  81.2%  81.2%   81.2%   81.2%
+  12 │ Introduction to Computer Organiz…  0.0%   0.0%   33.5%  60.8%  71.3%  73.0%  73.2%  73.3%  73.3%  73.3%   73.3%   73.3%
+  13 │ Data Structures and Algorithm      0.0%   0.0%   24.2%  51.4%  67.1%  70.0%  70.7%  70.8%  70.8%  70.8%   70.8%   70.8%
+  14 │ Analytic Geometry and Calculus 3   0.0%   0.0%   17.7%  50.3%  65.3%  68.7%  69.5%  69.7%  69.7%  69.7%   69.7%   69.7%
+  15 │ Physics with Calculus 2            0.0%   0.0%   3.9%   44.6%  62.8%  67.4%  68.8%  68.9%  68.9%  68.9%   68.9%   68.9%
+  16 │ Introduction to Software Enginee…  0.0%   0.0%   0.0%   21.8%  46.9%  62.4%  65.9%  66.8%  67.0%  67.0%   67.0%   67.0%
+  17 │ Information and Database Systems…  0.0%   0.0%   11.8%  51.6%  69.6%  71.3%  71.5%  71.5%  71.5%  71.5%   71.5%   71.5%
+  18 │ Writing in the Disciplines         0.0%   20.8%  29.0%  64.3%  78.2%  79.5%  79.6%  79.6%  79.6%  79.6%   79.6%   79.6%
+  19 │ Computational Linear Algebra       0.0%   0.0%   0.0%   18.5%  53.7%  65.0%  66.6%  66.7%  66.7%  66.7%   66.7%   66.7%
+  20 │ General Education: Social Scienc…  0.0%   0.0%   13.2%  27.3%  63.4%  72.1%  73.0%  73.1%  73.1%  73.1%   73.1%   73.1%
+  21 │ General Education: Social Scienc…  0.0%   0.0%   7.0%   13.7%  53.8%  68.7%  69.7%  69.7%  69.7%  69.7%   69.7%   69.7%
+  22 │ Operating Systems                  0.0%   0.0%   0.0%   0.0%   27.1%  56.8%  62.5%  63.5%  63.7%  63.7%   63.7%   63.7%
+  23 │ Engineering Statistics             0.0%   0.0%   0.0%   4.4%   28.2%  58.4%  63.7%  64.6%  64.6%  64.6%   64.6%   64.6%
+  24 │ Technical Elective                 0.0%   0.0%   5.9%   6.3%   18.2%  59.2%  66.0%  66.5%  66.5%  66.5%   66.5%   66.5%
+  25 │ Programming Language Concepts      0.0%   0.0%   0.0%   0.0%   2.7%   47.9%  60.3%  61.6%  61.9%  61.9%   61.9%   61.9%
+  26 │ Algorithm Abstraction and Design   0.0%   0.0%   0.0%   0.0%   0.0%   37.9%  57.7%  61.1%  61.5%  61.5%   61.5%   61.5%
+  27 │ Interdisciplinary Elective         0.0%   0.0%   3.2%   3.2%   4.0%   35.2%  59.7%  63.2%  63.3%  63.3%   63.3%   63.3%
+  28 │ Interdisciplinary Elective         0.0%   0.0%   0.0%   0.0%   0.7%   21.8%  54.7%  60.4%  61.0%  61.0%   61.0%   61.0%
+  29 │ Technical Elective                 0.0%   0.0%   0.0%   0.0%   0.3%   10.7%  52.4%  60.1%  60.7%  60.7%   60.7%   60.7%
+  30 │ Computer Network Fundamentals      0.0%   0.0%   0.0%   0.0%   0.0%   4.9%   48.0%  59.8%  60.6%  60.6%   60.6%   60.6%
+  31 │ Engineering Ehtics and Professio…  0.0%   81.5%  87.7%  89.6%  90.1%  90.1%  90.1%  90.1%  90.1%  90.1%   90.1%   90.1%
+  32 │ Technical Elective                 0.0%   0.0%   0.0%   0.0%   0.0%   1.7%   41.1%  58.8%  60.2%  60.3%   60.3%   60.3%
+  33 │ Technical Elective                 0.0%   0.0%   0.0%   0.0%   0.0%   0.3%   33.6%  56.2%  59.6%  60.0%   60.0%   60.0%
+  34 │ Interdisciplinary Elective         0.0%   0.0%   0.0%   0.0%   0.0%   0.1%   23.3%  53.9%  59.4%  59.7%   59.8%   59.8%
+  35 │ Senior Project                     0.0%   0.0%   0.0%   0.0%   0.0%   0.1%   15.1%  54.6%  59.4%  59.5%   59.5%   59.5%
+  36 │ Technical Elective                 0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   7.3%   47.8%  58.4%  59.3%   59.3%   59.3%
+  37 │ Technical Elective                 0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   2.9%   42.4%  57.9%  59.4%   59.4%   59.4%
+  38 │ Interdisciplinary Elective         0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.9%   35.1%  56.1%  59.1%   59.3%   59.3%
+  39 │ Interdisciplinary Elective         0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   27.1%  55.1%  59.1%   59.1%   59.1%
+  40 │ Physics with Calculus 1 Lab        0.0%   0.0%   34.6%  60.3%  69.4%  71.6%  72.8%  72.8%  72.8%  72.8%   72.8%   72.8%
+  41 │ Physics with Calculus 2 Lab        0.0%   0.0%   0.0%   3.7%   40.0%  58.2%  63.1%  64.9%  65.0%  65.0%   65.0%   65.0%
+  42 │ GRAD RATE                          0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   19.8%  50.5%  58.5%   58.8%   0.0%

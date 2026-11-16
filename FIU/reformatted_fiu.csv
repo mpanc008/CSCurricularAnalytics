@@ -1,0 +1,53 @@
+﻿Curriculum,BS Computer Science,,,,,,,,,
+Degree Plan,Students not Calculus Ready,,,,,,,,,
+Institution,Florida International University,,,,,,,,,
+Degree Type,BS,,,,,,,,,
+System Type,semester,,,,,,,,,
+CIP,11.0101,,,,,,,,,
+Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+1,Writing and Rhetoric I,ENC,1101,,,,3,Florida International University,English Composition I,1
+2,Introduction to Computing,CGS,1920,,,,1,Florida International University,,1
+3,First Year Experience,SLS,1501,,,,1,Florida International University,,1
+4,Calculus I,MAC,2311,42,,,4,Florida International University,Calculus I,3
+5,UCC: Social Science Group One,,,,,,3,Florida International University,Social Science State Core,1
+6,Writing and Rhetoric II,ENC,1102,1,,,3,Florida International University,English Composition II,2
+7,Calculus II,MAC,2312,4,,,4,Florida International University,Calculus II,4
+8,Programming I,COP,2210,4,,,4,Florida International University,Programming I,2
+9,UCC: Humanities Group One,,,,,,3,Florida International University,Humanities State Core,2
+10,UCC: Social Science Group Two,,,,,,3,Florida International University,Social Science University Core,3
+11,UCC Elective,,,,,,3,Florida International University,General Education Elective,3
+12,General Elective,,,,,,3,Florida International University,,3
+13,General Elective,,,,,,3,Florida International University,,3
+14,Professional and Technical Writing for Computing,ENC,3249,6,,,3,Florida International University,Technical Writing,4
+15,UCC: Humanities Group Two,,,,,,3,Florida International University,Humanities University Core,4
+16,Computer Programming II,COP,3337,8,,,3,Florida International University,Programming II,4
+17,Discrete Structures,COT,3100,4,8,,3,Florida International University,Discrete Structures I,4
+18,Technology and the Global Arena,CGS,3095,8;14,,,3,Florida International University,Computing Ethics,5
+19,Computer Architecture,CDA,3102,16;17,,,3,Florida International University,Computer Architecture,5
+20,Data Structures ,COP,3530,16;17,,,3,Florida International University,Data Structures,5
+21,Natural Science Elective Group 1,,,,,,4,Florida International University,,5
+22,Natural Science Elective Group 2,,,,,,4,Florida International University,,6
+23,General Elective,,,,,,3,Florida International University,,6
+24,General Elective,,,,,,3,Florida International University,,6
+25,General Elective,,,,,,3,Florida International University,,6
+26,Principles of Programming Languages,COP,4555,20,,,3,Florida International University,Programming Languages,7
+27,Introduction to Probability and Statistics for CS,STA,3033,7,,,3,Florida International University,Statistics for CS,7
+28,Software Engineering I,CEN,4010,16;18,,,3,Florida International University,Software Engineering I,7
+29,Systems Programming,COP,4338,,20,,3,Florida International University,Systems Programming,7
+30,Computer Science Elective: Foundations,,,,,,3,Florida International University,,8
+31,Computer Science Elective: Systems,,,,,,3,Florida International University,,8
+32,Computer Science Elective: Applications,,,,,,3,Florida International University,,8
+33,Net-centric Computing,CNT,4713,29,,,3,Florida International University,Net-centric Computing,8
+34,General Elective,,,,,,3,Florida International University,,9
+35,Computer Science Elective ,,,30;31;32,,,3,Florida International University,,9
+36,Computer Science Elective ,,,30;31;32,,,3,Florida International University,,9
+37,Capstone I,CIS,3950,16,,,1,Florida International University,,9
+38,Computer Science Elective ,,,30;31;32,,,3,Florida International University,,10
+39,Computer Science Elective ,,,30;31;32,,,3,Florida International University,,10
+40,Capstone II,CIS,4951,37,,,2,Florida International University,,10
+41,Operating Systems,COP,4610,19;29,,,3,Florida International University,Operating Systems,10
+Additional Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+42,Precalculus Algebra with Trigonometry,MAC,1147,43,,,4,Florida International University,Precalc Trig,2
+43,College Algebra,MAC,1105,,,,3,Florida International University,College Algebra,1

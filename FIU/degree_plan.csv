@@ -1,0 +1,50 @@
+﻿Curriculum,Computer Science - BS,,,,,,,,,
+Degree Plan,Generic,,,,,,,,,
+Institution,Florida International University,,,,,,,,,
+Degree Type,BS,,,,,,,,,
+System Type,semester,,,,,,,,,
+CIP,11.0101,,,,,,,,,
+Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+5,Social Science Group One [RQ4005/LN10],,,,,,3,FIU,,1
+29281,SLS1501-First Year Exper,SLS,1501,,,,1,FIU,SLS1501,1
+31664,MAC2311-Calculus I,MAC,2311,,,,4,FIU,MAC2311,1
+16623,ENC1101-Writing and Rhetoric I,ENC,1101,,,,3,FIU,ENC1101,1
+33598,CGS1920-Intro to Computing,CGS,1920,,,,1,FIU,CGS1920,1
+31667,MAC2312-Calculus II,MAC,2312,31664,,,4,FIU,MAC2312,2
+6,Humanities - Group One [RQ4004/LN10],,,,,,3,FIU,,2
+16627,ENC1102-Writing and Rhetoric II,ENC,1102,16623,,,3,FIU,ENC1102,2
+13386,COP2210-Programming I,COP,2210,31664,,,4,FIU,COP2210,2
+10,UCC Elective,,,,,,3,FIU,,3
+11,Social Science Group Two [RQ4005/LN30],,,,,,3,FIU,,3
+31718,PHY2048-Physics W/Calculus I,PHY,2048,,,31664,4,FIU,PHY2048,4
+31721,PHY2048L-General Phys Lab I,PHY,2048L,,,,1,FIU,PHY2048L,4
+35183,ENC3249-Prof Tech Writing Comp,ENC,3249,16627,,,3,FIU,ENC3249,4
+36512,COT3100-Discrete Structures,COT,3100,13386,,,3,FIU,COT3100,4
+31539,COP3337-Programming II,COP,3337,,,,3,FIU,COP3337,4
+27559,PHY2049-Physics W/Calc II,PHY,2049, 31667; 31718,,,4,FIU,PHY2049,5
+27562,PHY2049L-General Phys Lab II,PHY,2049L,,,,1,FIU,PHY2049L,5
+20,Humanities - Group Two  [RQ4009/LN10],,,,,,3,FIU,,5
+35144,CGS3095-Technology in the Global Arena,CGS,3095,13386,,,3,FIU,CGS3095,5
+37167,CDA3102-Computer Architecture,CDA,3102, 31539; 36512,,,3,FIU,CDA3102,5
+22,Natural Science Additional,,,,,,3,FIU,,6
+21,Natural Science Additional,,,,,,3,FIU,,6
+30413,STA3033-Prob & Stat For Cs,STA,3033,31667,,,3,FIU,STA3033,7
+23,General Electives,,,,,,3,FIU,,7
+13404,COP3530-Data Structures,COP,3530, 31539; 36512,,,3,FIU,COP3530,7
+13426,CEN4010-Software Eng I,CEN,4010, 31539; 35144,,,3,FIU,CEN4010,7
+29,General Electives,,,,,,3,FIU,,8
+30,General Electives,,,,,,3,FIU,,8
+31,General Electives,,,,,,3,FIU,,8
+13388,COP4338-Systems Programming,COP,4338,,13404,,3,FIU,COP4338,8
+32,General Electives,,,,,,3,FIU,,9
+33,General Electives,,,,,,3,FIU,,9
+13425,COP4610-Operating Syst Princ,COP,4610,13388,,,3,FIU,COP4610,10
+37317,CIS3950-Capstone I,CIS,3950,31539,,,1,FIU,CIS3950,10
+37318,CIS4951-Capstone II,CIS,4951,37317,,,2,FIU,CIS4951,11
+34,General Electives,,,,,,3,FIU,,10
+35,General Electives,,,,,,3,FIU,,10
+36,General Electives,,,,,,3,FIU,,10
+37,Electives [RQ4260/LN20],,,,,,3,FIU,,11
+38,Electives [RQ4260/LN20],,,,,,3,FIU,,11
+39,Electives [RQ4260/LN20],,,,,,3,FIU,,11

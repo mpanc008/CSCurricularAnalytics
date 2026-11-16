@@ -1,0 +1,117 @@
+------------ Simulation Report ------------
+Computer Science - BS, BS -- Generic
+
+-------- Simulation Statistics --------
+Number of terms: 12
+Max Credits per Term: 18
+Max Course Attempts: 3
+Number of Students: 1000
+Preset Course Pass Rates: 90.0%
+
+-------- Graduation Statistics --------
+Number of Students Graduated: 577
+Graduation Rate: 57.699999999999996%
+Term Graduation Rates: 
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.113, 0.446, 0.56, 0.577, 0.0]
+Average time to degree: 9.060658578856152 terms
+
+-------- Stop out Statistics --------
+Number of Students Stopped Out (Stopout Model Prediction + Reached Max Attempts): 423
+Number of Students Reaching Max Attempts: 120
+Stop-out Rate: 42.3%
+Cumulative Term Stop-out Rates (including reached max course attempts students): 
+[0.088, 0.199, 0.252, 0.324, 0.368, 0.383, 0.393, 0.402, 0.42, 0.423, 0.423, 0.0]
+
+Cumulative Term Stop-out Rates (excluding reaching max course attempts students): 
+[0.088, 0.199, 0.232, 0.275, 0.289, 0.297, 0.303, 0.303, 0.303, 0.303, 0.303, 0.0]
+
+Cumulative Term Reached Max Course Attempts Rates: 
+[0.0, 0.0, 0.02, 0.049, 0.079, 0.086, 0.09, 0.099, 0.117, 0.12, 0.12, 0.0]
+
+
+-------- Pass Rate of Each Course (computed from Student Grades CSV file) --------
+ Row │ Courses                            Pass_Rates  Num_Students_Passes  Num_Students_Taken 
+─────┼────────────────────────────────────────────────────────────────────────────────────────
+   1 │ ENC 1101 Freshman Composition      87.5%       9568                 10929
+   2 │ MAC 2311 Calculus with Analytic …  68.0%       3331                 4900
+   3 │ EEL 2880 Introduction to C++       81.1%       848                  1046
+   4 │ SOC UCC1 General Education Core …  86.4%       14726                17046
+   5 │ ENC 1102 Research, Genre, and Co…  86.2%       11383                13212
+   6 │ MAC 2312 Calculus with Analytic …  69.0%       2133                 3090
+   7 │ COP 3337 Data Structures, Algori…  88.3%       2893                 3275
+   8 │ HUM UCC1 General Education Core …  89.9%       17131                19061
+   9 │ PHY 2048 General Physics A         73.4%       2567                 3495
+  10 │ NAT UCC1 General Education Natur…  82.5%       16973                20578
+  11 │ PHY 2049 General Physics B         83.2%       2208                 2653
+  12 │ MAD 2104 Discrete Mathematics      71.8%       533                  742
+  13 │ CDA 4101 Computer Organization I   90.0%       N/A                  N/A
+  14 │ General Elective                   90.0%       N/A                  N/A
+  15 │ Computer Science Elective 1        90.0%       N/A                  N/A
+  16 │ COP 3530 Data Structures, Algori…  91.1%       2600                 2853
+  17 │ MAD 3105 Discrete Mathematics II   90.0%       N/A                  N/A
+  18 │ CGS 3095 Ethics in Computer Scie…  88.5%       2824                 3190
+  19 │ Computer Science Elective 1        90.0%       N/A                  N/A
+  20 │ COP 4610 Operating Systems & Con…  90.6%       2123                 2344
+  21 │ HUM UCC2 General Education Human…  88.2%       4232                 4800
+  22 │ Foreign Language 1                 90.0%       N/A                  N/A
+  23 │ Computer Science Elective 2        90.0%       N/A                  N/A
+  24 │ STA 3033 Introduction to Probabi…  86.5%       1159                 1340
+  25 │ COP 4520 Secure Parallel & Distr…  78.9%       30                   38
+  26 │ Foreign Language 2                 90.0%       N/A                  N/A
+  27 │ Computer Science Elective 3        90.0%       N/A                  N/A
+  28 │ MAD 3512 Theory of Computation     67.7%       128                  189
+  29 │ Foreign Language 3                 90.0%       N/A                  N/A
+  30 │ CEN 4010 Software Engineering I    93.3%       1929                 2067
+  31 │ Computer Science Elective 4        90.0%       N/A                  N/A
+  32 │ CIS 4951 Software Engineering Ca…  97.3%       1012                 1040
+  33 │ SOC UCC2 General Education Socia…  87.3%       11476                13140
+  34 │ Computer Science Elective or Adv…  90.0%       N/A                  N/A
+  35 │ Computer Science Elective 5        90.0%       N/A                  N/A
+  36 │ Computer Science Elective 6        90.0%       N/A                  N/A
+  37 │ General Elective                   90.0%       N/A                  N/A
+  38 │ PHY 2048L General Physics A lab    91.8%       4675                 5091
+  39 │ PHY 2049L General Physics B  Lab   95.9%       3939                 4107
+
+-------- Course Pass Rates by Term --------
+ Row │ COUSE                              TERM1  TERM2  TERM3  TERM4  TERM5  TERM6  TERM7  TERM8  TERM9  TERM10  TERM11  TERM12 
+─────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ Freshman Composition               86.6%  97.5%  98.2%  98.2%  98.2%  98.2%  98.2%  98.2%  98.2%  98.2%   98.2%   98.2%
+   2 │ Calculus with Analytic Geometry I  68.4%  88.2%  94.9%  94.9%  94.9%  94.9%  94.9%  94.9%  94.9%  94.9%   94.9%   94.9%
+   3 │ Introduction to C++                81.9%  94.7%  97.0%  97.0%  97.0%  97.0%  97.0%  97.0%  97.0%  97.0%   97.0%   97.0%
+   4 │ General Education Core Social Sc…  86.4%  97.4%  98.4%  98.4%  98.4%  98.4%  98.4%  98.4%  98.4%  98.4%   98.4%   98.4%
+   5 │ Research, Genre, and Context       0.0%   68.7%  84.7%  87.4%  87.7%  87.7%  87.7%  87.7%  87.7%  87.7%   87.7%   87.7%
+   6 │ Calculus with Analytic Geometry …  0.0%   43.2%  67.6%  78.6%  80.5%  80.8%  80.8%  80.8%  80.8%  80.8%   80.8%   80.8%
+   7 │ Data Structures, Algorithms, and…  0.0%   65.7%  82.1%  86.2%  86.5%  86.5%  86.5%  86.5%  86.5%  86.5%   86.5%   86.5%
+   8 │ General Education Core Humanitie…  89.7%  98.2%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%   98.9%   98.9%
+   9 │ General Physics A                  0.0%   44.0%  69.6%  80.5%  82.0%  82.2%  82.2%  82.2%  82.2%  82.2%   82.2%   82.2%
+  10 │ General Education Natural Scienc…  0.0%   62.3%  83.7%  86.9%  87.1%  87.1%  87.1%  87.1%  87.1%  87.1%   87.1%   87.1%
+  11 │ General Physics B                  0.0%   0.0%   21.9%  47.2%  62.5%  67.1%  68.2%  68.3%  68.3%  68.3%   68.3%   68.3%
+  12 │ Discrete Mathematics               0.0%   0.0%   51.7%  70.5%  75.5%  75.5%  75.5%  75.5%  75.5%  75.5%   75.5%   75.5%
+  13 │ Computer Organization I            0.0%   0.0%   53.6%  75.1%  78.0%  78.1%  78.1%  78.1%  78.1%  78.1%   78.1%   78.1%
+  14 │ General Elective                   0.0%   0.0%   26.9%  69.9%  75.3%  75.6%  75.6%  75.6%  75.6%  75.6%   75.6%   75.6%
+  15 │ Computer Science Elective 1        0.0%   0.0%   5.9%   64.9%  73.9%  74.5%  74.5%  74.5%  74.5%  74.5%   74.5%   74.5%
+  16 │ Data Structures, Algorithms and …  0.0%   0.0%   0.0%   37.9%  61.1%  67.7%  68.4%  68.5%  68.5%  68.5%   68.5%   68.5%
+  17 │ Discrete Mathematics II            0.0%   0.0%   0.0%   30.2%  60.1%  67.7%  68.2%  68.2%  68.2%  68.2%   68.2%   68.2%
+  18 │ Ethics in Computer Science         0.0%   0.0%   2.3%   33.4%  65.3%  69.3%  69.7%  69.7%  69.7%  69.7%   69.7%   69.7%
+  19 │ Computer Science Elective 1        0.0%   0.0%   0.0%   13.2%  59.8%  66.5%  66.9%  67.0%  67.0%  67.0%   67.0%   67.0%
+  20 │ Operating Systems & Concurrent P…  0.0%   0.0%   0.0%   0.0%   30.6%  53.9%  63.5%  64.4%  64.5%  64.5%   64.5%   64.5%
+  21 │ General Education Humanities / C…  0.0%   0.0%   0.0%   1.8%   47.5%  62.9%  65.4%  65.4%  65.4%  65.4%   65.4%   65.4%
+  22 │ Foreign Language 1                 0.0%   0.0%   0.0%   0.0%   31.2%  61.3%  64.5%  64.7%  64.9%  64.9%   64.9%   64.9%
+  23 │ Computer Science Elective 2        0.0%   0.0%   0.0%   0.0%   17.0%  57.0%  63.0%  63.8%  63.8%  63.8%   63.8%   63.8%
+  24 │ Introduction to Probability        0.0%   0.0%   0.0%   0.0%   3.7%   48.8%  61.3%  62.9%  63.0%  63.0%   63.0%   63.0%
+  25 │ Secure Parallel & Distr. Computi…  0.0%   0.0%   0.0%   0.0%   0.0%   34.0%  56.4%  60.5%  61.2%  61.2%   61.2%   61.2%
+  26 │ Foreign Language 2                 0.0%   0.0%   0.0%   0.0%   0.0%   24.1%  55.9%  61.3%  61.9%  62.1%   62.1%   62.1%
+  27 │ Computer Science Elective 3        0.0%   0.0%   0.0%   0.0%   0.3%   24.9%  56.2%  61.0%  61.6%  61.6%   61.6%   61.6%
+  28 │ Theory of Computation              0.0%   0.0%   0.0%   0.0%   0.0%   5.3%   40.5%  55.2%  59.2%  59.6%   59.6%   59.6%
+  29 │ Foreign Language 3                 0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   20.8%  51.5%  59.1%  60.2%   60.6%   60.6%
+  30 │ Software Engineering I             0.0%   0.0%   0.0%   0.0%   0.0%   1.1%   43.5%  60.7%  61.5%  61.5%   61.5%   61.5%
+  31 │ Computer Science Elective 4        0.0%   0.0%   0.0%   0.0%   0.0%   1.1%   30.6%  57.2%  60.5%  60.9%   60.9%   60.9%
+  32 │ Software Engineering Capstone      0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   14.5%  55.1%  60.7%  60.9%   60.9%   60.9%
+  33 │ General Education Social Science   0.0%   0.0%   0.0%   0.0%   0.0%   0.2%   3.8%   44.0%  58.2%  60.1%   60.1%   60.1%
+  34 │ Computer Science Elective or Adv…  0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.6%   35.4%  58.2%  60.0%   60.0%   60.0%
+  35 │ Computer Science Elective 5        0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   27.4%  55.4%  59.6%   59.7%   59.7%
+  36 │ Computer Science Elective 6        0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   18.8%  52.8%  58.6%   59.9%   59.9%
+  37 │ General Elective                   0.0%   21.4%  74.7%  81.7%  82.0%  82.0%  82.0%  82.0%  82.0%  82.0%   82.0%   82.0%
+  38 │ General Physics A lab              0.0%   0.0%   36.4%  60.8%  70.5%  72.4%  72.9%  72.9%  72.9%  72.9%   72.9%   72.9%
+  39 │ General Physics B  Lab             0.0%   0.0%   0.0%   20.3%  44.5%  59.4%  64.8%  65.9%  66.0%  66.0%   66.0%   66.0%
+  40 │ GRAD RATE                          0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   11.3%  44.6%  56.0%   57.7%   0.0%

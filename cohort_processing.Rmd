@@ -1,0 +1,611 @@
+---
+title: "Curricular Analytics Modeling"
+output: html_notebook
+---
+
+Requisite libraries
+```{r libraries}
+library(readxl)
+library(themis)
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(pROC)
+library(randomForest)
+library(caret)
+library(CurricularAnalytics)
+```
+
+This section is responsible for performing initial preprocessing on cohort course level data by creating variables for cohort, removing columns, creating variable for 1st year retention, denoting core classes as apart of curricula, and calculating preliminary student statistics from the cohort level data. 
+
+```{r preprocess1}
+prev_cohorts <- read_xlsx("C:/Users/cpanc/OneDrive/Documents/IDC6940/FIU/HISTORICAL DATA/Course Takers COMPSCBS.xlsx")
+
+prev_cohorts <- prev_cohorts %>%  distinct(.keep_all = TRUE)
+
+# names(prev_cohorts)
+
+###############################################
+### convert all dates to homogeneous format ###
+###############################################
+
+# a - convert TERM_DESC to 1241 format
+TermKey <- prev_cohorts[,c("TERM_DESC"), drop=F] 
+TermKey <- unique(TermKey) #remove duplicate rows
+
+# ie: Fall 2023 -> A: Fall, B: 2023
+TermKey <- separate(TermKey, `TERM_DESC`, c("A", "B")) 
+TermKey$first <- 1
+TermKey$second <- substr(TermKey$B, start=3, stop=4)
+TermKey$third <- ifelse(TermKey$A == "Fall", 8, 
+  ifelse(TermKey$A =="Spring", 1,                               ifelse(TermKey$A == "Summer", 5, "")))
+TermKey$TERM_NUM <- paste(TermKey$first, TermKey$second, TermKey$third,sep="")
+TermKey$TERM_DESC <- paste(TermKey$A, TermKey$B)
+TermKey <- TermKey %>% select(TERM_DESC, TERM_NUM)
+prev_cohorts <- merge(prev_cohorts, TermKey, by=c("TERM_DESC"), all.x=TRUE ) %>% relocate(TERM_NUM, .after = TERM_DESC)
+
+# b - convert COH_FIRST_TERM_ATTND, COH_LAST_TERM_ATTND, MAJOR_CHANGE_TERM_ID to other date format
+TermKey <- prev_cohorts[,c("COH_FIRST_TERM_ATTND", "COH_LAST_TERM_ATTND",  "MAJOR_CHANGE_TERM_ID"), drop=F] 
+TermKey <- unique(TermKey) 
+TermKey$first <- 1
+TermKey$cohsecond <- substr(TermKey$COH_LAST_TERM_ATTND, start=3, stop=4)
+TermKey$firsecond <- substr(TermKey$COH_FIRST_TERM_ATTND, start=3, stop=4)
+TermKey$majsecond <- substr(TermKey$MAJOR_CHANGE_TERM_ID, start=3, stop=4)
+TermKey$firthird <- substr(TermKey$COH_FIRST_TERM_ATTND, start=6, stop=6)
+TermKey$cohthird <- substr(TermKey$COH_LAST_TERM_ATTND, start=6, stop=6)
+TermKey$majthird <- substr(TermKey$MAJOR_CHANGE_TERM_ID, start=6, stop=6)
+
+TermKey$COH_FIRST_TERM_ATTND_NUM <- paste(TermKey$first, TermKey$firsecond, TermKey$firthird,sep="")
+TermKey$COH_LAST_TERM_ATTND_NUM <- paste(TermKey$first, TermKey$cohsecond, TermKey$cohthird,sep="")
+TermKey$MAJOR_CHANGE_TERM_ID_NUM <- paste(TermKey$first, TermKey$majsecond, TermKey$majthird,sep="") %>% na_if('1NANA')
+
+TermKey <- TermKey %>% select(COH_FIRST_TERM_ATTND, COH_FIRST_TERM_ATTND_NUM, COH_LAST_TERM_ATTND, COH_LAST_TERM_ATTND_NUM, MAJOR_CHANGE_TERM_ID,MAJOR_CHANGE_TERM_ID_NUM )
+
+prev_cohorts <- merge(prev_cohorts, TermKey, by=c("COH_LAST_TERM_ATTND", "MAJOR_CHANGE_TERM_ID", "COH_FIRST_TERM_ATTND"), all.x=TRUE )
+
+#unique(prev_cohorts$COH_FIRST_TERM_ATTND)
+
+##########################################################
+######### dropping redundant columns, remove NA ##########
+##########################################################
+
+# COH_FIRST_TERM redundant, TERM_ID replaced with TERM_NUM, and I dont see how instructor adjunct status relevant 
+prev_cohorts <- prev_cohorts %>% 
+  select( -ftpt_stat_instructor, -eab_payplan_grp, -TERM_ID, -COH_LAST_TERM_ATTND, -MAJOR_CHANGE_TERM_ID, -COH_FIRST_TERM_ATTND) %>% 
+  relocate(id_code_taker, .before = TERM_DESC) %>%
+  relocate(c(COHORT, COH_FIRST_TERM_ATTND_NUM, COH_LAST_TERM_ATTND_NUM, MAJOR_CHANGE_TERM_ID_NUM), .before = COURSE)
+
+prev_cohorts <- prev_cohorts %>% group_by(id_code_taker) %>% 
+  fill(REQ_TERM, .direction = "downup") %>% ungroup()
+
+# which(is.na(prev_cohorts$REQ_TERM))
+
+###############################################
+###### to predict 1st/2nd year retention ######
+###############################################
+
+FIRST_YR_RETENTION <- prev_cohorts %>% 
+  group_by(id_code_taker) %>% mutate(
+    year2 = as.double(COH_FIRST_TERM_ATTND_NUM) + 10,
+    firstYR_RETENTION = any(as.double(TERM_NUM) >= year2)
+    ) %>% 
+  distinct(id_code_taker, firstYR_RETENTION)
+
+prev_cohorts <- merge(prev_cohorts,FIRST_YR_RETENTION, by=c("id_code_taker"), all.x = T) 
+
+prev_cohorts$firstYR_RETENTION <- as.integer(as.logical(prev_cohorts$firstYR_RETENTION))
+
+###############################################
+###### switch or stay in major ################
+###############################################
+
+prev_cohorts$switchmajor <- ifelse(prev_cohorts$outcome == 'Switch and not graduate' | prev_cohorts$outcome == 'Switch and Graduate', 1, 0)
+
+###############################################
+###### denoting which courses are 'core' ######
+###############################################
+
+# the old course maps for FIU don't work because the UCC requirements are different 
+req_map <- read.csv("C:/Users/cpanc/OneDrive/Documents/IDC6940/FIU/HISTORICAL DATA/UCC_and_courses_mapping.csv")
+
+prev_cohorts <- full_join(req_map, prev_cohorts, by = "COURSE_ID") 
+
+prev_cohorts$INCURRICULA <- ifelse(is.na(prev_cohorts$map),0,1)
+
+prev_cohorts <- prev_cohorts %>% 
+  mutate(map = ifelse(is.na(map), COURSE_ID, map)) %>%
+  select(-COURSE_ID) %>% rename("COURSE_ID"=map)
+
+prev_cohorts <- prev_cohorts %>%  distinct(.keep_all = TRUE) %>% drop_na(id_code_taker)
+
+###############################################
+#### calculating stats for 1 yrs in cohort ####
+###############################################
+
+cohort_1_yr_stat <- prev_cohorts %>% group_by(id_code_taker) %>% mutate(twoyr = as.double(COH_FIRST_TERM_ATTND_NUM) + 10) %>% filter(as.double(TERM_NUM) < twoyr) %>% select(-twoyr) %>% ungroup()
+
+grad_1yr_pred <- cohort_1_yr_stat %>% group_by(id_code_taker) %>% summarize(
+  COHORT = first(COH_FIRST_TERM_ATTND_NUM), 
+  TOTAL_ATTEMPTED_COURSES = n(), 
+  CORE_CLASSES_SUCCESS = sum(INCURRICULA==1 & pass==1) / sum(INCURRICULA==1),
+  TOTAL_FAILED = sum(pass==0),
+  PASS_RATE = sum(pass==1) / TOTAL_ATTEMPTED_COURSES, 
+  GRAD = first(graduated), 
+  SWITCH = first(switchmajor),
+  OUTCOME = first(outcome)
+)  %>%  mutate(
+    GRAD = factor(GRAD, levels = c(0,1)),
+    SWITCH = factor(SWITCH, levels = c(0,1)),
+    OUTCOME_LABEL = factor(OUTCOME)
+)
+
+###############################################
+#### calculating stats for 2 yrs in cohort ####
+###############################################
+
+cohort_2_yr_stat <- prev_cohorts %>% group_by(id_code_taker) %>% mutate(twoyr = as.double(COH_FIRST_TERM_ATTND_NUM) + 20) %>% filter(as.double(TERM_NUM) < twoyr) %>% select(-twoyr) %>% ungroup()
+
+grad_preds <- cohort_2_yr_stat %>% group_by(id_code_taker) %>% summarize(
+  COHORT = first(COH_FIRST_TERM_ATTND_NUM), 
+  TOTAL_ATTEMPTED_COURSES = n(), 
+  CORE_CLASSES_SUCCESS = sum(INCURRICULA==1 & pass==1) / sum(INCURRICULA==1),
+  TOTAL_FAILED = sum(pass==0),
+  PASS_RATE = sum(pass==1) / TOTAL_ATTEMPTED_COURSES, 
+  GRAD = first(graduated), 
+  SWITCH = first(switchmajor),
+  OUTCOME = first(outcome)
+)  %>%  mutate(
+    GRAD = factor(GRAD, levels = c(0,1)),
+    SWITCH = factor(SWITCH, levels = c(0,1)),
+    OUTCOME_LABEL = factor(OUTCOME)
+)
+```
+
+We create base models without curricular analytics to set a performance benchmark. The models created use subset of cohort data from 1 year to 2 years of cohort data. There are two models: a binary classifier predicting student graduation outcomes and a second binary classification model predicting student persistence in the computer science major. We use 5 fold cross validation with undersampling the majority class. 
+```{r base models - prep} 
+set.seed(227)
+
+train_index  <- createDataPartition(y=grad_preds$GRAD, p=0.7, list=FALSE)
+
+repeat_cv <- trainControl(method='repeatedcv', number=5, repeats=3, sampling='down')
+
+train_dfB <- grad_preds[train_index, ] # index in
+test_dfB  <- grad_preds[-train_index, ] # index out
+
+train_dfYEAR <- grad_1yr_pred[train_index,]
+test_dfYEAR <- grad_1yr_pred[-train_index,]
+
+```
+
+Binary classifiers for predicting student graduation and evaluating said models with confusion matrix, ROC-AUC, and highlighting which variables contributed most or least to predicting a class using random forest built in importance features. 
+```{r base models - graduation}
+set.seed(227)
+rf_model1 <- train(
+  GRAD ~ COHORT + TOTAL_ATTEMPTED_COURSES + CORE_CLASSES_SUCCESS +
+    TOTAL_FAILED + PASS_RATE, 
+  data = train_dfB, 
+  method='rf', 
+  trControl=repeat_cv, 
+  metric='Accuracy'
+)
+
+#rf_model1
+
+# using 1yr of cohort data
+rf_model_1yr <- train(
+  GRAD ~ COHORT + TOTAL_ATTEMPTED_COURSES + CORE_CLASSES_SUCCESS +
+    TOTAL_FAILED + PASS_RATE,
+  data = train_dfYEAR,
+  method='rf', 
+  trControl=repeat_cv, 
+  metric='Accuracy'
+)
+rf_model_1yr
+
+################ 2yrs model###############################
+pred <- predict(rf_model1, newdata = test_dfB)
+xtab <- table(pred, test_dfB$GRAD)
+caret::confusionMatrix(data = xtab, positive = '1',  mode = "everything")
+prob <- predict(rf_model1, newdata = test_dfB, type = "prob")[,2]
+roc_obj <- roc(test_dfB$GRAD, prob)
+auc(roc_obj)
+importance(rf_model1$finalModel)
+var_imp <- varImp(rf_model1, scale=FALSE)$importance
+
+################ 1 yr model ##################################
+print("BASE BINARY MODEL - 1yrs COHORT data")
+
+pred <- predict(rf_model_1yr, newdata = test_dfYEAR)
+xtab <- table(pred, test_dfYEAR$GRAD)
+caret::confusionMatrix(data = xtab, positive = '1',  mode = "everything")
+prob <- predict(rf_model_1yr, newdata = test_dfB, type = "prob")[,2]
+roc_obj <- roc(test_dfYEAR$GRAD, prob)
+auc(roc_obj)
+importance(rf_model_1yr$finalModel)
+var_imp <- varImp(rf_model_1yr, scale=FALSE)$importance
+```
+
+Binary classifiers for switching majors. 
+```{r base model - switch major}
+rf_model2 <- train(
+  SWITCH ~ COHORT + TOTAL_ATTEMPTED_COURSES + CORE_CLASSES_SUCCESS +
+    TOTAL_FAILED + PASS_RATE,
+  data = train_dfB,
+  method='rf', 
+  trControl=repeat_cv, 
+  metric='Accuracy'
+)
+rf_model2
+
+rf_model2_1yr <- train(
+  SWITCH ~ COHORT + TOTAL_ATTEMPTED_COURSES + CORE_CLASSES_SUCCESS +
+    TOTAL_FAILED + PASS_RATE,
+  data = train_dfYEAR,
+  method='rf', 
+  trControl=repeat_cv, 
+  metric='Accuracy'
+)
+rf_model2_1yr
+############################################################
+########## #####  model 2 - base mutliclass ##### ##### ####
+############################################################
+
+pred <- predict(rf_model2_1yr, newdata = test_dfB)
+
+xtab <- table(pred, test_dfB$SWITCH)
+caret::confusionMatrix(data = xtab, positive = '1', mode = 'everything')
+
+prob <- predict(rf_model2, newdata = test_dfB, type = "prob")[,2]
+roc_obj <- roc(test_dfB$SWITCH, prob)
+auc(roc_obj)
+
+importance(rf_model2$finalModel)
+
+
+################ 1 yr model ##################################
+pred <- predict(rf_model2_1yr, newdata = test_dfYEAR)
+
+xtab <- table(pred, test_dfYEAR$SWITCH)
+caret::confusionMatrix(data = xtab, positive = '1',mode='everything')
+
+prob <- predict(rf_model2_1yr, newdata = test_dfYEAR, type = "prob")[,2]
+roc_obj <- roc(test_dfYEAR$SWITCH, prob)
+auc(roc_obj)
+importance(rf_model2_1yr$finalModel)
+
+```
+
+Information obtained from Curricular Analytics (ie: blocking, delay, centrality) of courses within core curricula added. We collect 3 CS curriculas and assign them to courses corresponding to cohort, creating a fallback in the instance students take a course not present in their respective curricula to satisfy the same requirement. For example, a student may take the CIS3950 and CIS4951 sequence instead of senior project CIS4911. General electives are populated with default analytics (ie: 0 blocking, 1 delay, 0 centrality, 1 structural complexity), laboratory sections with (0,2,0,2) and CS electives as (0,5,0,5).  
+
+```{r integrate old CA} 
+CURRIC2018 <- curriculum_graph_from_csv("C:/Users/cpanc/OneDrive/Documents/IDC6940/FIU/HISTORICAL DATA/2018CHRT_CURRIC.csv")
+CURRIC2019 <- curriculum_graph_from_csv("C:/Users/cpanc/OneDrive/Documents/IDC6940/FIU/HISTORICAL DATA/2019CHRT_CURRIC.csv")
+CURRIC2022 <- curriculum_graph_from_csv("C:/Users/cpanc/OneDrive/Documents/IDC6940/FIU/HISTORICAL DATA/2022CHRT_CURRIC.csv")
+
+
+c2018df <- CURRIC2018$node_list
+c2019df <- CURRIC2019$node_list
+c2022df <- CURRIC2022$node_list
+
+c2018df$SELECTCURRIC <- '2018'
+c2019df$SELECTCURRIC <- '2019'
+c2022df$SELECTCURRIC <- '2022'
+
+c2018df <- c2018df %>% select(-id, -term)
+c2019df <- c2019df %>% select(-id, -term)
+c2022df <- c2022df %>% select(-id, -term)
+
+oldCURRIC <- rbind(c2018df,c2019df, c2022df) %>% distinct(.keep_all = TRUE)
+
+
+fallback <- oldCURRIC %>%
+  mutate(curric_num = as.numeric(SELECTCURRIC)) %>%
+  distinct(label, .keep_all = TRUE)
+
+prev_cohorts <- drop_na(prev_cohorts,id_code_taker)
+
+# so if req term < 1198 then use 2018 curric
+# if 1198 <= req term < 1221 then use 2019
+# else use 2022 
+prev_cohorts <- prev_cohorts %>% mutate(
+  CURRIC_YEAR = case_when(
+    as.double(REQ_TERM) < 1198 ~ '2018', 
+    as.double(REQ_TERM) >= 1198 & as.double(REQ_TERM) < 1221 ~ '2019',
+    as.double(REQ_TERM) >= 1221 ~ '2022'
+  )
+) 
+
+prev_cohorts <- left_join(prev_cohorts, oldCURRIC, by = c("CURRIC_YEAR" = "SELECTCURRIC", "COURSE_ID" = 'label')) %>% drop_na(id_code_taker) 
+
+prev_cohorts <- prev_cohorts %>% left_join(
+    fallback %>% select(label, bf, df, cf, sc), by = c("COURSE_ID" = "label"),
+    suffix = c("", "_fb")) %>%
+  # fallback to nearest year metrics if NA
+  mutate(
+    bf = coalesce(bf, bf_fb),
+    df = coalesce(df, df_fb),
+    cf = coalesce(cf, cf_fb),
+    sc = coalesce(sc, sc_fb)
+  ) %>%
+  select(-ends_with("_fb"))
+
+#COP2210L = 0,2,0,2 bf, df, cf, sc
+labs <- c("COP2210L", "AST1002L", "EVR1001L", "EVR3013L", "AST2003L", "BOT1010L", "CHM1020L")
+prev_cohorts <- prev_cohorts %>%
+  mutate(
+    bf = if_else(COURSE_ID %in% labs & is.na(bf), 0, bf), 
+    df = if_else(COURSE_ID %in% labs & is.na(df), 2, df),
+    cf = if_else(COURSE_ID %in% labs & is.na(cf), 0, cf),
+    sc = if_else(COURSE_ID %in% labs & is.na(sc), 2, sc)
+  )
+
+# electives in CS curric get some delay because you can't take then usually until after you have taken certain courses
+electives <- c("CAP4104", "CAP4506", "CAP4612", "CAP4630", "CAP4641", "CAP4710", "CAP4770", "CAP4830", "CEN4021", "CEN4072", "CEN4083", "COP4354", "COT3510", "CTS4408", "COP4520", "CDA4625", "COP4751", "MAD3305", "MAD3401")
+prev_cohorts <- prev_cohorts %>%
+  mutate(
+    bf = if_else(COURSE_ID %in% electives & is.na(bf), 0, bf), 
+    df = if_else(COURSE_ID %in% electives & is.na(df), 5, df),
+    cf = if_else(COURSE_ID %in% electives & is.na(cf), 0, cf),
+    sc = if_else(COURSE_ID %in% electives & is.na(sc), 5, sc)
+  )
+
+# everything else gets default = 0,1,0,1 bf, df, cf, sc
+prev_cohorts <- prev_cohorts %>%
+  mutate(
+    bf = if_else(is.na(bf), 0, bf), 
+    df = if_else(is.na(df), 1, df),
+    cf = if_else(is.na(cf), 0, cf),
+    sc = if_else(is.na(sc), 1, sc)
+  )
+
+
+cohort_2_yr_CURRIC <- prev_cohorts %>% 
+  group_by(id_code_taker) %>% 
+  mutate(twoyr = as.double(COH_FIRST_TERM_ATTND_NUM) + 20) %>%
+  filter(as.double(TERM_NUM) < twoyr) %>% 
+  select(-twoyr) %>% ungroup()
+
+cohort_1_yr_CURRIC <- prev_cohorts %>% 
+  group_by(id_code_taker) %>% 
+  mutate(twoyr = as.double(COH_FIRST_TERM_ATTND_NUM) + 10) %>%
+  filter(as.double(TERM_NUM) < twoyr) %>% 
+  select(-twoyr) %>% ungroup()
+```
+
+Additional variables are created for the model involving the high delay, blocking, and centrality courses students encounter within the curriculum. Models are now created with additional variables derived from the curricular analytics atop of the variables from the base models. 
+```{r CA model - prep}
+grad_preds_CURRIC <- cohort_2_yr_CURRIC %>% group_by(id_code_taker) %>% summarize(
+  COHORT = first(COH_FIRST_TERM_ATTND_NUM), 
+  TOTAL_ATTEMPTED_COURSES = n(), 
+  CORE_CLASSES_SUCCESS = sum(INCURRICULA==1 & pass==1) / sum(INCURRICULA==1),
+  TOTAL_FAILED = sum(pass==0),
+  PASS_RATE = sum(pass==1) / TOTAL_ATTEMPTED_COURSES, 
+  GRAD = first(graduated), 
+  AVG_BLOCK = mean(ifelse(INCURRICULA == 1, bf, NA), na.rm=T), 
+  MAX_BLOCK = first(max(bf)),
+  TOTAL_DELAY = sum(df), 
+  HIGH_DELAY_ATTEMPT = sum(df > 4),
+  FAIL_HIGH_DELAY = sum(df>4 & pass == 0), 
+  FAIL_HIGH_BLOCKING = sum(bf>6 & pass == 0), 
+  PROGRESS_IN_CURRIC = sum(ifelse(INCURRICULA==1 & pass == 1, cf, 0), na.rm=T),
+  SWITCH = first(switchmajor),
+  OUTCOME = first(outcome)
+  )  %>%  mutate(
+    GRAD = factor(GRAD, levels = c(0,1)),
+    SWITCH = factor(SWITCH, levels = c(0,1)),
+    OUTCOME_LABEL = factor(OUTCOME)
+)
+
+
+grad_preds_CURRIC_1YR <- cohort_1_yr_CURRIC %>% group_by(id_code_taker) %>% summarize(
+  COHORT = first(COH_FIRST_TERM_ATTND_NUM), 
+  TOTAL_ATTEMPTED_COURSES = n(), 
+  CORE_CLASSES_SUCCESS = sum(INCURRICULA==1 & pass==1) / sum(INCURRICULA==1),
+  TOTAL_FAILED = sum(pass==0),
+  PASS_RATE = sum(pass==1) / TOTAL_ATTEMPTED_COURSES, 
+  GRAD = first(graduated), 
+  AVG_BLOCK = mean(ifelse(INCURRICULA == 1, bf, NA), na.rm=T), 
+  MAX_BLOCK = first(max(bf)),
+  TOTAL_DELAY = sum(df), 
+  HIGH_DELAY_ATTEMPT = sum(df > 4),
+  FAIL_HIGH_DELAY = sum(df>4 & pass == 0), 
+  FAIL_HIGH_BLOCKING = sum(bf>6 & pass == 0), 
+  PROGRESS_IN_CURRIC = sum(ifelse(INCURRICULA==1 & pass == 1, cf, 0), na.rm=T),
+  SWITCH = first(switchmajor),
+  OUTCOME = first(outcome)
+)  %>%  mutate(
+    GRAD = factor(GRAD, levels = c(0,1)),
+    SWITCH = factor(SWITCH, levels = c(0,1)),
+    OUTCOME_LABEL = factor(OUTCOME)
+)
+
+# we have 70-30 train/test split
+train_dfCA <- grad_preds_CURRIC[train_index, ] # index in
+test_dfCA  <- grad_preds_CURRIC[-train_index, ] # index out
+
+train_df_CAYR <- grad_preds_CURRIC_1YR[train_index,]
+test_df_CAYR <- grad_preds_CURRIC_1YR[-train_index,]
+```
+
+Binary classifier with additional features based on curricular structure (ie: curricular analytics) to predict whether student graduates.
+```{r CA models - grad rate}
+#########################################################################
+################ CA Model GRAD ##########################################
+#########################################################################
+rf_model1CA <- train(
+  GRAD ~ COHORT + TOTAL_ATTEMPTED_COURSES + CORE_CLASSES_SUCCESS +
+    TOTAL_FAILED + PASS_RATE + AVG_BLOCK + MAX_BLOCK + TOTAL_DELAY + HIGH_DELAY_ATTEMPT + FAIL_HIGH_DELAY + FAIL_HIGH_BLOCKING + PROGRESS_IN_CURRIC,
+  data = train_dfCA,
+  method='rf', 
+  trControl=repeat_cv, 
+  metric='Accuracy'
+)
+
+rf_model1CA
+
+pred <- predict(rf_model1CA, newdata = test_dfCA)
+xtab <- table(pred, test_dfCA$GRAD)
+caret::confusionMatrix(data = xtab, positive = '1',  mode = "everything")
+prob <- predict(rf_model1CA, newdata = test_dfCA, type = "prob")[,2]
+roc_obj <- roc(test_dfCA$GRAD, prob)
+auc(roc_obj)
+importance(rf_model1CA$finalModel)
+
+########################### 1 yr ########################################
+rf_model1CA1yr <- train(
+  GRAD ~ COHORT + TOTAL_ATTEMPTED_COURSES + CORE_CLASSES_SUCCESS +
+    TOTAL_FAILED + PASS_RATE + AVG_BLOCK + MAX_BLOCK + TOTAL_DELAY + HIGH_DELAY_ATTEMPT + FAIL_HIGH_DELAY + FAIL_HIGH_BLOCKING + PROGRESS_IN_CURRIC,
+  data = train_df_CAYR,
+  method='rf', 
+  trControl=repeat_cv, 
+  metric='Accuracy'
+)
+
+rf_model1CA1yr
+
+pred <- predict(rf_model1CA1yr, newdata = test_df_CAYR)
+xtab <- table(pred, test_df_CAYR$GRAD)
+caret::confusionMatrix(data = xtab, positive = '1',  mode = "everything")
+prob <- predict(rf_model1CA1yr, newdata = test_df_CAYR, type = "prob")[,2]
+roc_obj <- roc(test_df_CAYR$GRAD, prob)
+auc(roc_obj)
+importance(rf_model1CA1yr$finalModel)
+```
+
+Binary classifier with additional features based on curricular structure (ie: curricular analytics) to predict whether student switches majors.
+```{r CA model - switch major}
+#########################################################################
+################## CA Model Switch Major ################################
+#########################################################################
+rf_model2CA <- train(
+  SWITCH ~ COHORT + TOTAL_ATTEMPTED_COURSES + CORE_CLASSES_SUCCESS +
+    TOTAL_FAILED + PASS_RATE + AVG_BLOCK + MAX_BLOCK + TOTAL_DELAY + HIGH_DELAY_ATTEMPT + FAIL_HIGH_DELAY + FAIL_HIGH_BLOCKING + PROGRESS_IN_CURRIC,
+  data = train_dfCA,
+  method='rf', 
+  trControl=repeat_cv, 
+  metric='Accuracy'
+)
+# rf_model2CA
+
+pred <- predict(rf_model2CA, newdata = test_dfCA)
+
+xtab <- table(pred, test_dfCA$SWITCH)
+caret::confusionMatrix(data = xtab, positive = '1',  mode = "everything")
+
+prob <- predict(rf_model2CA, newdata = test_dfCA, type = "prob")[,2]
+roc_obj <- roc(test_dfCA$SWITCH, prob)
+auc(roc_obj)
+importance(rf_model2CA$finalModel)
+############################## 1 yr ###################################
+rf_model2CA_1yr <- train(
+  SWITCH ~ COHORT + TOTAL_ATTEMPTED_COURSES + CORE_CLASSES_SUCCESS +
+    TOTAL_FAILED + PASS_RATE + AVG_BLOCK + MAX_BLOCK + TOTAL_DELAY + HIGH_DELAY_ATTEMPT + FAIL_HIGH_DELAY + FAIL_HIGH_BLOCKING + PROGRESS_IN_CURRIC,
+  data = train_df_CAYR,
+  method='rf', 
+  trControl=repeat_cv, 
+  metric='Accuracy'
+)
+
+pred <- predict(rf_model2CA_1yr, newdata = test_df_CAYR)
+
+xtab <- table(pred, test_df_CAYR$SWITCH)
+caret::confusionMatrix(data = xtab, positive = '1',  mode = "everything")
+
+prob <- predict(rf_model2CA_1yr, newdata = test_df_CAYR, type = "prob")[,2]
+roc_obj <- roc(test_df_CAYR$SWITCH, prob)
+auc(roc_obj)
+importance(rf_model2CA_1yr$finalModel)
+
+```
+
+The CA model for predicting graduation using 1 year of data (instead of 2) was not performing as well as the base model so the number of CA features was reduced, helping improve performance instead. 
+```{r CA grad less features}
+rf_model1CA1yr_TEST <- train(
+  GRAD ~ COHORT + TOTAL_ATTEMPTED_COURSES + CORE_CLASSES_SUCCESS +
+    TOTAL_FAILED + PASS_RATE + AVG_BLOCK + TOTAL_DELAY + PROGRESS_IN_CURRIC,
+  data = train_df_CAYR,
+  method='rf', 
+  trControl=repeat_cv, 
+  metric='Accuracy'
+)
+
+rf_model1CA1yr_TEST
+
+pred <- predict(rf_model1CA1yr_TEST, newdata = test_df_CAYR)
+xtab <- table(pred, test_df_CAYR$GRAD)
+caret::confusionMatrix(data = xtab, positive = '1',  mode = "everything")
+prob <- predict(rf_model1CA1yr_TEST, newdata = test_df_CAYR, type = "prob")[,2]
+roc_obj <- roc(test_df_CAYR$GRAD, prob)
+auc(roc_obj)
+importance(rf_model1CA1yr_TEST$finalModel)
+```
+
+
+The CA model for predicting switching majors using 1 year of data (instead of 2) was not performing as well as the base model so the number of CA features was reduced alongside attempting to oversample the minority instead of undersampling the majority. 
+
+```{r CA switch less features} 
+repeat_cv <- trainControl(method='repeatedcv', number=5, repeats=3, sampling='down')
+
+rf_model2CA1yr_TEST <- train(
+  SWITCH ~ COHORT + TOTAL_ATTEMPTED_COURSES + CORE_CLASSES_SUCCESS +
+    TOTAL_FAILED + PASS_RATE + AVG_BLOCK + TOTAL_DELAY + PROGRESS_IN_CURRIC,
+  data = train_df_CAYR,
+  method='rf', 
+  trControl=repeat_cv, 
+  metric='Accuracy'
+)
+
+rf_model1CA1yr_TEST
+
+pred <- predict(rf_model2CA1yr_TEST, newdata = test_df_CAYR)
+xtab <- table(pred, test_df_CAYR$SWITCH)
+caret::confusionMatrix(data = xtab, positive = '1',  mode = "everything")
+prob <- predict(rf_model2CA1yr_TEST, newdata = test_df_CAYR, type = "prob")[,2]
+roc_obj <- roc(test_df_CAYR$SWITCH, prob)
+auc(roc_obj)
+importance(rf_model2CA1yr_TEST$finalModel)
+```
+
+```{r CA importance plot}
+final_model_grad_CA_1yr <- data.frame(
+  Feature = rownames(importance(rf_model1CA1yr_TEST$finalModel)),
+  Importance = importance(rf_model1CA1yr_TEST$finalModel)[, 1] 
+)
+
+final_model_switch_CA_1yr <- data.frame(
+  Feature = rownames(importance(rf_model2CA1yr_TEST$finalModel)),
+  Importance = importance(rf_model2CA1yr_TEST$finalModel)[, 1] 
+)
+
+ggplot(final_model_grad_CA_1yr, aes(x = reorder(Feature, Importance), y = Importance)) +
+  geom_bar(stat = "identity", fill = "royalblue", width = 0.5) +
+  coord_flip() +
+  labs(
+    x = "Features",
+    y = "Mean Decrease Gini",
+    title = "Variable Importance - Graduation with CA Features", 
+    subtitle = "Year of Student Cohort Data"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = -0.4),
+    plot.subtitle = element_text(color = "gray29", size = 11, face = "italic", hjust=0.2)
+  )
+
+
+ggplot(final_model_switch_CA_1yr, aes(x = reorder(Feature, Importance), y = Importance)) +
+  geom_bar(stat = "identity", fill = "yellow3", width = 0.5) +
+  coord_flip() +
+  labs(
+    x = "Features",
+    y = "Mean Decrease Gini",
+    title = "Variable Importance - Switching Major with CA Features", 
+    subtitle = "Year of Student Cohort Data"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = -1),
+    plot.subtitle = element_text(color = "gray29", size = 11, face = "italic", hjust=0.2)
+  )
+```

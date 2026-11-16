@@ -1,0 +1,48 @@
+Curriculum,BS Computer Science,,,,,,,,,
+Degree Plan,Generic,,,,,,,,,
+Institution,Florida Agricultural and Mechanical University,,,,,,,,,
+Degree Type,BS,,,,,,,,,
+System Type,semester,,,,,,,,,
+CIP,11.0101,,,,,,,,,
+Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+1,Biological Science,BSC,UCC1,,,,3,FAMU,BSC1005,1
+10000,Biological Science Lab,BSC,UCC1L,,,1,1,FAMU,BSC1005L,1
+2,Freshman Communication Skills I,ENC,1101,,,,3,FAMU,ENC1101,1
+3,Calculus I,MAC,2311,,,,4,FAMU,MAC2311,1
+4,Public Speaking,SPC,2608,,,,3,FAMU,SPC2608,1
+5,Freshman Communication Skills II,ENC,1102,2,,,3,FAMU,ENC1102,2
+6,Fundamentals of Programming,EEL,2880,3,,,4,FAMU,COP3014C,2
+7,Calculus II,MAC,2312,3,,,4,FAMU,MAC2312,2
+8,First Year Experience - College Transition,SLS,1501,,,,2,FAMU,SLS1101,2
+9,Social Science Elective (Civic Literacy),SOC,UCC1,,,,3,FAMU,,3
+10,Social Science Elective,SOC,UCC2,,,,3,FAMU,,3
+11,The African American Experience,AFA,2004,,,,3,FAMU,AFA2100,3
+12,Humanities Elective,HUM,UCC1,,,,3,FAMU,,4
+13,Discrete Structures I,COT,3100,3,,,3,FAMU,COT3100,4
+14,Calculus III,MAC,2313,7,,,5,FAMU,MAC2313,4
+15,Intro to Object Oriented Programming,COP,3337,6,,,3,FAMU,COP3330,4
+16,"Programming, Data Structures, and File Structures",COP,3530,15,,,3,FAMU,COP3530,5
+17,Discrete Structures II,COT,3101,13,,,3,FAMU,COT3101,5
+18,General Elective,,,,,,3,FAMU,,5
+19,General Elective,,,,,,3,FAMU,,5
+20,Computer Concepts and Organization,CDA,4101,6;13,,,3,FAMU,CDA3101C,6
+21,Computer Ethics and Professional Responsibility,CGS,3095,6,,,3,FAMU,CIS4250,6
+22,General Physics I ,PHY,2048,3,,,4,FAMU,PHY2048,6
+51,General Physics I Lab,PHY,2048L,,,22,1,FAMU,PHY2048L,6
+23,Math Elective 1,MAT,4999,,,,3,FAMU,,6
+24,Foundations of Computer Science,MAD,3512,16;17,,,3,FAMU,COT4210,6
+25,Computer Architecture,CDA,3102,20,,,3,FAMU,CDA4102,7
+26,Data Communication and Organizational Networks,CNT,4504,13,,,3,FAMU,CNT4504,7
+27,General Physics II,PHY,2049,7;22,,,4,FAMU,PHY2049,7
+52,General Physics II Lab,PHY,2049L,,,27,1,FAMU,PHY2049L,7
+28,Humanities Elective,HUM,UCC2,,,,3,FAMU,,7
+29,Database Management Systems,COP,4710,16,,,3,FAMU,COP3710,7
+30,Information Systems Design And Development,CEN,4021,29,,,3,FAMU,CIS4301,8
+31,Concepts in Advanced Application Development,CEN,4010,16,,,3,FAMU,COP3060,8
+32,Programming Languages,COP,4555,16;20,,,3,FAMU,COP4020,8
+33,Computer Science Elective,,,,,,3,FAMU,,8
+34,Information Systems Development Project,CIS,4951,30;31,,,3,FAMU,CIS4910,9
+35,Operating Systems,COP,4610,16;20,,,3,FAMU,COP3610,9
+36,Computer Science Elective,,,,,,3,FAMU,,9
+37,Math Elective 2,MAT,4999,7,,,3,FAMU,,9

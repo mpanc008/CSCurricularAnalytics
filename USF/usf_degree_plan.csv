@@ -1,0 +1,48 @@
+﻿Curriculum,Computer Science - BS,,,,,,,,,
+Degree Plan,Generic,,,,,,,,,
+Institution,University of South Florida,,,,,,,,,
+Degree Type,BS,,,,,,,,,
+System Type,semester,,,,,,,,,
+CIP,11.0101,,,,,,,,,
+Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+1,Freshman Seminar for Computing,CGS,1920,,,,0,USF,ENC1101,1
+2,Programming Concepts,COP,2210,,,,3,USF,,1
+3,Composition I,ENC,1101,,,,3,USF,,1
+4,Calculus I,MAC,2311,,,,4,USF,IDC2000,1
+5,Natural Science Elective,NAT,UCC1,,,,3,USF,ENC1143,1
+6,Program Design,EEL,2880,2;4,,,3,USF,COP2220,2
+7,Composition II,ENC,1102,3,,,3,USF,,2
+8,Calculus II,MAC,2312,4,,,4,USF,MAC2312,2
+9,General Physics I,PHY,2048,4,,,4,USF,,2
+10,Computer Organization,CDA,3103,2;9,,,3,USF,PHY1028,3
+11,Intro to Discrete Structures,COT,3100,4,,,3,USF,,3
+12,General Physics II,PHY,2049,8;9,,,4,USF,,3
+13,Gen-Ed State Humanities,HUM,UCC1,,,,3,USF,PHY2048C,3
+14,Computer Logic and Design,CDA,3201,6;10,,,4,USF,COT3100,4
+15,Data Structures,COP,3530,6;10;11,,,3,USF,COP3503,4
+16,General Elective,,,,,,3,USF,PHY2049,4
+17,General Elective,,,,,,3,USF,COP3530,4
+18,Civic Literacy Course,SOC,UCC1,,,,3,USF,SPC4064,5
+19,Proability and Statistics with Calculus,STA,3033,8,,,3,USF,,5
+20,Natural Science Elective,NAT,UCC1,,,,3,USF,CIS3253,5
+21,Computer Architecture,CDA,3102,14,,,4,USF,STA3032,6
+22,Introduction to Linear Systems,EEL,3120,8,,,2,USF,,6
+23,General Elective,,,,,,3,USF,COP3703,6
+24,General Education Humanities,HUM,UCC2,,,,3,USF,COT3210,6
+25,Major Elective - Software,,,,,,3,USF,CNT4504,6
+26,Analysis of Algorithms,COP,4534,15,,,3,USF,CAP4630,7
+27,Gen-Ed Social Science,SOC,UCC2,,,,3,USF,CDA3100,7
+28,Major Elective - Software,,,14;15,,,3,USF,,7
+29,Major Elective - Software,,,14;15,,,3,USF,,7
+30,Major Elective - Technical,,,14;15,,,3,USF,MAS3105,7
+31,Secure Coding,CNT,4713,15,,,3,USF,COP3404,8
+32,Operating Systems,COP,4610,15,,,3,USF,COT4400,8
+33,General Elective,,,,,,3,USF,,8
+34,Major Elective - Theory,COT,4999,14;15,,,3,USF,COP4610,8
+35,Major Elective - Technical,,,14;15,,,3,USF,CEN4010,8
+36,Software Engineering,CEN,4010,15,,,3,USF,COP4620,9
+37,Ethical Issues and Professional Conduct,CGS,3095,,,,3,USF,,9
+38,General Elective,,,,,,3,USF,,9
+39,General Elective,,,,,,3,USF,,9
+40,Major Elective - Technical,,,14;15,,,3,USF,,9

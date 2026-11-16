@@ -1,0 +1,48 @@
+﻿Curriculum,Computer Science - BS,,,,,,,,,
+Degree Plan,Generic,,,,,,,,,
+Institution,Florida Gulf Coast University,,,,,,,,,
+Degree Type,BS,,,,,,,,,
+System Type,semester,,,,,,,,,
+CIP,11.0101,,,,,,,,,
+Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+1,Writing and Rhetoric I,ENC,1101,,,,3,FGCU,ENC1101,1
+2,Calculus I,MAC,2311,,,,4,FGCU,MAC2311,1
+3,Introduction to Computer Science,COP,1000,,,,3,FGCU,COP1500,1
+4,General Elective: Social Science,SOC,UCC2,,,,3,FGCU,,1
+5,UCC: Social Science Group One,ENC,1102,1,,,3,FGCU,ENC1102,2
+6,Calculus II,MAC,2312,2,,,4,FGCU,MAC2312,2
+7,General Education: Communications,SPC,2608,,,,3,FGCU,,2
+8,Programming I,COP,2210,3,,,3,FGCU,COP2006,2
+9,General Physics I,PHY,2048,2,,,4,FGCU,PHY2048,2
+10,General Physics I Lab,PHY,2048L,,,9,1,FGCU,PHY2048L,2
+11,Statistical Methods ,STA,2023,,,,3,FGCU,STA2023,3
+12,General Education: Social Science,SOC,UCC1,,,,3,FGCU,,3
+13,General Education: Humanities,HUM,UCC1,,,,3,FGCU,,3
+14,General Physics II,PHY,2049,6;9,,,4,FGCU,PHY2049,4
+15,General Physics II Lab,PHY,2049L,,,14,1,FGCU,PHY2049L,4
+16,Discrete Mathematics,MAD,2104,2,,,3,FGCU,MAD3107,4
+17,Programming II,COP,3337,8,,,3,FGCU,COP3003,4
+18,Sustainability Elective ,SUSELEC,,,,,3,FGCU,,4
+19,General Education: Humanities,HUM,UCC2,,,,3,FGCU,,5
+20,General Education: Social Science,SOC,UCC2,,,,3,FGCU,,5
+21,Digitial Systems & Architecture ,CDA,3200,8;9,,,3,FGCU,CDA3200,5
+22,Data Structures & Algorithms,COP,3530,16;17,,,3,FGCU,COP3530,5
+23,Computer Organization & Assembly Language Processing,CDA,3104,8;9,,,3,FGCU,CDA3104,6
+24,Software Engineering Fundamentals,CEN,4010,17,,,3,FGCU,CEN3031,6
+25,Operating Systems,COP,4610,21;22,,,3,FGCU,COP4610,6
+26,Calculus III,MAC,2313,6,,,3,FGCU,MAC2313,6
+27,Free Elective,FREEELEC,,,,,3,FGCU,,6
+28,Theory of Computation,MAD,3512,17,,,3,FGCU,COT4420,7
+29,Systems and Networks,CNT,4403,25,,,3,FGCU,COP3635,7
+30,Intro to Data Engineering,COP,4710,22,,,3,FGCU,COP3710,7
+31,Computer Security ,CIS,4365,17,,,3,FGCU,CEN3078,7
+32,CS Elective,COP,4999,,,,3,FGCU,,7
+33,Principles of Programming Languages,COP,4555,22;24;28,,,3,FGCU,COP4020,8
+34,Senior Computer Science Project I,CIS,3950,22;24,,,3,FGCU,COP4951,8
+35,CS Elective,COP,4999,,,,3,FGCU,,8
+36,CS Elective,COP,4999,,,,3,FGCU,,8
+37,Senior Computer Science Project II,CIS,4951,34,,,3,FGCU,COP4952,9
+38,CS Elective,COP,4999,,,,3,FGCU,,9
+39,CS Elective,COP,4999,,,,3,FGCU,,9
+40,Free Elective,ELEC,,,,,3,FGCU,,9

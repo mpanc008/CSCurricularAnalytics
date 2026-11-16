@@ -1,0 +1,50 @@
+﻿Curriculum,Computer Science - BS,,,,,,,,,
+Degree Plan,Generic,,,,,,,,,
+Institution,Florida International University,,,,,,,,,
+Degree Type,BS,,,,,,,,,
+System Type,semester,,,,,,,,,
+CIP,11.0101,,,,,,,,,
+Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+5,UCC SosSci. Grp1,,,,,,3,FIU,,1
+29281,First Year Exper,SLS,1501,,,,1,FIU,SLS1501,1
+31664,Calculus I,MAC,2311,,,,4,FIU,MAC2311,1
+16623,Writing and Rhetoric I,ENC,1101,,,,3,FIU,ENC1101,1
+33598,Intro to Computing,CGS,1920,,,,1,FIU,CGS1920,1
+31667,Calculus II,MAC,2312,31664,,,4,FIU,MAC2312,2
+6,UCC Hum. Grp1,,,,,,3,FIU,,2
+16627,Writing and Rhetoric II,ENC,1102,16623,,,3,FIU,ENC1102,2
+13386,Programming I,COP,2210,31664,,,4,FIU,COP2210,2
+10,UCC Elective,,,,,,3,FIU,,3
+90,General Electives,,,,,,3,FIU,,3
+91,General Electives,,,,,,3,FIU,,3
+11,UCC SosSci. Grp2,,,,,,3,FIU,,3
+35183,Tech Writing Comp,ENC,3249,16627,,,3,FIU,ENC3249,4
+36512,Discrete Structures,COT,3100,13386,,,3,FIU,COT3100,4
+31539,Programming II,COP,3337,13386,,,3,FIU,COP3337,4
+20,UCC Hum. Grp2,,,,,,3,FIU,,4
+35144,Tech. in the Glbl. Arena,CGS,3095,13386;35183,,,3,FIU,CGS3095,5
+37167,Comp. Architecture,CDA,3102, 31539; 36512,,,3,FIU,CDA3102,5
+21,Nat. Sci. Group 1,,,,,,3,FIU,,5
+101,Nat. Sci. Lab Group 1,,,,,21,1,FIU,,5
+13404,Data Structures,COP,3530, 31539; 36512,,,3,FIU,COP3530,5
+22,Nat. Sci. Group 2,,,,,,3,FIU,,6
+23,General Electives,,,,,,3,FIU,,6
+29,General Electives,,,,,,3,FIU,,6
+30,General Electives,,,,,,3,FIU,,6
+30413,Prob & Stat For Cs,STA,3033,31667,,,3,FIU,STA3033,7
+1000,Prin Of Prog Lang,COP,4555,13404,,,3,FIU,COP4555,7
+13426,Software Eng I,CEN,4010, 31539; 35144,,,3,FIU,CEN4010,7
+13388,Systems Programming,COP,4338,,13404,,3,FIU,COP4338,7
+2000,Net-centric Computing,CNT,4713,13388,,,3,FIU,CNT4713,8
+50,CS Elec. Foundations ,,,,,,3,FIU,,8
+51,CS Elec. Systems ,,,,,,3,FIU,,8
+52,CS Elec. Applications ,,,,,,3,FIU,,8
+32,CS Electives,,,,,,3,FIU,,9
+60,CS Electives,,,,,,3,FIU,,9
+33,General Electives,,,,,,3,FIU,,9
+37317,Capstone I,CIS,3950,31539,,,1,FIU,CIS3950,9
+13425,Operating Syst Princ,COP,4610,13388; 37167,,,3,FIU,COP4610,10
+37318,Capstone II,CIS,4951,37317,,,2,FIU,CIS4951,10
+36,CS Electives,,,,,,3,FIU,,10
+37,CS Electives,,,,,,3,FIU,,10

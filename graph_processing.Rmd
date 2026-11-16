@@ -1,0 +1,156 @@
+---
+title: "curricular_graph_processing"
+output: html_document
+date: "2026-02-26"
+---
+
+```{r setup, include=FALSE}
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+``` {r libraries}
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(tidyr)
+```
+
+```{r cip_code}
+uni <- c('FAMU', "FAU", "FIU", "FGCU","FPU","FSU", "UCF", "UF", "UNF", "USF", "UWF")
+cip_code <- c('11.0101','11.0101','11.0101','11.0101', "11.0701", '11.0101', '11.0101','11.0101','11.0701','11.0101','11.0701')
+structural_comp <- c(192,217,201,204,166,188,217,190,148,232,174)
+blocking_f <- c(68,81,73,78,48,70,86,66,52,109,64)
+delay_f <- c(124,136,128,126,118,118,131,124,96,123,110)
+
+uni_sum <- data.frame(uni, cip_code, structural_comp, blocking_f, delay_f)
+
+#ggplot(data = uni_sum, aes(x=structural_comp)) + geom_boxplot(fill = 'skyblue') + labs(x = 'Structural Complexity')
+
+ggplot(data = uni_sum, aes(x = reorder(uni, -structural_comp), y = structural_comp)) + geom_col(color = 'royalblue', fill = 'skyblue') + labs(x = 'Institution', y = 'Structural Complexity', title = 'Cumulative Structural Complexity of Courses by Institution')
+
+ggplot(data = uni_sum, aes(x = reorder(uni, -blocking_f), y = blocking_f)) + geom_col(color = 'royalblue', fill = 'skyblue') + labs(x = 'Institution', y = 'Blocking Factor', title = 'Cumulative Blocking Factor of Courses by Institution')
+
+ggplot(data = uni_sum, aes(x = reorder(uni, -delay_f), y = delay_f)) + geom_col(color = 'royalblue', fill = 'skyblue') + labs(x = 'Institution', y = 'Delay Factor', title = 'Cumulative Delay Factor of Courses by Institution')
+
+#ggplot(data = uni_sum, aes(x=blocking_f)) + geom_boxplot(fill = 'skyblue') + labs(x = 'Blocking Factor')
+
+#ggplot(data = uni_sum, aes(x=delay_f)) + geom_boxplot(fill = 'skyblue') + labs(x = 'Delay Factor')
+
+```
+
+```{r load_unis}
+famu <- read_excel("C:/Users/cpanc/OneDrive/Documents/IDC6940/curricular_complexity_descriptions.xlsx", sheet='FAMU', range = "A8:L45")
+famu$uni <- 'FAMU'
+
+fau <- read_excel("C:/Users/cpanc/OneDrive/Documents/IDC6940/curricular_complexity_descriptions.xlsx", sheet='FAU', range = "A7:L46")
+fau$uni <- 'FAU'
+
+fiu <- read_excel("C:/Users/cpanc/OneDrive/Documents/IDC6940/curricular_complexity_descriptions.xlsx", 
+                  sheet='FIU', range = "A8:L49")
+fiu$uni <- 'FIU'
+
+fgcu <- read_excel("C:/Users/cpanc/OneDrive/Documents/IDC6940/curricular_complexity_descriptions.xlsx", 
+                  sheet='FGCU', range = "A8:L48")
+fgcu$uni <- 'FGCU'
+
+fpu <- read_excel("C:/Users/cpanc/OneDrive/Documents/IDC6940/curricular_complexity_descriptions.xlsx", 
+                  sheet='FPU', range = "A8:L50")
+fpu$uni <- 'FPU'
+
+fsu <- read_excel("C:/Users/cpanc/OneDrive/Documents/IDC6940/curricular_complexity_descriptions.xlsx", 
+                  sheet='FSU', range = "A7:L45")
+fsu$uni <- 'FSU'
+
+ucf <- read_excel("C:/Users/cpanc/OneDrive/Documents/IDC6940/curricular_complexity_descriptions.xlsx", 
+                  sheet='UCF', range = "A8:L47")
+ucf$uni <- 'UCF'
+
+uf <- read_excel("C:/Users/cpanc/OneDrive/Documents/IDC6940/curricular_complexity_descriptions.xlsx", 
+                  sheet='UF', range = "A7:L47")
+uf$uni <- 'UF'
+
+unf <- read_excel("C:/Users/cpanc/OneDrive/Documents/IDC6940/curricular_complexity_descriptions.xlsx", 
+                  sheet='UNF', range = "A8:L46")
+unf$uni <- 'UNF'
+
+usf <- read_excel("C:/Users/cpanc/OneDrive/Documents/IDC6940/curricular_complexity_descriptions.xlsx", 
+                 sheet='USF', range = "A8:L48")
+usf$uni <- 'USF'
+
+uwf <- read_excel("C:/Users/cpanc/OneDrive/Documents/IDC6940/curricular_complexity_descriptions.xlsx", 
+                 sheet='UWF', range = "A8:L47")
+uwf$uni <- 'UWF'
+
+
+
+#put all data frames into list
+df_list <- list(famu, fau,fgcu,fpu, fiu, fsu, ucf, uf, unf, usf, uwf)
+#merge all data frames in list
+all_unis <- Reduce(function(x, y) merge(x, y, all=TRUE), df_list)
+```
+
+```{r largest_complexities}
+# cumulative most delay, blocking, centrality, complexity
+max_delay <- data.frame()
+max_delay <- rbind(top_n(all_unis, 5, Delay), max_delay)
+
+max_blocking <- data.frame()
+max_blocking <- rbind(top_n(all_unis, 5, Blocking), max_blocking)
+
+max_centrality <- data.frame()
+max_centrality <- rbind(top_n(all_unis, 5, Centrality), max_centrality)
+
+max_complexity <- data.frame()
+max_complexity <- rbind(top_n(all_unis, 5, Complexity), max_complexity)
+
+uni_max_delay <- data.frame()
+uni_max_blocking <- data.frame()
+uni_max_centrality <- data.frame()
+uni_max_complexity <- data.frame()
+
+# TO do: Find max in each institution - on an institutional basis we see similar trends
+for(df in df_list)
+{
+  uni_max_delay <- rbind(top_n(df, 1, Delay), uni_max_delay)
+  uni_max_blocking <- rbind(top_n(df, 1, Blocking), uni_max_blocking)
+  uni_max_centrality <- rbind(top_n(df, 1, Centrality), uni_max_centrality)
+  uni_max_complexity <- rbind(top_n(df, 1, Complexity), uni_max_complexity)
+}  
+
+```
+
+```{r visual}
+no_gen_ed_or_elective <- all_unis %>% filter(Complexity!=1)
+
+# all courses barring electives or gen eds (NEED TO HAVE COMPLEXITY OF MORE THAN 1 )
+# to do - change x-axis scale
+ggplot(no_gen_ed_or_elective, aes(x=Complexity)) + geom_bar(fill = 'skyblue',color='royalblue') + theme_bw() + labs(x = 'Course Complexity', y = 'Frequency', title = 'Distribution of Course Complexity') + scale_x_continuous(breaks = seq(0, max(no_gen_ed_or_elective$Complexity + 5), by = 5)) 
+
+ggplot(no_gen_ed_or_elective, aes(x=Delay)) + geom_bar(fill = 'skyblue',color='royalblue') + theme_bw() + labs(x = 'Delay Factor', y = 'Frequency', title = 'Distribution of Delay Factor')
+
+ggplot(no_gen_ed_or_elective, aes(x=Blocking)) + geom_bar(fill = 'skyblue',color='royalblue') + theme_bw() + labs(x = 'Blocking Factor', y = 'Frequency', title = 'Distribution of Blocking Factor')
+
+ggplot(no_gen_ed_or_elective, aes(x=Centrality)) + geom_bar(fill = 'skyblue',color='royalblue') + theme_bw() + labs(x = 'Centrality', y = 'Frequency', title = 'Distribution of Course Centrality')
+
+```
+
+```{r anova_overall}
+no_gen_ed_or_elective <- all_unis %>% filter(Blocking!=0)
+
+# compare complexity (combination of blocking and delay)
+complexity_aov <- aov(no_gen_ed_or_elective$Complexity ~ no_gen_ed_or_elective$uni)
+summary(complexity_aov)
+
+ggplot(no_gen_ed_or_elective, aes(x = uni, y = Complexity)) + stat_summary(fun = mean, geom = "point") + stat_summary(fun.data = mean_cl_normal, geom = "errorbar", width = 0.2) + labs(x = 'Universities', title = 'Curricular Complexity by University')
+```
+
+
+
+
+

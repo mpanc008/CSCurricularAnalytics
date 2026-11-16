@@ -1,0 +1,49 @@
+﻿Curriculum,Computer Science - BS,,,,,,,,,
+Degree Plan,Generic,,,,,,,,,
+Institution,University of Florida,,,,,,,,,
+Degree Type,BS,,,,,,,,,
+System Type,semester,,,,,,,,,
+CIP,11.0101,,,,,,,,,
+Courses,,,,,,,,,,
+Course ID,Course Name,Prefix,Number,Prerequisites,Corequisites,Strict-Corequisites,Credit Hours,Institution,Canonical Name,Term
+1,General Education: Humanities,HUM,UCC1,,,,3,UF,ENC1101,1
+2,Introduction to Principles of Physics,PHY,1020,,,,3,UF,,1
+3,Programming Fundamentals 1,COP,2210,,4,,4,UF,COP3502C,1
+4,Analytic Geometry and Calculus 1,MAC,2311,,,,4,UF,MAC2311,1
+5,Programming Fundamentals 2,COP,3337,3;4,,,4,UF,COP3503C,2
+6,Applications of Discrete Structures,COT,3100,3;4,5,,3,UF,COT3100,2
+7,Analytic Geometry and Calculus 2,MAC,2312,4,,,4,UF,MAC2312,2
+8,Physics with Calculus 1,PHY,2048,2;4,7,,3,UF,PHY2048,2
+200,Physics with Calculus 1 Lab,PHY,2048L,,,8,1,UF,PHY2048L,2
+9,Expository and Argumentative Writing,ENC,1101,,,,3,UF,ENC1101,3
+10,General Education: Humanities,HUM,UCC2,,,,3,UF,,3
+11,General Education: Biological and Physical Sciences,NAT,UCC2,,,,3,UF,,3
+12,Introduction to Computer Organization,CDA,4101,4;5;6,,,3,UF,CDA3101,4
+13,Data Structures and Algorithm ,COP,3530,5;6;7,,,3,UF,COP3530,4
+14,Analytic Geometry and Calculus 3,MAC,2313,7,,,4,UF,MAC2313,4
+15,Physics with Calculus 2,PHY,2049,7;8,14,,3,UF,PHY2049,4
+201,Physics with Calculus 2 Lab,PHY,2049L,,,15,1,UF,PHY2049L,4
+16,Introduction to Software Engineering,CEN,4010,13,,,3,UF,CEN3031,5
+17,Information and Database Systems 1,COP,4710,5;6,,,3,UF,CIS4301,5
+18,Writing in the Disciplines ,ENC,3249,,,,3,UF,ENC2256,5
+19,Computational Linear Algebra,MAS,3105,7,,,3,UF,MAS3114,5
+20,General Education: Social Sciences,SOC,UCC1,,,,3,UF,,5
+21,General Education: Social Sciences,SOC,UCC2,,,,3,UF,,6
+22,Operating Systems,COP,4610,12;13,,,3,UF,COP4600,6
+23,Engineering Statistics,STA,3033,4,,,3,UF,STA3032,6
+24,Technical Elective,,,,,,3,UF,,6
+25,Programming Language Concepts,COP,4555,13,,,3,UF,COP4020,7
+26,Algorithm Abstraction and Design,COP,4534,13,,,3,UF,COP4533,7
+27,Interdisciplinary Elective,,,,,,3,UF,,7
+28,Interdisciplinary Elective,,,,,,3,UF,,7
+29,Technical Elective,,,,,,3,UF,,7
+30,Computer Network Fundamentals,CNT,4513,13,22,,3,UF,CNT4007,8
+31,Engineering Ehtics and Professionalism,CGS,3095,,,,1,UF,EGS4034,8
+32,Technical Elective,,,,,,3,UF,,8
+33,Technical Elective,,,,,,3,UF,,8
+34,Interdisciplinary Elective,,,,,,3,UF,,8
+35,Senior Project,CIS,4951,,,,3,UF,CIS4914,9
+36,Technical Elective,,,,,,3,UF,,9
+37,Technical Elective,,,,,,3,UF,,9
+38,Interdisciplinary Elective,,,,,,3,UF,,9
+39,Interdisciplinary Elective,,,,,,3,UF,,9

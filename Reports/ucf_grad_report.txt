@@ -1,0 +1,117 @@
+------------ Simulation Report ------------
+Computer Science - BS, BS -- Generic
+
+-------- Simulation Statistics --------
+Number of terms: 12
+Max Credits per Term: 18
+Max Course Attempts: 3
+Number of Students: 1000
+Preset Course Pass Rates: 90.0%
+
+-------- Graduation Statistics --------
+Number of Students Graduated: 508
+Graduation Rate: 50.8%
+Term Graduation Rates: 
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.157, 0.419, 0.5, 0.507, 0.508]
+Average time to degree: 8.883858267716535 terms
+
+-------- Stop out Statistics --------
+Number of Students Stopped Out (Stopout Model Prediction + Reached Max Attempts): 492
+Number of Students Reaching Max Attempts: 184
+Stop-out Rate: 49.2%
+Cumulative Term Stop-out Rates (including reached max course attempts students): 
+[0.075, 0.183, 0.263, 0.353, 0.419, 0.451, 0.469, 0.474, 0.482, 0.491, 0.492, 0.492]
+
+Cumulative Term Stop-out Rates (excluding reaching max course attempts students): 
+[0.075, 0.183, 0.22, 0.278, 0.298, 0.302, 0.308, 0.308, 0.308, 0.308, 0.308, 0.308]
+
+Cumulative Term Reached Max Course Attempts Rates: 
+[0.0, 0.0, 0.043, 0.075, 0.121, 0.149, 0.161, 0.166, 0.174, 0.183, 0.184, 0.184]
+
+
+-------- Pass Rate of Each Course (computed from Student Grades CSV file) --------
+ Row │ Courses                            Pass_Rates  Num_Students_Passes  Num_Students_Taken 
+─────┼────────────────────────────────────────────────────────────────────────────────────────
+   1 │ ENC 1101 Composition I             87.5%       9568                 10929
+   2 │ SPC UCC1 GEP Communications        90.2%       9411                 10431
+   3 │ EEL 2880 Introduction to Program…  81.1%       848                  1046
+   4 │ MAC 2311 Calculus with Analytic …  68.0%       3331                 4900
+   5 │ ENC 1102 Composition II            86.2%       11383                13212
+   6 │ COT 3100 Introduction to Discret…  89.7%       3027                 3376
+   7 │ COP 3337 Computer Science I        88.3%       2893                 3275
+   8 │ CDA 3102 Computer Logic and Orga…  88.2%       2276                 2581
+   9 │ MAC 2312 Calculus with Analytic …  69.0%       2133                 3090
+  10 │ COP 2210 Object Oriented Program…  84.5%       2560                 3028
+  11 │ COT 3960 Foundation Exam           50.7%       2025                 3996
+  12 │ PHY 2048 General Physics Using C…  73.4%       2567                 3495
+  13 │ COP 3402 System Software           90.0%       N/A                  N/A
+  14 │ COP 3530 Computer Science II       91.1%       2600                 2853
+  15 │ SOC UCC1 GEP Social Science        86.4%       14726                17046
+  16 │ PHY 2049 General Physics Using C…  83.2%       2208                 2653
+  17 │ CEN 4010 Processes for Object-Or…  93.3%       1929                 2067
+  18 │ ENC 3249 Writing for the Technic…  92.0%       1492                 1622
+  19 │ CNT 4403 Security in Computing     96.4%       669                  694
+  20 │ STA 2023 Statistical Methods I     82.3%       4347                 5281
+  21 │ SOC UCC2 GEP Social Science        87.7%       17693                20179
+  22 │ Math Elective                      90.0%       N/A                  N/A
+  23 │ BSC 2010 Biology I                 86.6%       6706                 7742
+  24 │ CAP 4999 CS Basic Core: Data Sci…  94.3%       1545                 1639
+  25 │ Technical Elective                 90.0%       N/A                  N/A
+  26 │ CHM 1045 Chemistry Fundamentals I  90.0%       N/A                  N/A
+  27 │ Math Elective                      90.0%       N/A                  N/A
+  28 │ Technical Elective                 90.0%       N/A                  N/A
+  29 │ Technical Elective                 90.0%       N/A                  N/A
+  30 │ Free Elective                      90.0%       N/A                  N/A
+  31 │ HUM UCC1 GEP Humanities            89.9%       17131                19061
+  32 │ CIS 3950 Senior Design I           96.4%       1269                 1316
+  33 │ HUM UCC2 GEP Humanities            92.5%       6585                 7118
+  34 │ MAD 3512 Discrete Structures II    67.7%       128                  189
+  35 │ Technical Elective                 90.0%       N/A                  N/A
+  36 │ CIS 4951 Senior Design II          97.3%       1012                 1040
+  37 │ Free Elective                      90.0%       N/A                  N/A
+  38 │ Technical Elective                 90.0%       N/A                  N/A
+  39 │ Technical Elective                 90.0%       N/A                  N/A
+
+-------- Course Pass Rates by Term --------
+ Row │ COUSE                              TERM1  TERM2  TERM3  TERM4  TERM5  TERM6  TERM7  TERM8  TERM9  TERM10  TERM11  TERM12 
+─────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ Composition I                      87.5%  97.0%  98.4%  98.4%  98.4%  98.4%  98.4%  98.4%  98.4%  98.4%   98.4%   98.4%
+   2 │ GEP Communications                 90.1%  98.3%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%   98.9%   98.9%
+   3 │ Introduction to Programming with…  81.3%  95.6%  98.5%  98.5%  98.5%  98.5%  98.5%  98.5%  98.5%  98.5%   98.5%   98.5%
+   4 │ Calculus with Analytic Geometry I  66.7%  86.7%  91.8%  91.8%  91.8%  91.8%  91.8%  91.8%  91.8%  91.8%   91.8%   91.8%
+   5 │ Composition II                     0.0%   69.5%  85.7%  88.5%  88.8%  88.8%  88.8%  88.8%  88.8%  88.8%   88.8%   88.8%
+   6 │ Introduction to Discrete Structu…  90.3%  98.6%  99.4%  99.4%  99.4%  99.4%  99.4%  99.4%  99.4%  99.4%   99.4%   99.4%
+   7 │ Computer Science I                 0.0%   45.3%  71.2%  80.4%  81.6%  81.6%  81.6%  81.6%  81.6%  81.6%   81.6%   81.6%
+   8 │ Computer Logic and Organization    0.0%   64.7%  82.1%  87.5%  87.8%  87.8%  87.8%  87.8%  87.8%  87.8%   87.8%   87.8%
+   9 │ Calculus with Analytic Geometry …  0.0%   64.1%  81.8%  86.8%  86.8%  86.8%  86.8%  86.8%  86.8%  86.8%   86.8%   86.8%
+  10 │ Object Oriented Programming        0.0%   65.6%  85.9%  88.5%  88.8%  88.8%  88.8%  88.8%  88.8%  88.8%   88.8%   88.8%
+  11 │ Foundation Exam                    0.0%   0.0%   20.4%  43.4%  57.7%  62.1%  62.8%  62.8%  62.8%  62.8%   62.8%   62.8%
+  12 │ General Physics Using Calculus I   0.0%   6.4%   52.6%  70.4%  74.9%  75.1%  75.1%  75.1%  75.1%  75.1%   75.1%   75.1%
+  13 │ System Software                    0.0%   0.0%   31.3%  59.2%  69.7%  71.9%  72.0%  72.1%  72.1%  72.1%   72.1%   72.1%
+  14 │ Computer Science II                0.0%   0.0%   24.3%  58.1%  69.3%  71.9%  72.1%  72.1%  72.1%  72.1%   72.1%   72.1%
+  15 │ GEP Social Science                 0.0%   0.0%   64.3%  78.0%  79.7%  79.7%  79.7%  79.7%  79.7%  79.7%   79.7%   79.7%
+  16 │ General Physics Using Calculus II  0.0%   0.0%   3.6%   37.3%  58.9%  64.4%  65.6%  65.7%  65.7%  65.7%   65.7%   65.7%
+  17 │ Processes for Object-Oriented So…  0.0%   0.0%   0.0%   11.2%  33.5%  49.8%  55.7%  57.2%  57.2%  57.2%   57.2%   57.2%
+  18 │ Writing for the Technical Profes…  0.0%   0.0%   43.5%  72.7%  76.3%  77.1%  77.1%  77.1%  77.1%  77.1%   77.1%   77.1%
+  19 │ Security in Computing              0.0%   0.0%   14.4%  70.1%  76.3%  76.6%  76.6%  76.6%  76.6%  76.6%   76.6%   76.6%
+  20 │ Statistical Methods I              0.0%   0.0%   4.4%   47.1%  66.4%  69.7%  69.9%  69.9%  69.9%  69.9%   69.9%   69.9%
+  21 │ GEP Social Science                 0.0%   0.0%   0.0%   25.5%  61.0%  66.0%  66.4%  66.4%  66.4%  66.4%   66.4%   66.4%
+  22 │ Math Elective                      0.0%   0.0%   0.0%   8.4%   56.8%  63.6%  64.7%  64.7%  64.7%  64.7%   64.7%   64.7%
+  23 │ Biology I                          0.0%   0.0%   0.0%   0.9%   45.4%  60.8%  63.1%  63.1%  63.1%  63.1%   63.1%   63.1%
+  24 │ CS Basic Core: Data Science        0.0%   0.0%   0.0%   0.0%   21.1%  48.5%  54.2%  55.3%  55.3%  55.3%   55.3%   55.3%
+  25 │ Technical Elective                 0.0%   0.0%   0.0%   0.7%   23.7%  56.9%  61.4%  61.9%  61.9%  61.9%   61.9%   61.9%
+  26 │ Chemistry Fundamentals I           0.0%   0.0%   0.0%   0.0%   11.0%  51.8%  59.6%  60.4%  60.8%  60.8%   60.8%   60.8%
+  27 │ Math Elective                      0.0%   0.0%   0.0%   0.0%   3.4%   42.0%  56.3%  58.0%  58.2%  58.2%   58.2%   58.2%
+  28 │ Technical Elective                 0.0%   0.0%   0.0%   0.0%   0.0%   27.1%  50.2%  53.6%  53.8%  53.8%   53.8%   53.8%
+  29 │ Technical Elective                 0.0%   0.0%   0.0%   0.0%   0.0%   14.5%  47.9%  53.4%  53.8%  53.8%   53.8%   53.8%
+  30 │ Free Elective                      0.0%   0.0%   0.0%   0.0%   1.1%   13.9%  48.9%  56.4%  56.8%  56.9%   56.9%   56.9%
+  31 │ GEP Humanities                     0.0%   0.0%   0.0%   0.0%   0.0%   6.5%   44.6%  55.1%  55.8%  56.0%   56.0%   56.0%
+  32 │ Senior Design I                    0.0%   0.0%   0.0%   0.0%   0.0%   3.9%   42.6%  54.3%  55.1%  55.2%   55.2%   55.2%
+  33 │ GEP Humanities                     0.0%   0.0%   0.0%   0.0%   0.0%   1.4%   34.2%  52.2%  54.3%  54.3%   54.3%   54.3%
+  34 │ Discrete Structures II             0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   16.9%  39.8%  48.1%  50.8%   50.9%   50.9%
+  35 │ Technical Elective                 0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   11.3%  45.8%  52.0%  52.6%   52.7%   52.7%
+  36 │ Senior Design II                   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   2.0%   39.3%  52.1%  53.0%   53.1%   53.1%
+  37 │ Free Elective                      0.0%   0.0%   0.0%   0.0%   0.0%   1.4%   7.4%   43.2%  52.4%  54.2%   54.2%   54.2%
+  38 │ Technical Elective                 0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   1.3%   36.5%  49.5%  52.5%   52.6%   52.6%
+  39 │ Technical Elective                 0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   25.7%  48.9%  52.2%   52.5%   52.6%
+  40 │ GRAD RATE                          0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   15.7%  41.9%  50.0%   50.7%   50.8%

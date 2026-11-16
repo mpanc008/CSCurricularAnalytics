@@ -1,0 +1,103 @@
+Random Forest 
+
+280 samples
+  5 predictor
+  2 classes: '0', '1' 
+
+No pre-processing
+Resampling: Cross-Validated (5 fold, repeated 3 times) 
+Summary of sample sizes: 225, 224, 223, 223, 225, 224, ... 
+Addtional sampling using down-sampling
+
+Resampling results across tuning parameters:
+
+  mtry  Accuracy   Kappa    
+  2     0.6961916  0.2944687
+  5     0.6358309  0.1995810
+  8     0.5896461  0.1391391
+
+Accuracy was used to select the optimal model using the largest value.
+The final value used for the model was mtry = 2.
+Confusion Matrix and Statistics
+
+    
+pred  0  1
+   0 17 23
+   1 11 67
+                                          
+               Accuracy : 0.7119          
+                 95% CI : (0.6213, 0.7915)
+    No Information Rate : 0.7627          
+    P-Value [Acc > NIR] : 0.91784         
+                                          
+                  Kappa : 0.3064          
+                                          
+ Mcnemar's Test P-Value : 0.05923         
+                                          
+            Sensitivity : 0.7444          
+            Specificity : 0.6071          
+         Pos Pred Value : 0.8590          
+         Neg Pred Value : 0.4250          
+              Precision : 0.8590          
+                 Recall : 0.7444          
+                     F1 : 0.7976          
+             Prevalence : 0.7627          
+         Detection Rate : 0.5678          
+   Detection Prevalence : 0.6610          
+      Balanced Accuracy : 0.6758          
+                                          
+       'Positive' Class : 1               
+                                          
+Area under the curve: 0.756
+                        MeanDecreaseGini
+COHORT1198                      1.651878
+COHORT1208                      1.672222
+COHORT1218                      2.225800
+COHORT1228                      1.339702
+TOTAL_ATTEMPTED_COURSES         9.525469
+CORE_CLASSES_SUCCESS           13.012983
+TOTAL_FAILED                   10.318790
+PASS_RATE                      13.081425
+
+
+[1] "BASE BINARY MODEL - 1yrs COHORT data"
+Confusion Matrix and Statistics
+
+    
+pred  0  1
+   0 20 23
+   1  8 67
+                                         
+               Accuracy : 0.7373         
+                 95% CI : (0.6483, 0.814)
+    No Information Rate : 0.7627         
+    P-Value [Acc > NIR] : 0.77799        
+                                         
+                  Kappa : 0.3873         
+                                         
+ Mcnemar's Test P-Value : 0.01192        
+                                         
+            Sensitivity : 0.7444         
+            Specificity : 0.7143         
+         Pos Pred Value : 0.8933         
+         Neg Pred Value : 0.4651         
+              Precision : 0.8933         
+                 Recall : 0.7444         
+                     F1 : 0.8121         
+             Prevalence : 0.7627         
+         Detection Rate : 0.5678         
+   Detection Prevalence : 0.6356         
+      Balanced Accuracy : 0.7294         
+                                         
+       'Positive' Class : 1              
+                                         
+Area under the curve: 0.8073
+                        MeanDecreaseGini
+COHORT1198                      1.695769
+COHORT1208                      1.852261
+COHORT1218                      1.541655
+COHORT1228                      2.400702
+TOTAL_ATTEMPTED_COURSES         8.702625
+CORE_CLASSES_SUCCESS           10.077875
+TOTAL_FAILED                    7.405368
+PASS_RATE                      10.566658

@@ -1,0 +1,1216 @@
+---
+title: "grade_file_process"
+output: html_document
+date: "2026-04-24"
+---
+
+```{r libraries}
+library(readxl)
+library(themis)
+library(recipes)
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(randomForest)
+library(pROC)
+library(caret)
+library(CurricularAnalytics)
+```
+
+```{r the_grades_file}
+grade_base <- read.csv("C:/Users/cpanc/OneDrive/Documents/IDC6940/FIU/historical_grades.csv")
+
+grade_base <- grade_base %>% filter(units < 5 & units > 0)
+
+grade <- grade_base %>% filter(!(course_prefix %in% 
+  c('ABT','ACG',"ADE","ADV", "AEB", "AFR", "AFS", "AGG", "AGR", "AML", "ANG", "APK", "ARA", "ARE", "ASH", "ASL", "ASN", "ATR", "BCH", "BCN", "BME", "BMS", "BOT", "BUL","CBH", "CCE", "CEG", "CHI", "CHS", "CHT", "CJC", "CJE", "CJL", "CLP", "CLS","CMN","CPO", "CRW", "CWR", "CYP", "DAA", "DAN", "DIE", "DIG", "DSC", "EAB", "EAS", "EBD", "ECH", "ECP", "ECS", "ECT", "ECW", "EDA",'EDE', 'EDF','EDG', 'EDH', 'EDP', 'EEC' ,'EEX', "EGL", "EGM", "EGS", "EIN", 'EMA', 'EME', 'EML', "ENL", "ENU", "ENV", "ESE", "ESI", "EVT", "EXP","FAD", "FAS", "FES", "FFP", 'FIL','FIN', 'FLE', 'FOL', "FOS", "FOT", "FRE", "FRW", "FSS", "GEB", 'GER', 'GIS', 'GMS', "GRA" , "GRE", "HAI","HBR", "HEE", 'HFT', 'HIM', 'HIS', 'HLP', 'HME', 'HMG', 'HSA', 'HSC', "HUN", "IDH", "IHS", "IND", "INP", "ISM", "ISS", "ITA", "JOU","JPN", "JRM", 'JST','KOR','LAA', 'LAE', 'LAS', 'LAW', 'LBS', 'LEI', 'LIN', 'MAE', 'MAN', 'MAR', 'MAT', 'MCB', 'MDC', "MDE", "MDI", "MDR","MDS", "MET", 'MGF', 'MHS', 'MMC', 'MSL', 'MTG', 'MUC', 'MUE', 'MUG', 'MUM', 'MUN', 'MUO', 'MUR', 'MUS', 'MUT', 'MUY', 'MVB', 'MVJ', 'MVK','MVP', 'MVS', 'MVV', 'MVW', 'NGR', 'NSE', 'NUR', 'OCB', 'ORI', 'OSE', 'OTH', 'PAS', 'PCB', 'PCO', 'PEM', 'PEO', 'PEP', 'PET', 'PGY', 'PHC','PHH', 'PHM', 'PHP', 'PHT', 'PHZ', 'POR', 'POT', 'POW', 'PPE', 'PSB', 'PRT', 'PSN', 'PUP', 'PUR', 'QMB', 'RCS', 'RDG', 'RED', 'REE', 'RLG', 'RMI', "RTV", 'RUS', 'SAL', 'SCE', 'SCM', 'SDS', 'SMT', 'SOP', 'SOW', 'SPA', 'SPM', "SPN", 'SPS', 'SPT', 'SPW','SRK', 'SSE', 'SUR', 'SWS', 'SYA', 'SYD', 'SYP', 'TAX', 'TPA', 'TSL', 'TTE', 'URP', 'URS', 'VIC', 'WST', 'ZOO' )))
+```
+
+```{r FIU MAP}
+# map UCC Humanities Group 1
+hum_ucc1_map <- data.frame(
+  course_prefix = c("ARH", "HUM", "LIT", "MUL", "PHI", "THE"),
+  course_num    = c("2000", "1020", "1000", "1010", "2010", "2000"),
+  new_prefix    = "HUM",
+  new_num       = "UCC1"
+)
+
+grade <- grade %>%
+  left_join(hum_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# map UCC Humanities Group 2
+hum_ucc2_map <- data.frame(
+  course_prefix = c("AFH", "ARC", "ARH", "ARH", "ENG", "EUH", "EUH", "EUH", "HUM", "IDS", "LAH", "MUH", "MUH", "PHI", "POT", "REL", "REL", "SPC", "SPC", "TPP", "WOH"),
+  course_num    = c("2000", "2701", "2050", "2051", "2012", "2011", "2021", "2030", '2236', '2301', '2020', '2018', '2512', '2600', '2010', '2011', '2149', '2237', '2270', '2100', '2001'),
+  new_prefix    = "HUM",
+  new_num       = "UCC2"
+)
+
+grade <- grade %>%
+  left_join(hum_ucc2_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# map UCC sciences grp 1 (only applicable to CS degree)
+natsci_ucc1 <- data.frame(
+  course_prefix = c("BSC", "CHM", "ESC", "PHY"),
+  course_num    = c("2010", "1045", "1000", "2048"),
+  new_prefix    = "NAT",
+  new_num       = "UCC1"
+)
+
+grade <- grade %>%
+  left_join(natsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+natsci_ucc1lab <- data.frame(
+  course_prefix = c("BSC", "CHM", "ESC", "PHY"),
+  course_num    = c("2010L", "1045L", "1000L", "2048L"),
+  new_prefix    = "NAT",
+  new_num       = "UCC1L"
+)
+
+grade <- grade %>%
+  left_join(natsci_ucc1lab, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+natsci_ucc2 <- data.frame(
+  course_prefix = c("BSC", "CHM", "GEO", "PHY", "GLY", 'GLY'),
+  course_num    = c("2011", "1046", "3510", "2049", '1010', '3039'),
+  new_prefix    = "NAT",
+  new_num       = "UCC2"
+)
+# sciences group 2
+grade <- grade %>%
+  left_join(natsci_ucc2, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# social science grp 1 (civic lit)
+socsci_ucc1 <- data.frame(
+  course_prefix = c('AMH', 'AMH', 'POS'),
+  course_num = c('2010', '2020', '2041'),
+  new_prefix    = "SOC",
+  new_num       = "UCC1"
+)
+
+
+grade <- grade %>%
+  left_join(socsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# social science grp 2 
+socsci_ucc2 <- data.frame(
+  course_prefix = c(
+    "CCJ","COM","COM","CPO","CPO","CPO",
+    "DEP","ECO","EVR","GEA","GEO","IDS",
+    "INR","PAD","REL","SYG","SYO"
+  ),
+  course_num = c(
+    "2020","1000","2417","2002","2102","2304",
+    "2000","2023","1017","2000","2000","2183",
+    "2001","2000","2300","2000","2101"
+  ),
+  new_prefix = "SOC",   
+  new_num    = "UCC2" 
+)
+
+grade <- grade %>%
+  left_join(socsci_ucc2, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# cs electives - foundation
+cs_fnd <- data.frame(
+  course_prefix = c('CAP', 'COP', 'COT', 'COT', 'COT', 'COT', 'MAD', 'MAD', 'MAD', 'MAD', 'MHF'),
+  course_num = c('4506', '4534', '3510', '3541', '4521', '4601', '3301', '3401', '3512', '4203', '4302'),
+  new_prefix = "COT",
+  new_num    = "FND1" 
+  )
+
+grade <- grade %>%
+  left_join(cs_fnd, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# cs electives - systems
+cs_sys <- data.frame(
+  course_prefix = c('CAP', 'CDA', 'CEN', 'CIS', 'COP', 'COP', 'COP', 'CTS', 'COT'),
+  course_num = c('4453', '4625', '4083', '4731', '4520', '4604', '4751', '4408', '4431'),
+  new_prefix = "COT",
+  new_num    = "SYS1" 
+)
+
+grade <- grade %>%
+  left_join(cs_sys, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# cs electives - applications
+cs_app <- data.frame(
+  course_prefix = c('CAI', 'CAI', 'CAI', 'CAP', 'CAP', 'CAP', 'CAP', 'CAP', 'CEN', 'CEN', 'COP', 'COP'),
+  course_num = c('4002', '4105', '4304', '4052', '4104', '4710', '4770', '4830', '4021', '4072', '4226', '4655'),
+  new_prefix = "COT",
+  new_num    = "APP1" 
+)
+
+grade <- grade %>%
+  left_join(cs_app, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# tech writing course sub
+grade <- grade %>%
+  mutate( course_num = if_else(course_prefix == "ENC" & course_num == "3213", "3249",course_num))
+
+# discrete structures course sub
+grade <- grade %>%
+  mutate(
+    course_prefix = if_else(course_prefix == "MAD" & course_num == "2104",
+                            "COT",
+                            course_prefix),
+    course_num = if_else(course_prefix == "COT" & course_num == "2104",
+                         "3100",
+                         course_num)
+  )
+# write.csv(grade, "C:/Users/cpanc/OneDrive/Documents/IDC6940/FIU/slim_grades2.csv", row.names = FALSE)
+```
+
+```{r FAMU MAPS}
+grade_famu <- grade_base
+
+# ----------------------- state core ----------------------------------
+# humanities grp1
+grade_famu <- grade_famu %>%
+  left_join(hum_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# social science grp1 (civic lit)
+grade_famu <- grade_famu %>%
+  left_join(socsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# -----------------------university core-------------------------------
+
+# humanities grp2
+hum_ucc2_map <- data.frame(
+  course_prefix = c("ARC", "ARH", "ARH", "LIT", "MUH", "PHH", "PHH", "PHI", "PHI", "PHI", "REL", "WOH", "WOH" ),
+  course_num    = c("2701", "2050", "2051", "2120", "2018", "3100", "3440", "2100", "2600", "3800", "3145", "2001", "2022"),
+  new_prefix    = "HUM",
+  new_num       = "UCC2"
+)
+
+grade_famu <- grade_famu %>%
+  left_join(hum_ucc2_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+# social science grp2
+socsci_ucc2 <- data.frame(
+  course_prefix = c(
+    "ECO","GEA"
+  ),
+  course_num = c(
+    "2023","2000"
+  ),
+  new_prefix = "SOC",   
+  new_num    = "UCC2" 
+)
+
+grade_famu <- grade_famu %>%
+  left_join(socsci_ucc2, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+
+# math electives FAMU
+math_elec <- data.frame(
+  course_prefix = c("MAS", "MAD", "STA"),
+  course_num    = c("3105", "3401", "2023"),
+  new_prefix    = "MAT",
+  new_num       = "4999"
+)
+
+grade_famu <- grade_famu %>%
+  left_join(math_elec, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+grade_famu <- grade_famu %>% filter(!(course_prefix %in% 
+  c('LIT', 'ANT', 'MAA', 'EEE', 'PSY', 'CCJ', 'ECO', 'IDS', 'CHM','COM', 'REL', 'MAS', 'DEP', 'POS', 'INR', 'EVR', 'IDC', 'SYG', 'PAD', 'PHI', 'ARH', "TRA", 'MUH', 'CGN', 'CES', 'GEO', 'MAP', 'GLY', 'EUH', 'AMH', 'AFS', 'GEA', 'IPM', 'HOS', 'JPT', 'OCE', 'MUL', 'OCP', 'TPP', 'SYO', 'ENT', 'THE', 'ENG', 'WOH', 'LAH', 'CJJ', 'AFH', 'ENY', 'NSP', 'ISE', 'PUR', 'QMB', 'RCS', 'RDG', 'RED', 'REE', 'RLG', 'RMI', "RTV", 'RUS', 'SAL', 'SCE', 'SCM', 'SDS', 'SMT', 'SOP', 'SOW', 'SPA', 'SPM', "SPN", 'SPS', 'SPT', 'SPW','SRK', 'SSE', 'SUR', 'SWS', 'SYA', 'SYD', 'SYP', 'TAX', 'TPA', 'TSL', 'TTE', 'URP', 'URS', 'VIC', 'WST', 'ZOO', 'ABT','ACG',"ADE","ADV", "AEB", "AFR", "AFS", "AGG", "AGR", "AML", "ANG", "APK", "ARA", "ARC", "ARE", "ART", "ASH", "ASL", "ASN", "AST", "ATR", "BCH", "BCN", "BME", "BMS", "BOT", "BUL","CBH", "CCE", "CEG", "CHI", "CHS", "CHT", "CJC", "CJE", "CJL", "CLP", "CLS","CMN","CPO", "CRW", "CWR", "CYP")
+  ))
+
+#write.csv(grade_famu, "C:/Users/cpanc/OneDrive/Documents/IDC6940/FAMU/slim_grades_famu.csv", row.names = FALSE)
+```
+
+```{r FAU MAPS}
+grade_fau <- grade_base
+
+# ----------------------- state core ----------------------------------
+# humanities grp1
+grade_fau <- grade_fau %>%
+  left_join(hum_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# social science grp1 (civic lit)
+grade_fau <- grade_fau %>%
+  left_join(socsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# -----------------------university core-------------------------------
+
+# humanities grp2
+hum_ucc2_map <- data.frame(
+  course_prefix = c("ARH", "ARH", "DAN", "FIL", "LIT", "MUH", "WOH"),
+  course_num    = c("2050", "2051", "2100", "2000", "2120", "2512", "2022"),
+  new_prefix    = "HUM",
+  new_num       = "UCC2"
+)
+
+grade_fau <- grade_fau %>%
+  left_join(hum_ucc2_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+# social science grp2
+socsci_ucc2 <- data.frame(
+  course_prefix = c(
+    "CCJ","ECO", "IDS", "EVR", "GEA", "INR", "POT", "SYO"
+  ),
+  course_num = c(
+    "2010", "2023", "2301", "1017", "2000", "2001", "2002", "2101"
+  ),
+  new_prefix = "SOC",   
+  new_num    = "UCC2" 
+)
+
+grade_fau <- grade_fau %>%
+  left_join(socsci_ucc2, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# fau science
+natsci_ucc1fau <- data.frame(
+  course_prefix = c("BSC", "CHM", "GLY", "PHY"),
+  course_num    = c("2010", "1045", "1010", "2048"),
+  new_prefix    = "NAT",
+  new_num       = "UCC1"
+)
+
+grade_fau <- grade_fau %>%
+  left_join(natsci_ucc1fau, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# CS semi-core1 FAU
+semi_core_grp1 <- data.frame(
+  course_prefix = c("CAP", "CAP", "CAP", "CNT"),
+  course_num    = c("4470", "4630", "4641", "4403"),
+  new_prefix    = "CAP",
+  new_num       = "4999"
+)
+
+grade_fau <- grade_fau %>%
+  left_join(semi_core_grp1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# CS semi-core2 FAU
+semi_core_grp2 <- data.frame(
+  course_prefix = c("COP", "COP", "COP", "COP", "COP"),
+  course_num    = c("4813", "3045", "4655", "4703", "4814"),
+  new_prefix    = "COP",
+  new_num       = "4999"
+)
+
+grade_fau <- grade_fau %>%
+  left_join(semi_core_grp2, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+grade_fau <- grade_fau %>% filter(!(course_prefix %in% 
+  c('LIT', 'ANT', 'MAA', 'EEE', 'PSY', 'CCJ', 'ECO', 'IDS', 'CHM','COM', 'REL', 'MAS', 'DEP', 'POS', 'INR', 'EVR', 'IDC', 'SYG', 'PAD', 'PHI', 'ARH', "TRA", 'MUH', 'CGN', 'CES', 'GEO', 'MAP', 'GLY', 'EUH', 'AMH', 'AFS', 'GEA', 'IPM', 'HOS', 'JPT', 'OCE', 'MUL', 'OCP', 'TPP', 'SYO', 'ENT', 'THE', 'ENG', 'WOH', 'LAH', 'CJJ', 'AFH', 'ENY', 'NSP', 'ISE', 'PUR', 'QMB', 'RCS', 'RDG', 'RED', 'REE', 'RLG', 'RMI', "RTV", 'RUS', 'SAL', 'SCE', 'SCM', 'SDS', 'SMT', 'SOP', 'SOW', 'SPA', 'SPM', "SPN", 'SPS', 'SPT', 'SPW','SRK', 'SSE', 'SUR', 'SWS', 'SYA', 'SYD', 'SYP', 'TAX', 'TPA', 'TSL', 'TTE', 'URP', 'URS', 'VIC', 'WST', 'ZOO', 'ABT','ACG',"ADE","ADV", "AEB", "AFR", "AFS", "AGG", "AGR", "AML", "ANG", "APK", "ARA", "ARC", "ARE", "ART", "ASH", "ASL", "ASN", "AST", "ATR", "BCH", "BCN", "BME", "BMS", "BOT", "BUL","CBH", "CCE", "CEG", "CHI", "CHS", "CHT", "CJC", "CJE", "CJL", "CLP", "CLS","CMN","CPO", "CRW", "CWR", "CYP")
+  ))
+
+write.csv(grade_fau, "C:/Users/cpanc/OneDrive/Documents/IDC6940/FAU/slim_grades_fau.csv", row.names = FALSE)
+```
+
+```{r FSU MAPS}
+grade_fsu <- grade_base
+
+# ----------------------- state core ----------------------------------
+# humanities grp1
+grade_fsu <- grade_fsu %>%
+  left_join(hum_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# social science grp1 (civic lit)
+grade_fsu <- grade_fsu %>%
+  left_join(socsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# -----------------------university core-------------------------------
+
+# humanities grp2
+hum_ucc2_map <- data.frame(
+  course_prefix = c("ARH", "ARH", "DAN", "FIL", "MUH", "PHI", "REL"),
+  course_num    = c("2050", "2051", "2100", "2000", "2512", "2600", "2300"),
+  new_prefix    = "HUM",
+  new_num       = "UCC2"
+)
+
+grade_fsu <- grade_fsu %>%
+  left_join(hum_ucc2_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+# social science grp2
+socsci_ucc2 <- data.frame(
+  course_prefix = c(
+    "SYO", "INR", "GEA", "CCJ", "ECO", "ECO", "CPO", "PAD"
+  ),
+  course_num = c(
+    "2101", "2001", "2000", "2020", "1000", "2023", "2002", "2000"
+  ),
+  new_prefix = "SOC",   
+  new_num    = "UCC2" 
+)
+
+grade_fsu <- grade_fsu %>%
+  left_join(socsci_ucc2, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# fsu science for majors
+natsci_ucc1fsu <- data.frame(
+  course_prefix = c("BSC", "BSC", "CHM", "GLY", "GLY", "PHY" ),
+  course_num    = c("2010","2011", "1045", "1010", "1101", "3106"),
+  new_prefix    = "NAT",
+  new_num       = "UCC1"
+)
+
+grade_fsu <- grade_fsu %>%
+  left_join(natsci_ucc1fsu, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+grade_fsu <- grade_fsu %>% filter(!(course_prefix %in% 
+  c('LIT', 'ANT', 'MAA', 'EEE', 'PSY', 'CCJ', 'ECO', 'IDS', 'CHM','COM', 'REL', 'MAS', 'DEP', 'POS', 'INR', 'EVR', 'IDC', 'SYG', 'PAD', 'PHI', 'ARH', "TRA", 'MUH', 'CGN', 'CES', 'GEO', 'MAP', 'GLY', 'EUH', 'AMH', 'AFS', 'GEA', 'IPM', 'HOS', 'JPT', 'OCE', 'MUL', 'OCP', 'TPP', 'SYO', 'ENT', 'THE', 'ENG', 'WOH', 'LAH', 'CJJ', 'AFH', 'ENY', 'NSP', 'ISE', 'PUR', 'QMB', 'RCS', 'RDG', 'RED', 'REE', 'RLG', 'RMI', "RTV", 'RUS', 'SAL', 'SCE', 'SCM', 'SDS', 'SMT', 'SOP', 'SOW', 'SPA', 'SPM', "SPN", 'SPS', 'SPT', 'SPW','SRK', 'SSE', 'SUR', 'SWS', 'SYA', 'SYD', 'SYP', 'TAX', 'TPA', 'TSL', 'TTE', 'URP', 'URS', 'VIC', 'WST', 'ZOO', 'ABT','ACG',"ADE","ADV", "AEB", "AFR", "AFS", "AGG", "AGR", "AML", "ANG", "APK", "ARA", "ARC", "ARE", "ART", "ASH", "ASL", "ASN", "AST", "ATR", "BCH", "BCN", "BME", "BMS", "BOT", "BUL","CBH", "CCE", "CEG", "CHI", "CHS", "CHT", "CJC", "CJE", "CJL", "CLP", "CLS","CMN","CPO", "CRW", "CWR", "CYP")
+  ))
+
+#write.csv(grade_fsu, "C:/Users/cpanc/OneDrive/Documents/IDC6940/FSU/slim_grades_fsu.csv", row.names = FALSE)
+```
+
+```{r UCF MAPS}
+grade_ucf <- grade_base
+
+# ----------------------- state core ----------------------------------
+# humanities grp1
+grade_ucf <- grade_ucf %>%
+  left_join(hum_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# social science grp1 (civic lit)
+grade_ucf <- grade_ucf %>%
+  left_join(socsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# communications
+spc_ucc1_map <- data.frame(
+  course_prefix = c("SPC", "COM"),
+  course_num    = c("2608", "1000"),
+  new_prefix    = "SPC",
+  new_num       = "UCC1"
+)
+
+grade_ucf <- grade_ucf %>%
+  left_join(spc_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# -----------------------university core-------------------------------
+
+# humanities grp2
+hum_ucc2_map <- data.frame(
+  course_prefix = c("ARH", "ARH", "EUH", "EUH", "FIL", "LIT", "MUH", "MUH", "MUH", "WOH"),
+  course_num    = c("2050", "2051", "2011", "2021", "2000", "2120", "2018", "2022", "2512", "2022"),
+  new_prefix    = "HUM",
+  new_num       = "UCC2"
+)
+
+grade_ucf <- grade_ucf %>%
+  left_join(hum_ucc2_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+# social science grp2
+socsci_ucc2 <- data.frame(
+  course_prefix = c(
+    "PSY", "ECO", "ECO", "ANT"
+  ),
+  course_num = c(
+    "2012", "2013", "2023", "2000"
+  ),
+  new_prefix = "SOC",   
+  new_num    = "UCC2" 
+)
+
+grade_ucf <- grade_ucf %>%
+  left_join(socsci_ucc2, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# data science courses UCF
+datasci_core <- data.frame(
+  course_prefix = c(
+    "CAP", "CAP", "CAP", "CAP"
+  ),
+  course_num = c(
+    "4612", "4630", "4453", "4641"
+  ),
+  new_prefix = "CAP",   
+  new_num    = "4999" 
+)
+
+grade_ucf <- grade_ucf %>%
+  left_join(datasci_core, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# ----------------- foundation exam imputation ---------------
+# summer 2023
+for(i in 1:350){
+  grade_ucf <- grade_ucf %>% add_row(term='Summer 2023', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "5/5/2023", enrollment_drop_date = NA, units = 0, grade = 'P')
+}
+
+for(i in 1:219){
+  grade_ucf <- grade_ucf %>% add_row(term='Summer 2023', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "5/5/2023", enrollment_drop_date = NA, units = 0, grade = 'F')
+}
+# fall 2023
+for(i in 1:153){
+  grade_ucf <- grade_ucf %>% add_row(term='Fall 2023', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "8/5/2023", enrollment_drop_date = NA, units = 0, grade = 'P')
+}
+
+for(i in 1:155){
+  grade_ucf <- grade_ucf %>% add_row(term='Fall 2023', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "8/5/2023", enrollment_drop_date = NA, units = 0, grade = 'F')
+}
+
+# spring 2024
+for(i in 1:239){
+  grade_ucf <-grade_ucf %>% add_row(term='Spring 2024', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "1/5/2024", enrollment_drop_date = NA, units = 0, grade = 'P')
+}
+
+for(i in 1:275){
+  grade_ucf <- grade_ucf %>% add_row(term='Spring 2024', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "1/5/2024", enrollment_drop_date = NA, units = 0, grade = 'F')
+}
+
+# summer 2024
+for(i in 1:370){
+  grade_ucf <-grade_ucf %>% add_row(term='Summer 2024', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "5/5/2024", enrollment_drop_date = NA, units = 0, grade = 'P')
+}
+
+for(i in 1:360){
+  grade_ucf <- grade_ucf %>% add_row(term='Summer 2024', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "5/5/2024", enrollment_drop_date = NA, units = 0, grade = 'F')
+}
+
+# fall 2024
+for(i in 1:218){
+  grade_ucf <-grade_ucf %>% add_row(term='Fall 2024', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "8/5/2024", enrollment_drop_date = NA, units = 0, grade = 'P')
+}
+
+for(i in 1:200){
+  grade_ucf <- grade_ucf %>% add_row(term='Fall 2024', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "8/5/2024", enrollment_drop_date = NA, units = 0, grade = 'F')
+}
+
+
+# spring 2025
+for(i in 1:234){
+  grade_ucf <-grade_ucf %>% add_row(term='Spring 2025', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "1/5/2025", enrollment_drop_date = NA, units = 0, grade = 'P')
+}
+
+for(i in 1:235){
+  grade_ucf <- grade_ucf %>% add_row(term='Spring 2025', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "1/5/2025", enrollment_drop_date = NA, units = 0, grade = 'F')
+}
+
+# summer 2025
+for(i in 1:275){
+  grade_ucf <-grade_ucf %>% add_row(term='Summer 2025', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "5/5/2025", enrollment_drop_date = NA, units = 0, grade = 'P')
+}
+
+for(i in 1:329){
+  grade_ucf <- grade_ucf %>% add_row(term='Summer 2025', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "5/5/2025", enrollment_drop_date = NA, units = 0, grade = 'F')
+}
+
+# fall 2025
+for(i in 1:186){
+  grade_ucf <-grade_ucf %>% add_row(term='Fall 2025', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "5/5/2025", enrollment_drop_date = NA, units = 0, grade = 'P')
+}
+
+for(i in 1:198){
+  grade_ucf <- grade_ucf %>% add_row(term='Fall 2025', campus = 'Online', course_prefix = "COT", course_num = '3960', section = 'U01',
+  enrollment = "Enrolled", enrollment_add_date = "5/5/2025", enrollment_drop_date = NA, units = 0, grade = 'F')
+}
+
+# ----------------------------------------------------------------
+grade_ucf <- grade_ucf %>% filter(!(course_prefix %in% 
+  c('LIT', 'ANT', 'MAA', 'EEE', 'PSY', 'CCJ', 'ECO', 'IDS', 'CHM','COM', 'REL', 'DEP', 'POS', 'INR', 'EVR', 'IDC', 'SYG', 'PAD', 'PHI', 'ARH', "TRA", 'MUH', 'CGN', 'CES', 'GEO', 'MAP', 'GLY', 'EUH', 'AMH', 'AFS', 'GEA', 'IPM', 'HOS', 'JPT', 'OCE', 'MUL', 'OCP', 'TPP', 'SYO', 'ENT', 'THE', 'ENG', 'WOH', 'LAH', 'CJJ', 'AFH', 'ENY', 'NSP', 'ISE', 'PUR', 'QMB', 'RCS', 'RDG', 'RED', 'REE', 'RLG', 'RMI', "RTV", 'RUS', 'SAL', 'SCE', 'SCM', 'SDS', 'SMT', 'SOP', 'SOW', 'SPA', 'SPM', "SPN", 'SPS', 'SPT', 'SPW','SRK', 'SSE', 'SUR', 'SWS', 'SYA', 'SYD', 'SYP', 'TAX', 'TPA', 'TSL', 'TTE', 'URP', 'URS', 'VIC', 'WST', 'ZOO', 'ABT','ACG',"ADE","ADV", "AEB", "AFR", "AFS", "AGG", "AGR", "AML", "ANG", "APK", "ARA", "ARC", "ARE", "ART", "ASH", "ASL", "ASN", "AST", "ATR", "BCH", "BCN", "BME", "BMS", "BOT", "BUL","CBH", "CCE", "CEG", "CHI", "CHS", "CHT", "CJC", "CJE", "CJL", "CLP", "CLS","CMN","CPO", "CRW", "CWR", "CYP")
+  ))
+
+#write.csv(grade_ucf, "C:/Users/cpanc/OneDrive/Documents/IDC6940/UCF/slim_grades_ucf.csv", row.names = FALSE)
+```
+
+```{r UF MAPS}
+grade_uf <- grade_base
+
+# ----------------------- state core ----------------------------------
+# humanities grp1
+grade_uf <- grade_uf %>%
+  left_join(hum_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# social science grp1 (civic lit)
+grade_uf <- grade_uf %>%
+  left_join(socsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# -----------------------university core-------------------------------
+
+# humanities grp2
+hum_ucc2_map <- data.frame(
+  course_prefix = c("AFA", "ARC","ARC", "ARC", "ARH", 'ARH', "LIT","POT", "TPP"),
+  course_num    = c("2004", "1001","2701", "2702", "2050", "2051", "2120","2002", "2100"),
+  new_prefix    = "HUM",
+  new_num       = "UCC2"
+)
+
+grade_uf <- grade_uf %>%
+  left_join(hum_ucc2_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+# social science grp2
+socsci_ucc2 <- data.frame(
+  course_prefix = c("COM", "CPO", "ECO", "ECO", "INR", "LEI", "PSY"),
+  course_num = c("1000", "2002", "2013", "2023", "2001","2162", "2012"),
+  new_prefix = "SOC",   
+  new_num    = "UCC2" 
+)
+
+grade_uf <- grade_uf %>%
+  left_join(socsci_ucc2, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+natsci_ucc1uf <- data.frame(
+  course_prefix = c("BSC", "BSC", "BOT", "MCB", "HUN"),
+  course_num    = c("2010","2011", "1010", "2000", "2201"),
+  new_prefix    = "NAT",
+  new_num       = "UCC1"
+)
+
+grade_uf <- grade_uf %>%
+  left_join(natsci_ucc1uf, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+natsci_ucc2uf <- data.frame(
+  course_prefix = c("AST","AST", "CHM", "CHM","ESC","EVR", "GLY"),
+  course_num    = c("1002","2003", "1045", "1046","1000", "1001", "1010"),
+  new_prefix    = "NAT",
+  new_num       = "UCC2"
+)
+
+grade_uf <- grade_uf %>%
+  left_join(natsci_ucc2uf, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+grade_uf <- grade_uf %>% filter(!(course_prefix %in% 
+  c('LIT', 'ANT', 'MAA', 'EEE', 'PSY', 'CCJ', 'ECO', 'IDS', 'CHM','COM', 'REL', 'DEP', 'POS', 'INR', 'EVR', 'IDC', 'SYG', 'PAD', 'PHI', 'ARH', "TRA", 'MUH', 'CGN', 'CES', 'GEO', 'MAP', 'GLY', 'EUH', 'AMH', 'AFS', 'GEA', 'IPM', 'HOS', 'JPT', 'OCE', 'MUL', 'OCP', 'TPP', 'SYO', 'ENT', 'THE', 'ENG', 'WOH', 'LAH', 'CJJ', 'AFH', 'ENY', 'NSP', 'ISE', 'PUR', 'QMB', 'RCS', 'RDG', 'RED', 'REE', 'RLG', 'RMI', "RTV", 'RUS', 'SAL', 'SCE', 'SCM', 'SDS', 'SMT', 'SOP', 'SOW', 'SPA', 'SPM', "SPN", 'SPS', 'SPT', 'SPW','SRK', 'SSE', 'SUR', 'SWS', 'SYA', 'SYD', 'SYP', 'TAX', 'TPA', 'TSL', 'TTE', 'URP', 'URS', 'VIC', 'WST', 'ZOO', 'ABT','ACG',"ADE","ADV", "AEB", "AFR", "AFS", "AGG", "AGR", "AML", "ANG", "APK", "ARA", "ARC", "ARE", "ART", "ASH", "ASL", "ASN", "AST", "ATR", "BCH", "BCN", "BME", "BMS", "BOT", "BUL","CBH", "CCE", "CEG", "CHI", "CHS", "CHT", "CJC", "CJE", "CJL", "CLP", "CLS","CMN","CPO", "CRW", "CWR", "CYP")
+  ))
+
+# write.csv(grade_uf, "C:/Users/cpanc/OneDrive/Documents/IDC6940/UF/slim_grades_uf.csv", row.names = FALSE)
+```
+
+```{r UNF MAPS}
+grade_unf <- grade_base
+
+# ----------------------- state core ----------------------------------
+# humanities grp1
+grade_unf <- grade_unf %>%
+  left_join(hum_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# social science grp1 (civic lit)
+grade_unf <- grade_unf %>%
+  left_join(socsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# -----------------------university core-------------------------------
+
+# social science grp2
+socsci_ucc2 <- data.frame(
+  course_prefix = c("ANT", "ECO", "PSY", "HSC", "SYG"),
+  course_num = c("2000", "2013", "2012", "2100", "2000"),
+  new_prefix = "SOC",   
+  new_num    = "UCC2" 
+)
+
+grade_unf <- grade_unf %>%
+  left_join(socsci_ucc2, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+natsci_ucc1uf <- data.frame(
+  course_prefix = c("AST", "BSC", "BSC", "CHM", "CHM", "ESC"),
+  course_num    = c("1002","2010", "2011", "1045", "1046", "1000"),
+  new_prefix    = "NAT",
+  new_num       = "UCC1"
+)
+
+grade_unf <- grade_unf %>%
+  left_join(natsci_ucc1uf, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+grade_unf <- grade_unf %>% filter(!(course_prefix %in% 
+  c('LIT', 'ANT', 'MAA', 'EEE', 'PSY', 'CCJ', 'ECO', 'IDS', 'CHM','COM', 'REL', 'DEP', 'POS', 'INR', 'EVR', 'IDC', 'SYG', 'PAD', 'PHI', 'ARH', "TRA", 'MUH', 'CGN', 'CES', 'GEO', 'MAP', 'GLY', 'EUH', 'AMH', 'AFS', 'GEA', 'IPM', 'HOS', 'JPT', 'OCE', 'MUL', 'OCP', 'TPP', 'SYO', 'ENT', 'THE', 'ENG', 'WOH', 'LAH', 'CJJ', 'AFH', 'ENY', 'NSP', 'ISE', 'PUR', 'QMB', 'RCS', 'RDG', 'RED', 'REE', 'RLG', 'RMI', "RTV", 'RUS', 'SAL', 'SCE', 'SCM', 'SDS', 'SMT', 'SOP', 'SOW', 'SPA', 'SPM', "SPN", 'SPS', 'SPT', 'SPW','SRK', 'SSE', 'SUR', 'SWS', 'SYA', 'SYD', 'SYP', 'TAX', 'TPA', 'TSL', 'TTE', 'URP', 'URS', 'VIC', 'WST', 'ZOO', 'ABT','ACG',"ADE","ADV", "AEB", "AFR", "AFS", "AGG", "AGR", "AML", "ANG", "APK", "ARA", "ARC", "ARE", "ART", "ASH", "ASL", "ASN", "AST", "ATR", "BCH", "BCN", "BME", "BMS", "BOT", "BUL","CBH", "CCE", "CEG", "CHI", "CHS", "CHT", "CJC", "CJE", "CJL", "CLP", "CLS","CMN","CPO", "CRW", "CWR", "CYP")
+  ))
+
+#write.csv(grade_unf, "C:/Users/cpanc/OneDrive/Documents/IDC6940/UNF/slim_grades_unf.csv", row.names = FALSE)
+```
+
+```{r USF MAPS}
+grade_usf <- grade_base
+
+# ----------------------- state core -------------------------------
+# humanities grp1
+grade_usf <- grade_usf %>%
+  left_join(hum_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# social science grp1 (civic lit)
+grade_usf <- grade_usf %>%
+  left_join(socsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# ----------------------university core-------------------------------
+
+# humanities grp2
+hum_ucc2_map <- data.frame(
+  course_prefix = c("ARC","ARC", "ARH", "ARH","ART",  "DAN", "EUH", "EUH", "EUH", "FIL", "MUH", "MUH", "MUH", "PHI", "PHI", "WOH"),
+  course_num    = c("2701","2702","2050", "2051","2500C" , "2100","2011", "2021", "2030", "2000", "2018", "2022", "2512", "2103", "2600", "2022"),
+  new_prefix    = "HUM",
+  new_num       = "UCC2"
+)
+
+grade_usf <- grade_usf %>%
+  left_join(hum_ucc2_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+# social science grp2
+socsci_ucc2 <- data.frame(
+  course_prefix = c(
+    "CPO", "ECO", "GEA", "HSC", "INR", "PAD", "REL"
+  ),
+  course_num = c(
+    "2002", "2023", "2000", "2100", "2001", "2000", "2300" 
+  ),
+  new_prefix = "SOC",   
+  new_num    = "UCC2" 
+)
+
+grade_usf <- grade_usf %>%
+  left_join(socsci_ucc2, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# usf science for majors
+natsci_ucc1 <- data.frame(
+  course_prefix = c("BSC", "BSC", "BSC", "CHM", "CHM", "GLY", "ESC", "EVR"),
+  course_num    = c("2010","2011","2085", "1045", "1046", "1010", "1000", "1001"),
+  new_prefix    = "NAT",
+  new_num       = "UCC1"
+)
+
+grade_usf <- grade_usf %>%
+  left_join(natsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# theory elective block (others have too many electives)
+theory_elective <- data.frame(
+  course_prefix = c("MAD", "COT", "COT"),
+  course_num    = c("3512", "4521", "4601"),
+  new_prefix    = "COT",
+  new_num       = "4999"
+)
+
+grade_usf <- grade_usf %>%
+  left_join(theory_elective, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+grade_usf <- grade_usf %>% filter(!(course_prefix %in% 
+  c('LIT', 'ANT', 'MAA', 'EEE', 'PSY', 'CCJ', 'ECO', 'IDS', 'CHM','COM', 'REL', 'DEP', 'POS', 'INR', 'EVR', 'IDC', 'SYG', 'PAD', 'PHI', 'ARH', "TRA", 'MUH', 'CGN', 'CES', 'GEO', 'MAP', 'GLY', 'EUH', 'AMH', 'AFS', 'GEA', 'IPM', 'HOS', 'JPT', 'OCE', 'MUL', 'OCP', 'TPP', 'SYO', 'ENT', 'THE', 'ENG', 'WOH', 'LAH', 'CJJ', 'AFH', 'ENY', 'NSP', 'ISE', 'PUR', 'QMB', 'RCS', 'RDG', 'RED', 'REE', 'RLG', 'RMI', "RTV", 'RUS', 'SAL', 'SCE', 'SCM', 'SDS', 'SMT', 'SOP', 'SOW', 'SPA', 'SPM', "SPN", 'SPS', 'SPT', 'SPW','SRK', 'SSE', 'SUR', 'SWS', 'SYA', 'SYD', 'SYP', 'TAX', 'TPA', 'TSL', 'TTE', 'URP', 'URS', 'VIC', 'WST', 'ZOO', 'ABT','ACG',"ADE","ADV", "AEB", "AFR", "AFS", "AGG", "AGR", "AML", "ANG", "APK", "ARA", "ARC", "ARE", "ART", "ASH", "ASL", "ASN", "AST", "ATR", "BCH", "BCN", "BME", "BMS", "BOT", "BUL","CBH", "CCE", "CEG", "CHI", "CHS", "CHT", "CJC", "CJE", "CJL", "CLP", "CLS","CMN","CPO", "CRW", "CWR", "CYP")
+  ))
+
+#write.csv(grade_usf, "C:/Users/cpanc/OneDrive/Documents/IDC6940/USF/slim_grades_usf.csv", row.names = FALSE)
+```
+
+```{r UWF MAPS}
+grade_uwf <- grade_base
+
+# -----------------------state core----------------------------------
+# humanities grp1
+grade_uwf <- grade_uwf %>%
+  left_join(hum_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# social science grp1 (civic lit)
+grade_uwf <- grade_uwf %>%
+  left_join(socsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+#-----------------------university core-------------------------------
+
+
+# science for majors
+natsci_ucc1 <- data.frame(
+  course_prefix = c("AST","BSC" ,"BSC", "BSC", "BSC", "BOT", "CHM", "CHM", "ESC", "EVR", "GLY","MCB"),
+  course_num    = c("1002","2010","2011","2085", "2086", "1010", "1045", "1046", "1000", "1001", "1010","2000"),
+  new_prefix    = "NAT",
+  new_num       = "UCC1"
+)
+
+grade_uwf <- grade_uwf %>%
+  left_join(natsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# theory elective block (others have too many electives)
+cs_cores <- data.frame(
+  course_prefix = c("CAP", "CAP", "CEN", "CTS"),
+  course_num    = c("4630", "4770", "4021", "4408"),
+  new_prefix    = "COP",
+  new_num       = "4999"
+)
+
+grade_uwf <- grade_uwf %>%
+  left_join(cs_cores, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+
+grade_uwf <- grade_uwf %>% filter(!(course_prefix %in% 
+  c('LIT', 'ANT', 'MAA', 'EEE', 'PSY', 'CCJ', 'ECO', 'IDS', 'CHM','COM', 'REL', 'DEP', 'POS', 'INR', 'EVR', 'IDC', 'SYG', 'PAD', 'PHI', 'ARH', "TRA", 'MUH', 'CGN', 'CES', 'GEO', 'MAP', 'GLY', 'EUH', 'AMH', 'AFS', 'GEA', 'IPM', 'HOS', 'JPT', 'OCE', 'MUL', 'OCP', 'TPP', 'SYO', 'ENT', 'THE', 'ENG', 'WOH', 'LAH', 'CJJ', 'AFH', 'ENY', 'NSP', 'ISE', 'PUR', 'QMB', 'RCS', 'RDG', 'RED', 'REE', 'RLG', 'RMI', "RTV", 'RUS', 'SAL', 'SCE', 'SCM', 'SDS', 'SMT', 'SOP', 'SOW', 'SPA', 'SPM', "SPN", 'SPS', 'SPT', 'SPW','SRK', 'SSE', 'SUR', 'SWS', 'SYA', 'SYD', 'SYP', 'TAX', 'TPA', 'TSL', 'TTE', 'URP', 'URS', 'VIC', 'WST', 'ZOO', 'ABT','ACG',"ADE","ADV", "AEB", "AFR", "AFS", "AGG", "AGR", "AML", "ANG", "APK", "ARA", "ARC", "ARE", "ART", "ASH", "ASL", "ASN", "AST", "ATR", "BCH", "BCN", "BME", "BMS", "BOT", "BUL","CBH", "CCE", "CEG", "CHI", "CHS", "CHT", "CJC", "CJE", "CJL", "CLP", "CLS","CMN","CPO", "CRW", "CWR", "CYP")
+  ))
+
+#write.csv(grade_uwf, "C:/Users/cpanc/OneDrive/Documents/IDC6940/UWF/slim_grades_uwf.csv", row.names = FALSE)
+
+
+```
+
+```{r FGCU MAPS}
+grade_fgcu <- grade_base
+
+# -----------------------state core----------------------------------
+# humanities grp1
+grade_fgcu <- grade_fgcu %>%
+  left_join(hum_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# social science grp1 (civic lit)
+grade_fgcu <- grade_fgcu %>%
+  left_join(socsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+#-----------------------university core----------------------------
+
+# theory elective block (others have too many electives)
+cs_cores <- data.frame(
+  course_prefix = c(
+    "CAP","STA","CAI","CAI","CTS","CTS","EEL",
+    "CEN","CEN","CEN"
+  ),
+  course_num = c(
+    "2757","3033","4002","4105","1120","4408","4806",
+    "4021","4072","3721"
+  ),
+  new_prefix = "COP",
+  new_num    = "4999"
+)
+
+grade_fgcu <- grade_fgcu %>%
+  left_join(cs_cores, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# --------------------------------------------------------------
+hum_ucc2_map <- data.frame(
+  course_prefix = c(
+    "ARH","ARH","FIL","LIT","MUH","MUH","MUN","MUN","MUN","PHI"
+  ),
+  course_num = c(
+    "2050","2051","2000","2120","2018","2512","1120","1310","1210",
+    "2103"
+  ),
+  new_prefix    = "HUM",
+  new_num       = "UCC2"
+)
+
+grade_fgcu <- grade_fgcu %>%
+  left_join(hum_ucc2_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+socsci_ucc2 <- data.frame(
+  course_prefix = c(
+    "ANT","CPO","DEP","ECO","ECO","ECO","ENT","EUH","EUH","EUH",  "GEA","INR","LAH","PSY","WOH"
+  ),
+  course_num = c(
+    "2000", "2002", "2000","1000","2013","2023","1000",    "2011","2021","2030","2000", "2001", "2020", "2012",  "2022"
+  ),
+  new_prefix = "SOC",   
+  new_num    = "UCC2" 
+)
+
+grade_fgcu <- grade_fgcu %>%
+  left_join(socsci_ucc2, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+grade_fgcu <- grade_fgcu %>% filter(!(course_prefix %in% 
+  c('LIT', 'ANT', 'MAA', 'EEE', 'PSY', 'CCJ', 'ECO', 'IDS', 'CHM','COM', 'REL', 'MAS','DEP', 'POS', 'INR', 'EVR', 'IDC', 'SYG', 'PAD', 'PHI', 'ARH', "TRA", 'MUH', 'CGN', 'CES', 'GEO', 'MAP', 'GLY', 'EUH', 'AMH', 'AFS', 'GEA', 'IPM', 'HOS', 'JPT', 'OCE', 'MUL', 'OCP', 'TPP', 'SYO', 'ENT', 'THE', 'ENG', 'WOH', 'LAH', 'CJJ', 'AFH', 'ENY', 'NSP', 'ISE', 'PUR', 'QMB', 'RCS', 'RDG', 'RED', 'REE', 'RLG', 'RMI', "RTV", 'RUS', 'SAL', 'SCE', 'SCM', 'SDS', 'SMT', 'SOP', 'SOW', 'SPA', 'SPM', "SPN", 'SPS', 'SPT', 'SPW','SRK', 'SSE', 'SUR', 'SWS', 'SYA', 'SYD', 'SYP', 'TAX', 'TPA', 'TSL', 'TTE', 'URP', 'URS', 'VIC', 'WST', 'ZOO', 'ABT','ACG',"ADE","ADV", "AEB", "AFR", "AFS", "AGG", "AGR", "AML", "ANG", "APK", "ARA", "ARC", "ARE", "ART", "ASH", "ASL", "ASN", "AST", "ATR", "BCH", "BCN", "BME", "BMS", "BOT", "BUL","CBH", "CCE", "CEG", "CHI", "CHS", "CHT", "CJC", "CJE", "CJL", "CLP", "CLS","CMN","CPO", "CRW", "CWR", "CYP")
+  ))
+
+#write.csv(grade_fgcu, "C:/Users/cpanc/OneDrive/Documents/IDC6940/FGCU/slim_grades_fgcu.csv", row.names = FALSE)
+
+```
+
+```{r FPU MAPS}
+grade_fpu <- grade_base
+
+# -----------------------state core----------------------------------
+# humanities grp1
+grade_fpu <- grade_fpu %>%
+  left_join(hum_ucc1_map, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# social science grp1 (civic lit)
+grade_fpu <- grade_fpu %>%
+  left_join(socsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+#-----------------------university core----------------------------
+
+# concentration classes 
+cs_conc <- data.frame(
+  course_prefix = c(
+    "CAI","CAI","CAI","CAP","CAP","COP","CAP","CAP","CAP","EEL","CIS",
+    "CEN","CEN"
+  ),
+  course_num = c(
+    "4203","4841","4304","4612","4770","4751","3764","4710","4052",
+    "4806","4203","4021","4072"
+  ),
+  new_prefix = "COP",
+  new_num    = "4999"
+)
+
+grade_fpu <- grade_fpu %>%
+  left_join(cs_conc, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# electives 
+cs_elec <- data.frame(
+  course_prefix = c(
+    "COP","EEL","COP","EEL","CAP","CAP","COP","MAD","MAP"
+  ),
+  course_num = c(
+    "4813","4730","4655","3664","4104","4830","4930","3401","2302"
+  ),
+  new_prefix = "CIS",
+  new_num    = "4999"
+)
+
+grade_fpu <- grade_fpu %>%
+  left_join(cs_elec, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+# natural science 
+natsci_ucc1 <- data.frame(
+  course_prefix = c(
+    "CHM","CHM","PHY","PHY","PHY","EVR"
+  ),
+  course_num = c(
+    "1045","1046","2048","2053","2049","1001"
+  ),
+  new_prefix = "NAT",
+  new_num    = "UCC1"
+)
+
+grade_fpu <- grade_fpu %>%
+  left_join(natsci_ucc1, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+
+natsci_ucc1_lab <- data.frame(
+  course_prefix = c(
+    "CHM","CHM","PHY","PHY","EVR"
+  ),
+  course_num = c(
+    "1045L","1046L","2048L","2049L","1001L"
+  ),
+  new_prefix = "NAT",
+  new_num    = "UCC1L"
+)
+
+grade_fpu <- grade_fpu %>%
+  left_join(natsci_ucc1_lab, by = c("course_prefix", "course_num")) %>%
+  mutate(
+    course_prefix = if_else(!is.na(new_prefix), new_prefix, course_prefix),
+    course_num    = if_else(!is.na(new_num),    new_num,    course_num)
+  ) %>%
+  select(-new_prefix, -new_num)
+# --------------------------------------------------------------
+
+
+grade_fpu <- grade_fpu %>% filter(!(course_prefix %in% 
+  c('LIT', 'ANT', 'MAA', 'EEE', 'PSY', 'CCJ', 'ECO', 'IDS', 'CHM','COM', 'REL', 'DEP', 'POS', 'INR', 'EVR', 'IDC', 'SYG', 'PAD', 'PHI', 'ARH', "TRA", 'MUH', 'CGN', 'CES', 'GEO', 'MAP', 'GLY', 'EUH', 'AMH', 'AFS', 'GEA', 'IPM', 'HOS', 'JPT', 'OCE', 'MUL', 'OCP', 'TPP', 'SYO', 'ENT', 'THE', 'ENG', 'WOH', 'LAH', 'CJJ', 'AFH', 'ENY', 'NSP', 'ISE', 'PUR', 'QMB', 'RCS', 'RDG', 'RED', 'REE', 'RLG', 'RMI', "RTV", 'RUS', 'SAL', 'SCE', 'SCM', 'SDS', 'SMT', 'SOP', 'SOW', 'SPA', 'SPM', "SPN", 'SPS', 'SPT', 'SPW','SRK', 'SSE', 'SUR', 'SWS', 'SYA', 'SYD', 'SYP', 'TAX', 'TPA', 'TSL', 'TTE', 'URP', 'URS', 'VIC', 'WST', 'ZOO', 'ABT','ACG',"ADE","ADV", "AEB", "AFR", "AFS", "AGG", "AGR", "AML", "ANG", "APK", "ARA", "ARC", "ARE", "ART", "ASH", "ASL", "ASN", "AST", "ATR", "BCH", "BCN", "BME", "BMS", "BOT", "BUL","CBH", "CCE", "CEG", "CHI", "CHS", "CHT", "CJC", "CJE", "CJL", "CLP", "CLS","CMN","CPO", "CRW", "CWR", "CYP")
+  ))
+
+#write.csv(grade_fpu, "C:/Users/cpanc/OneDrive/Documents/IDC6940/FPU/slim_grades_fpu.csv", row.names = FALSE)
+
+
+```
+
+
+
+
+

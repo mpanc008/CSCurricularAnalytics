@@ -1,0 +1,120 @@
+
+------------ Simulation Report ------------
+BS Computer Science, BS -- Generic
+
+-------- Simulation Statistics --------
+Number of terms: 12
+Max Credits per Term: 18
+Max Course Attempts: 3
+Number of Students: 1000
+Preset Course Pass Rates: 90.0%
+
+-------- Graduation Statistics --------
+Number of Students Graduated: 611
+Graduation Rate: 61.1%
+Term Graduation Rates: 
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.164, 0.508, 0.6, 0.611, 0.0]
+Average time to degree: 8.918166939443536 terms
+
+-------- Stop out Statistics --------
+Number of Students Stopped Out (Stopout Model Prediction + Reached Max Attempts): 389
+Number of Students Reaching Max Attempts: 97
+Stop-out Rate: 38.9%
+Cumulative Term Stop-out Rates (including reached max course attempts students): 
+[0.065, 0.182, 0.246, 0.306, 0.331, 0.347, 0.37, 0.382, 0.386, 0.389, 0.389, 0.0]
+
+Cumulative Term Stop-out Rates (excluding reaching max course attempts students): 
+[0.065, 0.182, 0.216, 0.258, 0.274, 0.284, 0.292, 0.292, 0.292, 0.292, 0.292, 0.0]
+
+Cumulative Term Reached Max Course Attempts Rates: 
+[0.0, 0.0, 0.03, 0.048, 0.057, 0.063, 0.078, 0.09, 0.094, 0.097, 0.097, 0.0]
+
+
+-------- Pass Rate of Each Course (computed from Student Grades CSV file) --------
+ Row │ Courses                            Pass_Rates  Num_Students_Passes  Num_Students_Taken 
+─────┼────────────────────────────────────────────────────────────────────────────────────────
+   1 │ BSC UCC1 Biological Science        90.0%       N/A                  N/A
+   2 │ ENC 1101 Freshman Communication …  88.2%       9643                 10929
+   3 │ MAC 2311 Calculus I                71.1%       3482                 4900
+   4 │ SPC 2608 Public Speaking           90.8%       9448                 10401
+   5 │ ENC 1102 Freshman Communication …  87.1%       11510                13212
+   6 │ EEL 2280 Fundamentals of Program…  90.0%       N/A                  N/A
+   7 │ MAC 2312 Calculus II               72.7%       2246                 3090
+   8 │ SLS 1101 First Year Experience -…  90.0%       N/A                  N/A
+   9 │ SOC UCC1 Social Science Elective…  88.3%       15052                17046
+  10 │ SOC UCC2 Social Science Elective   88.3%       7267                 8229
+  11 │ AFA 2004 The African American Ex…  87.5%       618                  706
+  12 │ HUM UCC1 Humanities Elective       91.4%       17427                19061
+  13 │ COT 3100 Discrete Structures I     92.0%       3105                 3376
+  14 │ MAC 2313 Calculus III              81.3%       1340                 1649
+  15 │ COP 3337 Intro to Object Oriente…  90.8%       2973                 3275
+  16 │ COP 3530 Programming, Data Struc…  94.1%       2685                 2853
+  17 │ COT 3101 Discrete Structures II    90.0%       N/A                  N/A
+  18 │ General Elective                   90.0%       N/A                  N/A
+  19 │ General Elective                   90.0%       N/A                  N/A
+  20 │ CDA 4101 Computer Concepts and O…  90.0%       N/A                  N/A
+  21 │ CGS 3095 Computer Ethics and Pro…  90.6%       2890                 3190
+  22 │ PHY 2048 General Physics I         79.9%       2791                 3495
+  23 │ MAT 4999 Math Elective 1           86.2%       5132                 5955
+  24 │ MAD 3512 Foundations of Computer…  71.4%       135                  189
+  25 │ CDA 4102 Computer Architecture     90.0%       N/A                  N/A
+  26 │ CNT 4504 Data Communication and …  100.0%      63                   63
+  27 │ PHY 2049 General Physics II        89.1%       2365                 2653
+  28 │ HUM UCC2 Humanities Elective       89.7%       9416                 10500
+  29 │ COP 4710 Database Management Sys…  94.1%       1671                 1775
+  30 │ CEN 4021 Information Systems Des…  98.2%       544                  554
+  31 │ CEN 4010 Concepts in Advanced Ap…  94.8%       1959                 2067
+  32 │ COP 4555 Programming Languages     95.5%       1602                 1678
+  33 │ Computer Science Elective          90.0%       N/A                  N/A
+  34 │ CIS 4951 Information Systems Dev…  97.3%       1012                 1040
+  35 │ COP 4610 Operating Systems         93.1%       2183                 2344
+  36 │ Computer Science Elective          90.0%       N/A                  N/A
+  37 │ MAT 4999 Math Elective 2           86.2%       5132                 5955
+  38 │ PHY 2048L General Physics I Lab    92.9%       4732                 5091
+  39 │ PHY 2049L General Physics II Lab   96.5%       3962                 4107
+  40 │ BSC UCC1L Biological Science Lab   90.0%       N/A                  N/A
+
+-------- Course Pass Rates by Term --------
+ Row │ COUSE                              TERM1  TERM2  TERM3  TERM4  TERM5  TERM6  TERM7  TERM8  TERM9  TERM10  TERM11  TERM12 
+─────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ Biological Science                 88.8%  97.9%  99.2%  99.2%  99.2%  99.2%  99.2%  99.2%  99.2%  99.2%   99.2%   99.2%
+   2 │ Freshman Communication Skills I    86.7%  96.9%  98.1%  98.1%  98.1%  98.1%  98.1%  98.1%  98.1%  98.1%   98.1%   98.1%
+   3 │ Calculus I                         68.7%  89.3%  95.2%  95.2%  95.2%  95.2%  95.2%  95.2%  95.2%  95.2%   95.2%   95.2%
+   4 │ Public Speaking                    90.4%  98.4%  99.5%  99.5%  99.5%  99.5%  99.5%  99.5%  99.5%  99.5%   99.5%   99.5%
+   5 │ Freshman Communication Skills II   0.0%   70.0%  86.3%  88.9%  89.2%  89.3%  89.3%  89.3%  89.3%  89.3%   89.3%   89.3%
+   6 │ Fundamentals of Programming        0.0%   56.5%  78.3%  85.7%  85.9%  85.9%  85.9%  85.9%  85.9%  85.9%   85.9%   85.9%
+   7 │ Calculus II                        0.0%   44.7%  70.0%  80.5%  82.3%  82.8%  82.8%  82.8%  82.8%  82.8%   82.8%   82.8%
+   8 │ First Year Experience - College …  90.6%  98.8%  99.4%  99.4%  99.4%  99.4%  99.4%  99.4%  99.4%  99.4%   99.4%   99.4%
+   9 │ Social Science Elective (Civic L…  88.7%  98.2%  99.1%  99.1%  99.1%  99.1%  99.1%  99.1%  99.1%  99.1%   99.1%   99.1%
+  10 │ Social Science Elective            0.0%   78.7%  89.8%  90.6%  90.6%  90.6%  90.6%  90.6%  90.6%  90.6%   90.6%   90.6%
+  11 │ The African American Experience    0.0%   60.9%  85.9%  88.6%  88.9%  88.9%  88.9%  88.9%  88.9%  88.9%   88.9%   88.9%
+  12 │ Humanities Elective                0.0%   16.2%  76.9%  82.5%  82.8%  82.8%  82.8%  82.8%  82.8%  82.8%   82.8%   82.8%
+  13 │ Discrete Structures I              0.0%   0.0%   64.8%  76.9%  78.2%  78.4%  78.4%  78.4%  78.4%  78.4%   78.4%   78.4%
+  14 │ Calculus III                       0.0%   0.0%   29.0%  55.1%  67.4%  71.7%  72.5%  72.6%  72.6%  72.6%   72.6%   72.6%
+  15 │ Intro to Object Oriented Program…  0.0%   0.0%   36.5%  66.6%  75.3%  76.1%  76.1%  76.1%  76.1%  76.1%   76.1%   76.1%
+  16 │ Programming, Data Structures, an…  0.0%   0.0%   0.0%   32.8%  60.7%  70.5%  71.8%  71.9%  71.9%  71.9%   71.9%   71.9%
+  17 │ Discrete Structures II             0.0%   0.0%   0.0%   54.9%  70.7%  73.4%  73.7%  73.7%  73.7%  73.7%   73.7%   73.7%
+  18 │ General Elective                   0.0%   0.0%   38.0%  75.5%  78.8%  79.0%  79.0%  79.0%  79.0%  79.0%   79.0%   79.0%
+  19 │ General Elective                   0.0%   0.0%   12.6%  63.8%  74.4%  76.1%  76.1%  76.1%  76.1%  76.1%   76.1%   76.1%
+  20 │ Computer Concepts and Organizati…  0.0%   0.0%   0.0%   37.1%  66.2%  70.4%  71.2%  71.2%  71.2%  71.2%   71.2%   71.2%
+  21 │ Computer Ethics and Professional…  0.0%   0.0%   0.0%   25.7%  64.4%  69.2%  70.0%  70.0%  70.0%  70.0%   70.0%   70.0%
+  22 │ General Physics I                  0.0%   0.0%   0.0%   5.3%   51.7%  66.3%  68.5%  68.6%  68.6%  68.6%   68.6%   68.6%
+  23 │ Math Elective 1                    0.0%   0.0%   5.4%   15.5%  54.7%  69.8%  71.3%  71.5%  71.5%  71.5%   71.5%   71.5%
+  24 │ Foundations of Computer Science    0.0%   0.0%   0.0%   0.0%   14.6%  41.3%  57.9%  63.4%  64.1%  64.2%   64.2%   64.2%
+  25 │ Computer Architecture              0.0%   0.0%   0.0%   0.0%   24.7%  58.8%  66.1%  67.2%  67.6%  67.7%   67.7%   67.7%
+  26 │ Data Communication and Organizat…  0.0%   0.0%   0.0%   0.0%   19.8%  64.9%  67.8%  67.8%  67.8%  67.8%   67.8%   67.8%
+  27 │ General Physics II                 0.0%   0.0%   0.0%   0.0%   0.4%   40.7%  60.4%  64.8%  65.6%  65.6%   65.6%   65.6%
+  28 │ Humanities Elective                0.0%   0.0%   2.1%   3.8%   9.1%   47.1%  64.7%  66.7%  66.8%  66.8%   66.8%   66.8%
+  29 │ Database Management Systems        0.0%   0.0%   0.0%   0.0%   0.1%   26.9%  61.0%  65.2%  65.6%  65.6%   65.6%   65.6%
+  30 │ Information Systems Design And D…  0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   26.1%  58.6%  63.4%  63.8%   63.8%   63.8%
+  31 │ Concepts in Advanced Application…  0.0%   0.0%   0.0%   0.0%   0.0%   14.8%  56.8%  64.3%  64.7%  64.8%   64.8%   64.8%
+  32 │ Programming Languages              0.0%   0.0%   0.0%   0.0%   0.0%   7.5%   52.1%  64.0%  64.6%  64.6%   64.6%   64.6%
+  33 │ Computer Science Elective          0.0%   0.0%   0.0%   1.0%   1.4%   4.9%   40.5%  61.4%  63.7%  63.8%   63.8%   63.8%
+  34 │ Information Systems Development …  0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   23.2%  55.8%  61.8%   62.5%   62.5%
+  35 │ Operating Systems                  0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   24.2%  58.6%  63.2%  63.3%   63.3%   63.3%
+  36 │ Computer Science Elective          0.0%   0.0%   0.0%   0.0%   0.0%   1.1%   11.9%  53.6%  62.4%  62.9%   62.9%   62.9%
+  37 │ Math Elective 2                    0.0%   0.0%   0.0%   0.0%   0.0%   0.1%   5.0%   45.1%  59.9%  62.3%   62.6%   62.6%
+  38 │ General Physics I Lab              0.0%   0.0%   0.0%   0.0%   5.0%   46.8%  63.1%  65.9%  66.2%  66.3%   66.3%   66.3%
+  39 │ General Physics II Lab             0.0%   0.0%   0.0%   0.0%   0.0%   0.3%   38.8%  57.5%  62.8%  63.7%   63.8%   63.8%
+  40 │ Biological Science Lab             0.0%   76.1%  87.8%  90.2%  90.5%  90.5%  90.5%  90.5%  90.5%  90.5%   90.5%   90.5%
+  41 │ GRAD RATE                          0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   16.4%  50.8%  60.0%   61.1%   0.0%

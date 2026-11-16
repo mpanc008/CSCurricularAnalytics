@@ -1,0 +1,123 @@
+------------ Simulation Report ------------
+Computer Science - BS, BS -- Generic
+
+-------- Simulation Statistics --------
+Number of terms: 12
+Max Credits per Term: 18
+Max Course Attempts: 3
+Number of Students: 1000
+Preset Course Pass Rates: 90.0%
+
+-------- Graduation Statistics --------
+Number of Students Graduated: 616
+Graduation Rate: 61.6%
+Term Graduation Rates: 
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.012, 0.336, 0.576, 0.612, 0.616, 0.0]
+Average time to degree: 8.506493506493506 terms
+
+-------- Stop out Statistics --------
+Number of Students Stopped Out (Stopout Model Prediction + Reached Max Attempts): 384
+Number of Students Reaching Max Attempts: 83
+Stop-out Rate: 38.4%
+Cumulative Term Stop-out Rates (including reached max course attempts students): 
+[0.074, 0.188, 0.255, 0.308, 0.348, 0.367, 0.38, 0.38, 0.383, 0.384, 0.384, 0.0]
+
+Cumulative Term Stop-out Rates (excluding reaching max course attempts students): 
+[0.074, 0.188, 0.226, 0.262, 0.285, 0.293, 0.301, 0.301, 0.301, 0.301, 0.301, 0.0]
+
+Cumulative Term Reached Max Course Attempts Rates: 
+[0.0, 0.0, 0.029, 0.046, 0.063, 0.074, 0.079, 0.079, 0.082, 0.083, 0.083, 0.0]
+
+
+-------- Pass Rate of Each Course (computed from Student Grades CSV file) --------
+ Row │ Courses                            Pass_Rates  Num_Students_Passes  Num_Students_Taken 
+─────┼────────────────────────────────────────────────────────────────────────────────────────
+   1 │ SOC UCC1 Social Science Group On…  86.4%       14726                17046
+   2 │ HUM UCC1 Humanities - Group One …  89.9%       17131                19061
+   3 │ UCC Elective                       90.0%       N/A                  N/A
+   4 │ SOC UCC2 Social Science Group Tw…  88.8%       18619                20967
+   5 │ HUM UCC2 Humanities - Group Two …  88.3%       16342                18507
+   6 │ NAT UCC1 Natural Science Additio…  79.3%       14634                18460
+   7 │ NAT UCC2 Natural Science Additio…  83.0%       11098                13369
+   8 │ General Electives                  90.0%       N/A                  N/A
+   9 │ General Electives                  90.0%       N/A                  N/A
+  10 │ General Electives                  90.0%       N/A                  N/A
+  11 │ CS Electives [RQ4260/LN20]         90.0%       N/A                  N/A
+  12 │ General Electives                  90.0%       N/A                  N/A
+  13 │ CS Electives [RQ4260/LN20]         90.0%       N/A                  N/A
+  14 │ CS Electives [RQ4260/LN20]         90.0%       N/A                  N/A
+  15 │ COT FND1 Computer Science Electi…  87.6%       3162                 3611
+  16 │ COT SYS1 Computer Science Electi…  92.6%       3692                 3987
+  17 │ COT APP1 Computer Science Electi…  92.9%       5264                 5667
+  18 │ CS Electives [RQ4260/LN20]         90.0%       N/A                  N/A
+  19 │ General Electives                  90.0%       N/A                  N/A
+  20 │ General Electives                  90.0%       N/A                  N/A
+  21 │ NAT UCC1L Natural Science Additi…  87.5%       16897                19319
+  22 │ COP 4555 COP4555-Prin Of Prog La…  94.3%       1583                 1678
+  23 │ CNT 4713 CNT4713-Net-centric Com…  92.6%       865                  934
+  24 │ COP 2210 COP2210-Programming I     84.5%       2560                 3028
+  25 │ COP 4338 COP4338-Systems Program…  90.5%       2563                 2833
+  26 │ COP 3530 COP3530-Data Structures   91.1%       2600                 2853
+  27 │ COP 4610 COP4610-Operating Syst …  90.6%       2123                 2344
+  28 │ CEN 4010 CEN4010-Software Eng I    93.3%       1929                 2067
+  29 │ ENC 1101 ENC1101-Writing and Rhe…  87.5%       9568                 10929
+  30 │ ENC 1102 ENC1102-Writing and Rhe…  86.2%       11383                13212
+  31 │ SLS 1501 SLS1501-First Year Exper  91.4%       12617                13808
+  32 │ STA 3033 STA3033-Prob & Stat For…  86.5%       1159                 1340
+  33 │ COP 3337 COP3337-Programming II    88.3%       2893                 3275
+  34 │ MAC 2311 MAC2311-Calculus I        68.0%       3331                 4900
+  35 │ MAC 2312 MAC2312-Calculus II       69.0%       2133                 3090
+  36 │ CGS 1920 CGS1920-Intro to Comput…  94.6%       1365                 1443
+  37 │ CGS 3095 CGS3095-Technology in t…  88.5%       2824                 3190
+  38 │ ENC 3249 ENC3249-Prof Tech Writi…  92.4%       3808                 4120
+  39 │ COT 3100 COT3100-Discrete Struct…  86.4%       3560                 4118
+  40 │ CDA 3102 CDA3102-Computer Archit…  88.2%       2276                 2581
+  41 │ CIS 3950 CIS3950-Capstone I        96.4%       1269                 1316
+  42 │ CIS 4951 CIS4951-Capstone II       97.3%       1012                 1040
+
+-------- Course Pass Rates by Term --------
+ Row │ COUSE                              TERM1  TERM2  TERM3  TERM4  TERM5  TERM6  TERM7  TERM8  TERM9  TERM10  TERM11  TERM12 
+─────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ Social Science Group One [RQ4005…  86.2%  96.9%  99.0%  99.0%  99.0%  99.0%  99.0%  99.0%  99.0%  99.0%   99.0%   99.0%
+   2 │ Humanities - Group One [RQ4004/L…  89.0%  98.6%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%  98.9%   98.9%   98.9%
+   3 │ UCC Elective                       88.2%  97.5%  98.6%  98.6%  98.6%  98.6%  98.6%  98.6%  98.6%  98.6%   98.6%   98.6%
+   4 │ Social Science Group Two [RQ4005…  0.0%   16.4%  73.7%  80.7%  81.9%  81.9%  81.9%  81.9%  81.9%  81.9%   81.9%   81.9%
+   5 │ Humanities - Group Two  [RQ4009/…  0.0%   0.0%   41.0%  73.6%  78.0%  78.2%  78.2%  78.2%  78.2%  78.2%   78.2%   78.2%
+   6 │ Natural Science Additional - Gro…  0.0%   0.0%   20.0%  63.5%  73.2%  74.8%  74.9%  74.9%  74.9%  74.9%   74.9%   74.9%
+   7 │ Natural Science Additional - Gro…  0.0%   0.0%   3.2%   54.6%  70.3%  72.4%  72.8%  72.8%  72.8%  72.8%   72.8%   72.8%
+   8 │ General Electives                  0.0%   0.0%   0.0%   35.1%  66.5%  70.3%  70.5%  70.5%  70.5%  70.5%   70.5%   70.5%
+   9 │ General Electives                  0.0%   0.0%   0.0%   11.3%  59.2%  67.8%  68.5%  68.6%  68.6%  68.6%   68.6%   68.6%
+  10 │ General Electives                  0.0%   0.0%   0.0%   0.0%   48.7%  66.4%  67.7%  67.8%  67.8%  67.8%   67.8%   67.8%
+  11 │ CS Electives [RQ4260/LN20]         0.0%   0.0%   0.0%   0.0%   0.0%   12.8%  55.0%  62.5%  63.1%  63.2%   63.2%   63.2%
+  12 │ General Electives                  0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   37.0%  60.2%  62.2%  62.4%   62.4%   62.4%
+  13 │ CS Electives [RQ4260/LN20]         0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   9.1%   52.5%  60.9%  62.0%   62.1%   62.1%
+  14 │ CS Electives [RQ4260/LN20]         0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   2.8%   46.9%  60.6%  62.0%   62.0%   62.0%
+  15 │ Computer Science Elective - Foun…  0.0%   0.0%   0.0%   0.0%   1.1%   45.6%  62.9%  64.6%  64.6%  64.6%   64.6%   64.6%
+  16 │ Computer Science Elective - Syst…  0.0%   0.0%   0.0%   0.0%   0.2%   36.1%  61.8%  63.6%  63.8%  63.8%   63.8%   63.8%
+  17 │ Computer Science Elective - Appl…  0.0%   0.0%   0.0%   0.0%   0.0%   23.1%  59.0%  62.8%  63.4%  63.4%   63.4%   63.4%
+  18 │ CS Electives [RQ4260/LN20]         0.0%   0.0%   0.0%   0.0%   0.0%   2.9%   46.2%  60.6%  62.7%  62.8%   62.8%   62.8%
+  19 │ General Electives                  0.0%   79.8%  90.3%  91.2%  91.3%  91.3%  91.3%  91.3%  91.3%  91.3%   91.3%   91.3%
+  20 │ General Electives                  0.0%   65.2%  85.9%  88.8%  88.8%  88.8%  88.8%  88.8%  88.8%  88.8%   88.8%   88.8%
+  21 │ Natural Science Additional  - Gr…  0.0%   0.0%   0.0%   14.7%  53.2%  64.7%  67.5%  67.9%  68.0%  68.0%   68.0%   68.0%
+  22 │ COP4555-Prin Of Prog Lang          0.0%   0.0%   0.0%   0.0%   15.2%  47.9%  60.8%  64.1%  64.4%  64.5%   64.5%   64.5%
+  23 │ CNT4713-Net-centric Computing      0.0%   0.0%   0.0%   0.0%   0.0%   6.2%   50.0%  61.2%  63.0%  63.1%   63.1%   63.1%
+  24 │ COP2210-Programming I              0.0%   54.7%  77.2%  84.6%  85.4%  85.5%  85.5%  85.5%  85.5%  85.5%   85.5%   85.5%
+  25 │ COP4338-Systems Programming        0.0%   0.0%   0.0%   0.0%   7.3%   54.8%  64.2%  65.2%  65.2%  65.2%   65.2%   65.2%
+  26 │ COP3530-Data Structures            0.0%   0.0%   0.0%   23.8%  54.8%  65.8%  68.5%  68.9%  68.9%  68.9%   68.9%   68.9%
+  27 │ COP4610-Operating Syst Princ       0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   24.1%  55.6%  61.9%  62.4%   62.5%   62.5%
+  28 │ CEN4010-Software Eng I             0.0%   0.0%   0.0%   0.0%   10.6%  52.9%  63.1%  65.2%  65.2%  65.2%   65.2%   65.2%
+  29 │ ENC1101-Writing and Rhetoric I     86.7%  97.6%  98.8%  98.8%  98.8%  98.8%  98.8%  98.8%  98.8%  98.8%   98.8%   98.8%
+  30 │ ENC1102-Writing and Rhetoric II    0.0%   68.8%  86.2%  88.6%  88.7%  88.7%  88.7%  88.7%  88.7%  88.7%   88.7%   88.7%
+  31 │ SLS1501-First Year Exper           93.3%  98.5%  99.2%  99.2%  99.2%  99.2%  99.2%  99.2%  99.2%  99.2%   99.2%   99.2%
+  32 │ STA3033-Prob & Stat For Cs         0.0%   0.0%   0.0%   0.0%   34.1%  63.1%  66.7%  66.7%  66.7%  66.7%   66.7%   66.7%
+  33 │ COP3337-Programming II             0.0%   0.0%   34.9%  63.8%  73.2%  75.4%  75.6%  75.6%  75.6%  75.6%   75.6%   75.6%
+  34 │ MAC2311-Calculus I                 69.2%  89.7%  94.4%  94.4%  94.4%  94.4%  94.4%  94.4%  94.4%  94.4%   94.4%   94.4%
+  35 │ MAC2312-Calculus II                0.0%   44.2%  68.6%  80.2%  82.4%  82.6%  82.6%  82.6%  82.6%  82.6%   82.6%   82.6%
+  36 │ CGS1920-Intro to Computing         95.0%  99.2%  99.5%  99.5%  99.5%  99.5%  99.5%  99.5%  99.5%  99.5%   99.5%   99.5%
+  37 │ CGS3095-Technology in the Global…  0.0%   0.0%   0.0%   39.7%  65.0%  70.3%  71.5%  71.5%  71.5%  71.5%   71.5%   71.5%
+  38 │ ENC3249-Prof Tech Writing Comp     0.0%   0.0%   55.2%  74.9%  78.5%  78.7%  78.7%  78.7%  78.7%  78.7%   78.7%   78.7%
+  39 │ COT3100-Discrete Structures        0.0%   0.0%   58.8%  75.2%  76.9%  76.9%  76.9%  76.9%  76.9%  76.9%   76.9%   76.9%
+  40 │ CDA3102-Computer Architecture      0.0%   0.0%   0.0%   24.3%  53.5%  64.7%  68.0%  68.6%  68.6%  68.6%   68.6%   68.6%
+  41 │ CIS3950-Capstone I                 0.0%   0.0%   0.0%   13.8%  46.5%  55.6%  59.9%  67.3%  67.7%  67.7%   67.7%   67.7%
+  42 │ CIS4951-Capstone II                0.0%   0.0%   0.0%   0.0%   2.5%   6.3%   24.0%  52.2%  62.1%  62.4%   62.6%   62.6%
+  43 │ GRAD RATE                          0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   1.2%   33.6%  57.6%  61.2%   61.6%   0.0%
