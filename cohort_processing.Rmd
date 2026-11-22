@@ -20,7 +20,7 @@ library(CurricularAnalytics)
 This section is responsible for performing initial preprocessing on cohort course level data by creating variables for cohort, removing columns, creating variable for 1st year retention, denoting core classes as apart of curricula, and calculating preliminary student statistics from the cohort level data. 
 
 ```{r preprocess1}
-prev_cohorts <- read_xlsx("C:/Users/cpanc/OneDrive/Documents/IDC6940/FIU/HISTORICAL DATA/Course Takers COMPSCBS.xlsx")
+prev_cohorts <- read_xlsx("C:/Users/cpanc/OneDrive/Documents/IDC6940/CSCurricularAnalytics/FIU/HISTORICAL DATA/Course Takers COMPSCBS.xlsx")
 
 prev_cohorts <- prev_cohorts %>%  distinct(.keep_all = TRUE)
 
@@ -107,7 +107,7 @@ prev_cohorts$switchmajor <- ifelse(prev_cohorts$outcome == 'Switch and not gradu
 ###############################################
 
 # the old course maps for FIU don't work because the UCC requirements are different 
-req_map <- read.csv("C:/Users/cpanc/OneDrive/Documents/IDC6940/FIU/HISTORICAL DATA/UCC_and_courses_mapping.csv")
+req_map <- read.csv("C:/Users/cpanc/OneDrive/Documents/IDC6940/CSCurricularAnalytics/FIU/HISTORICAL DATA/UCC_and_courses_mapping.csv")
 
 prev_cohorts <- full_join(req_map, prev_cohorts, by = "COURSE_ID") 
 

@@ -5,7 +5,7 @@ library(stringr)
 library(tidyr)
 library(rstatix)
 library(corrplot)
-fiu_curric <- read.csv("C:/Users/cpanc/OneDrive/Documents/IDC6940/compare_fiu_curric.csv")
+fiu_curric <- read.csv("C:/Users/cpanc/OneDrive/Documents/IDC6940/CSCurricularAnalytics/compare_fiu_curric.csv")
 names(fiu_curric)
 
 # assumptions 
@@ -24,15 +24,15 @@ box_m(fiu_curric[, c("Grad_Rate", "Std_Max_Attempt", "Time_To_Degree")],
 # new vs old fiu stat tests 
 oldfiu <- fiu_curric %>% filter(Institution=='FIU_OLD')
 newfiu <- fiu_curric %>% filter(Institution=='FIU_NEW')
-t.test(oldfiu$Grad_Rate, newfiu$Grad_Rate, var.equal = TRUE) # p = 0.1211
-t.test(oldfiu$Std_Max_Attempt, newfiu$Std_Max_Attempt, var.equal = TRUE) # p = 0.4654
-t.test(oldfiu$Time_To_Degree, newfiu$Time_To_Degree, var.equal = TRUE) # *** p < 2e-16; curric complexity influence time on degree
+t.test(oldfiu$Grad_Rate, newfiu$Grad_Rate) # p = 0.1211
+t.test(oldfiu$Std_Max_Attempt, newfiu$Std_Max_Attempt) # p = 0.4654
+t.test(oldfiu$Time_To_Degree, newfiu$Time_To_Degree) # *** p < 2e-16; curric complexity influence time on degree
 
 mean(oldfiu$Time_To_Degree)
 
 # all unis
 
-all_curric <- read.csv("C:/Users/cpanc/OneDrive/Documents/IDC6940/all_uni_sim_results.csv")
+all_curric <- read.csv("C:/Users/cpanc/OneDrive/Documents/IDC6940/CSCurricularAnalytics/all_uni_sim_results.csv")
 names(all_curric)
 
 all_curric <- all_curric %>% filter(Institution != 'FIU_NEW')
